@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:selller_amigo_app/VerificationScreen/verification_screen.dart';
-import 'package:selller_amigo_app/phoneNumberScreen/phone_number_screen.dart';
 import 'package:selller_amigo_app/splashScreen.dart';
 
 Future<void> main() async{
@@ -31,12 +29,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Seller app',
       theme: ThemeData(
         primarySwatch: colorCustom,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const VerificationScreen(),
+      home: const SplashScreen(),
     );
   }
 }
