@@ -13,10 +13,11 @@ class PhoneNumber extends StatefulWidget {
 class _PhoneNumberState extends State<PhoneNumber> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kColorYellow,
+      backgroundColor: Colors.white,
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Padding(
@@ -62,31 +63,38 @@ class _PhoneNumberState extends State<PhoneNumber> {
                       const SizedBox(
                         height: 20,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: CustomTextField(
-                          leadingIcon: Icon(
-                            Icons.email,
-                            color: kColorRed,
-                            size: 22,
-                          ),
-                          controller: emailController,
-                          hintText: 'Enter your registered email',
-                          keyboardType: TextInputType.emailAddress,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: CustomTextField(
-                          leadingIcon: Icon(
-                            Icons.password_rounded,
-                            color: kColorRed,
-                            size: 22,
-                          ),
-                          controller: passwordController,
-                          hintText: 'Enter your password',
-                          obscureText: true,
-                          keyboardType: TextInputType.visiblePassword,
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CustomTextField(
+                                leadingIcon: Icon(
+                                  Icons.email,
+                                  color: kColorRed,
+                                  size: 22,
+                                ),
+                                controller: emailController,
+                                hintText: 'Enter your registered email',
+                                keyboardType: TextInputType.emailAddress,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CustomTextField(
+                                leadingIcon: Icon(
+                                  Icons.password_rounded,
+                                  color: kColorRed,
+                                  size: 22,
+                                ),
+                                controller: passwordController,
+                                hintText: 'Enter your password',
+                                obscureText: true,
+                                keyboardType: TextInputType.visiblePassword,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       Padding(
@@ -104,7 +112,7 @@ class _PhoneNumberState extends State<PhoneNumber> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Send OTP",
+                                  "Login",
                                   style: GoogleFonts.lato(
                                       textStyle: const TextStyle(
                                           fontSize: 18,

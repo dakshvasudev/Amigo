@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:selller_amigo_app/authScreen/login.dart';
 import 'package:selller_amigo_app/authScreen/register.dart';
 import 'package:selller_amigo_app/constants.dart';
@@ -23,12 +24,13 @@ class _AuthScreenState extends State<AuthScreen> {
           shadowColor: kColorYellow,
           title: Text(
             'Amigo',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 32,
-              color: kColorRed,
+            style: GoogleFonts.workSans(
+              textStyle: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 32,
+                color: kColorRed,
+              ),
             ),
-            textAlign: TextAlign.end,
           ),
           bottom: TabBar(
             tabs: [
