@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "967796727639",
+    "project_id": "selleramigo",
+    "storage_bucket": "selleramigo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967796727639:android:f735261065f5042b366812",
+        "android_client_info": {
+          "package_name": "com.dakshvasudev.selleramigoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "967796727639-rtrsa3modetbkmk2nfmakfjoat723urm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJo9TLye6I9d6BUP6B3b0uDnKRQHguiHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "967796727639-rtrsa3modetbkmk2nfmakfjoat723urm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967796727639:android:82d6ed0e7fecfdde366812",
+        "android_client_info": {
+          "package_name": "com.example.selller_amigo_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "967796727639-rtrsa3modetbkmk2nfmakfjoat723urm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJo9TLye6I9d6BUP6B3b0uDnKRQHguiHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "967796727639-rtrsa3modetbkmk2nfmakfjoat723urm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
