@@ -1,9 +1,14 @@
+// ignore_for_file: library_prefixes
+
 import 'dart:io';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:selller_amigo_app/authScreen/customTextField.dart';
+import 'package:selller_amigo_app/widgets/customTextField.dart';
 import 'package:selller_amigo_app/constants.dart';
+import 'package:selller_amigo_app/widgets/error_dialog.dart';
+import 'package:selller_amigo_app/widgets/loading_dialog.dart';
+import 'package:firebase_storage/firebase_storage.dart' as fStorage;
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -18,15 +23,70 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
+  String sellerImageUrl ='';
 
-  Future<void> _getImage() async{
+  Future<void> _getImage() async {
     imageXFile = await _picker.pickImage(source: ImageSource.gallery);
     setState(() {
       imageXFile;
     });
+  }
+
+  Future<void> registerFormValidation() async {
+    if (imageXFile == null) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return ErrorDialog(message: 'Please add profile picture');
+          });
+    } else {
+      if (passwordController.text == confirmPasswordController.text) {
+        if (confirmPasswordController.text.isNotEmpty &&
+            emailController.text.isNotEmpty &&
+            nameController.text.isNotEmpty &&
+            phoneNumberController.text.isNotEmpty) {
+          //start uploading image
+          showDialog(
+              context: context,
+              builder: (context) {
+                return const LoadingDialog(
+                  message: "Registering account",
+                );
+              });
+
+          String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+          fStorage.Reference reference = fStorage.FirebaseStorage.instance
+              .ref()
+              .child("sellers")
+              .child(fileName);
+          fStorage.UploadTask uploadTask =
+              reference.putFile(File(imageXFile!.path));
+
+          fStorage.TaskSnapshot taskSnapshot =
+              await uploadTask.whenComplete(() {});
+          await taskSnapshot.ref.getDownloadURL().then((url) {
+            sellerImageUrl = url;
+            //save info to firestore database
+          });
+        } else {
+          showDialog(
+              context: context,
+              builder: (context) {
+                return ErrorDialog(message: 'Please fill all the details');
+              });
+        }
+      } else {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return ErrorDialog(message: 'Passwords do not match');
+            });
+      }
+    }
   }
 
   @override
@@ -141,7 +201,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   height: 25,
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    registerFormValidation();
+                  },
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.6,
                     height: 55,

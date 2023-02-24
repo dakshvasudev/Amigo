@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:selller_amigo_app/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'customTextField.dart';
+import '../widgets/customTextField.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class PhoneNumber extends StatefulWidget {
   const PhoneNumber({Key? key}) : super(key: key);
