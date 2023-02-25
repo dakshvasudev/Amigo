@@ -2,11 +2,15 @@ import 'dart:io';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:selller_amigo_app/mainScreens/home_screen.dart';
 import 'package:selller_amigo_app/widgets/customTextField.dart';
 import 'package:selller_amigo_app/constants.dart';
 import 'package:selller_amigo_app/widgets/error_dialog.dart';
 import 'package:selller_amigo_app/widgets/loading_dialog.dart';
 import 'package:firebase_storage/firebase_storage.dart' as fStorage;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -25,7 +29,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
-  String sellerImageUrl ='';
+  String sellerImageUrl = '';
 
   Future<void> _getImage() async {
     imageXFile = await _picker.pickImage(source: ImageSource.gallery);
@@ -69,6 +73,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           await taskSnapshot.ref.getDownloadURL().then((url) {
             sellerImageUrl = url;
             //save info to firestore database
+            authenticateSellerAndSignUp();
           });
         } else {
           showDialog(
@@ -85,6 +90,56 @@ class _RegisterScreenState extends State<RegisterScreen> {
             });
       }
     }
+  }
+
+  void authenticateSellerAndSignUp() async {
+    User? currentUser;
+
+    await firebaseAuth
+        .createUserWithEmailAndPassword(
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+    )
+        .then((auth) {
+      currentUser = auth.user;
+    }).catchError((error) {
+      Navigator.pop(context);
+      showDialog(
+          context: context,
+          builder: (c) {
+            return ErrorDialog(
+              message: error.message.toString(),
+            );
+          });
+    });
+
+    if (currentUser != null) {
+      saveDataToFirestore(currentUser!).then((value) {
+        Navigator.pop(context);
+        //send user to homePage
+        Route newRoute = MaterialPageRoute(builder: (c) => HomeScreen());
+        Navigator.pushReplacement(context, newRoute);
+      });
+    }
+  }
+
+  Future saveDataToFirestore(User currentUser) async {
+    FirebaseFirestore.instance.collection("sellers").doc(currentUser.uid).set({
+      "sellerUID": currentUser.uid,
+      "sellerEmail": currentUser.email,
+      "sellerName": nameController.text.trim(),
+      "sellerAvatarUrl": sellerImageUrl,
+      "phone": phoneNumberController.text.trim(),
+      "status": "approved",
+      "earnings": 0.0,
+    });
+
+    //save data locally
+    sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences!.setString("uid", currentUser.uid);
+    await sharedPreferences!.setString("email", currentUser.email.toString());
+    await sharedPreferences!.setString("name", nameController.text.trim());
+    await sharedPreferences!.setString("photoUrl", sellerImageUrl);
   }
 
   @override

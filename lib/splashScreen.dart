@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:selller_amigo_app/authScreen/auth_screen.dart';
 import 'package:selller_amigo_app/authScreen/login.dart';
 import 'package:flutter/material.dart';
+import 'package:selller_amigo_app/mainScreens/home_screen.dart';
 import 'constants.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,7 +16,15 @@ class _SplashScreenState extends State<SplashScreen> {
 
   startTimer(){
     Timer(const Duration(seconds: 3), () async {
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>const AuthScreen()));
+      if(firebaseAuth.currentUser != null)
+      {
+        Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
+      }
+      //if seller is NOT logged in already
+      else
+      {
+        Navigator.push(context, MaterialPageRoute(builder: (c)=> const AuthScreen()));
+      }
     });
   }
 
