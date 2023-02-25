@@ -1,6 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:selller_amigo_app/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:selller_amigo_app/mainScreens/home_screen.dart';
+import 'package:selller_amigo_app/widgets/error_dialog.dart';
+import 'package:selller_amigo_app/widgets/loading_dialog.dart';
 import '../widgets/customTextField.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -15,6 +20,81 @@ class _PhoneNumberState extends State<PhoneNumber> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  formValidationLogin()
+  {
+    if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty)
+    {
+      //login
+      loginNow();
+    }
+    else
+    {
+      showDialog(
+          context: context,
+          builder: (c)
+          {
+            return ErrorDialog(
+              message: "One of the credentials is missing. \n Please re-enter data",
+            );
+          }
+      );
+    }
+  }
+
+
+  loginNow() async
+  {
+    showDialog(
+        context: context,
+        builder: (c)
+        {
+          return const LoadingDialog(
+            message: "Checking Credentials",
+          );
+        }
+    );
+
+    User? currentUser;
+    await firebaseAuth.signInWithEmailAndPassword(
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+    ).then((auth){
+      currentUser = auth.user!;
+    }).catchError((error){
+      Navigator.pop(context);
+      showDialog(
+          context: context,
+          builder: (c)
+          {
+            return ErrorDialog(
+              message: error.message.toString(),
+            );
+          }
+      );
+    });
+    if(currentUser != null)
+    {
+      readDataAndSetDataLocally(currentUser!).then((value){
+        Navigator.pop(context);
+        Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
+      });
+    }
+  }
+
+  Future readDataAndSetDataLocally(User currentUser) async
+  {
+    await FirebaseFirestore.instance.collection("sellers")
+        .doc(currentUser.uid)
+        .get()
+        .then((snapshot) async {
+      await sharedPreferences!.setString("uid", currentUser.uid);
+      await sharedPreferences!.setString("email", snapshot.data()!["sellerEmail"]);
+      await sharedPreferences!.setString("name", snapshot.data()!["sellerName"]);
+      await sharedPreferences!.setString("photoUrl", snapshot.data()!["sellerAvatarUrl"]);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,7 +181,9 @@ class _PhoneNumberState extends State<PhoneNumber> {
                       Padding(
                         padding: const EdgeInsets.only(top: 20, bottom: 30),
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            formValidationLogin();
+                          },
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.8,
                             height: 55,

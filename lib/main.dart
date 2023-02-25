@@ -1,10 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:selller_amigo_app/constants.dart';
 import 'package:selller_amigo_app/splashScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp();
+  sharedPreferences = await SharedPreferences.getInstance();
   runApp(MyApp());
 }
 
