@@ -1,5 +1,3 @@
-// ignore_for_file: library_prefixes
-
 import 'dart:io';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +55,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   message: "Registering account",
                 );
               });
-
+          //start uploading image
           String fileName = DateTime.now().millisecondsSinceEpoch.toString();
           fStorage.Reference reference = fStorage.FirebaseStorage.instance
               .ref()

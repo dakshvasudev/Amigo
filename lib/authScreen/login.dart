@@ -107,7 +107,7 @@ class _PhoneNumberState extends State<PhoneNumber> {
                             height: 55,
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             decoration: BoxDecoration(
-                                color: kColorRed,
+                                color: kColorYellow,
                                 borderRadius: BorderRadius.circular(20)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -115,17 +115,17 @@ class _PhoneNumberState extends State<PhoneNumber> {
                                 Text(
                                   "Login",
                                   style: GoogleFonts.lato(
-                                      textStyle: const TextStyle(
+                                      textStyle:  TextStyle(
                                           fontSize: 18,
-                                          color: Colors.white,
+                                          color: kColorRed,
                                           fontWeight: FontWeight.w900)),
                                 ),
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                const Icon(
+                                 Icon(
                                   Icons.arrow_forward,
-                                  color: Colors.white,
+                                  color: kColorRed,
                                 )
                               ],
                             ),

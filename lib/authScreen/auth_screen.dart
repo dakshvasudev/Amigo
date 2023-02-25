@@ -22,13 +22,20 @@ class _AuthScreenState extends State<AuthScreen> {
           backgroundColor: kColorYellow,
           scrolledUnderElevation: 15,
           shadowColor: kColorYellow,
-          title: Text(
-            'Amigo',
-            style: GoogleFonts.workSans(
-              textStyle: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 32,
-                color: kColorRed,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(55),
+            ),
+          ),
+          title: Center(
+            child: Text(
+              'Amigo',
+              style: GoogleFonts.workSans(
+                textStyle: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 32,
+                  color: kColorRed,
+                ),
               ),
             ),
           ),
@@ -51,6 +58,7 @@ class _AuthScreenState extends State<AuthScreen> {
             ],
             indicatorColor: kColorRed,
             indicatorWeight: 5,
+            indicatorSize: TabBarIndicatorSize.label,
           ),
         ),
         body: const TabBarView(
