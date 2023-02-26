@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:user_amigo_app/authScreen/auth_screen.dart';
+import 'package:user_amigo_app/mainScreens/home_screen.dart';
 
 import 'constants.dart';
 
@@ -18,12 +20,12 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 3), () async {
       if(firebaseAuth.currentUser != null)
       {
-        // Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
+        Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
       }
       //if seller is NOT logged in already
       else
       {
-        // Navigator.push(context, MaterialPageRoute(builder: (c)=> const AuthScreen()));
+        Navigator.push(context, MaterialPageRoute(builder: (c)=> const AuthScreen()));
       }
     });
   }

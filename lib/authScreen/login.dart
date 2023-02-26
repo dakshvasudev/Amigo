@@ -75,23 +75,42 @@ class _PhoneNumberState extends State<PhoneNumber> {
     });
     if(currentUser != null)
     {
-      readDataAndSetDataLocally(currentUser!).then((value){
-        Navigator.pop(context);
-        Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
-      });
+      readDataAndSetDataLocally(currentUser!);
     }
   }
 
   Future readDataAndSetDataLocally(User currentUser) async
   {
-    await FirebaseFirestore.instance.collection("sellers")
+    await FirebaseFirestore.instance.collection("users")
         .doc(currentUser.uid)
         .get()
         .then((snapshot) async {
-      await sharedPreferences!.setString("uid", currentUser.uid);
-      await sharedPreferences!.setString("email", snapshot.data()!["sellerEmail"]);
-      await sharedPreferences!.setString("name", snapshot.data()!["sellerName"]);
-      await sharedPreferences!.setString("photoUrl", snapshot.data()!["sellerAvatarUrl"]);
+          if(snapshot.exists){
+            await sharedPreferences!.setString("uid", currentUser.uid);
+            await sharedPreferences!.setString("email", snapshot.data()?["Email"]);
+            await sharedPreferences!.setString("name", snapshot.data()?["Name"]);
+            await sharedPreferences!.setString("photoUrl", snapshot.data()?["photoUrl"]);
+
+            Navigator.pop(context);
+            Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
+
+          }else{
+            firebaseAuth.signOut();
+            Navigator.pop(context);
+            Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
+
+            showDialog(
+                context: context,
+                builder: (c)
+                {
+                  return ErrorDialog(
+                    message: 'No record found.',
+                  );
+                }
+            );
+
+          }
+
     });
   }
 
