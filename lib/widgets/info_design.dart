@@ -17,67 +17,44 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
   Widget build(BuildContext context) {
     return InkWell(
         splashColor: Colors.amber,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            height: MediaQuery.of(context).size.height * 0.33,
-            width: MediaQuery.of(context).size.width,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.25,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      color: kColorYellow,
-                      border: Border.all(
-                        color: kColorYellow,
+        child: Container(
+          height: 210,
+          width: 90,
+          margin:
+              const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+          decoration: BoxDecoration(
+            color: kColorRed,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                offset: const Offset(0, 4),
+                blurRadius: 20,
+                color: kColorRed.withOpacity(0.32),
+              ),
+            ],
+          ),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () {},
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  children: <Widget>[
+                    CircleAvatar(
+                      radius: 65,
+                      backgroundImage: NetworkImage(
+                        widget.model!.sellerAvatarUrl!,
                       ),
-                      borderRadius: BorderRadius.all(Radius.circular(20))
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.network(
-                      widget.model!.sellerAvatarUrl!,
-                      height: 220.0,
-                      fit: BoxFit.contain,
                     ),
-                  ),
+                    SizedBox(height: 10,),
+                    Text(
+                      widget.model!.sellerName!,
+                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize: 20),
+                    ),
+                  ],
                 ),
-
-                Positioned(
-                  bottom: -0.5,
-                  child: Container(
-                    height: 50,
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    decoration: BoxDecoration(
-                        color: kColorRed,
-                        border: Border.all(
-                          color: kColorRed,
-                        ),
-                        borderRadius: BorderRadius.all(Radius.circular(20))
-                    ),
-                    child: Center(
-                      child: Column(
-                        children: [
-                          Text(
-                            widget.model!.sellerName!,
-                            style: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            widget.model!.sellerEmail!,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontSize: 12,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                )
-              ],
+              ),
             ),
           ),
         ));

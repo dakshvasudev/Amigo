@@ -52,9 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: kColorYellow,
+        backgroundColor: kColorRed,
         title: Text(
           sharedPreferences!.getString("name")!,
+          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 28),
         ),
         centerTitle: true,
       ),
@@ -63,8 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
         slivers: [
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
+              padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+              child: SizedBox(
                 height: MediaQuery.of(context).size.height * .15,
                 width: MediaQuery.of(context).size.width,
                 child: CarouselSlider(
@@ -100,11 +101,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             CircleAvatar(
                               radius: 60,
-                              backgroundImage: AssetImage(
-                                index,
-                              ),
+                              backgroundColor: kColorRed,
                             ),
-
                           ],
                         ),
                       );
