@@ -8,9 +8,9 @@ import 'package:user_amigo_app/widgets/progress_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+   HomeScreen({Key? key}) : super(key: key);
+  Sellers? model;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -65,37 +65,47 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
-                height: MediaQuery.of(context).size.height * .3,
+                height: MediaQuery.of(context).size.height * .15,
                 width: MediaQuery.of(context).size.width,
                 child: CarouselSlider(
                   options: CarouselOptions(
                     height: MediaQuery.of(context).size.height * .3,
-                    aspectRatio: 16/9,
+                    aspectRatio: 16 / 9,
                     viewportFraction: 0.8,
                     initialPage: 0,
                     enableInfiniteScroll: true,
                     reverse: false,
                     autoPlay: true,
                     autoPlayInterval: const Duration(seconds: 2),
-                    autoPlayAnimationDuration: const Duration(milliseconds: 500),
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 500),
                     autoPlayCurve: Curves.decelerate,
                     enlargeCenterPage: true,
                     scrollDirection: Axis.horizontal,
                   ),
                   items: items.map((index) {
-                    return Builder(builder: (BuildContext context){
-                      return Container(
+                    return Builder(builder: (BuildContext context) {
+                      return SizedBox(
                         width: MediaQuery.of(context).size.width,
-                        margin: const EdgeInsets.symmetric(horizontal: 1.0),
-                        decoration: const BoxDecoration(
-                          color: Colors.black,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Image.asset(
-                            index,
-                            fit: BoxFit.fill,
-                          ),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 60,
+                              backgroundImage: AssetImage(
+                                index,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 30,
+                            ),
+                            CircleAvatar(
+                              radius: 60,
+                              backgroundImage: AssetImage(
+                                index,
+                              ),
+                            ),
+
+                          ],
                         ),
                       );
                     });
@@ -105,29 +115,30 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance
-                .collection("sellers")
-                .snapshots(),
-            builder: (context, snapshot)
-            {
+            stream:
+                FirebaseFirestore.instance.collection("sellers").snapshots(),
+            builder: (context, snapshot) {
               return !snapshot.hasData
-                  ? SliverToBoxAdapter(child: Center(child: circularProgress(),),)
+                  ? SliverToBoxAdapter(
+                      child: Center(
+                        child: circularProgress(),
+                      ),
+                    )
                   : SliverStaggeredGrid.countBuilder(
-                crossAxisCount: 1,
-                staggeredTileBuilder: (c) => StaggeredTile.fit(1),
-                itemBuilder: (context, index)
-                {
-                  Sellers sModel = Sellers.fromJson(
-                      snapshot.data!.docs[index].data()! as Map<String, dynamic>
-                  );
-                  //design for display sellers-cafes-restuarents
-                  return InfoDesignWidget(
-                    model: sModel,
-                    context: context,
-                  );
-                },
-                itemCount: snapshot.data!.docs.length,
-              );
+                      crossAxisCount: 1,
+                      staggeredTileBuilder: (c) => StaggeredTile.fit(1),
+                      itemBuilder: (context, index) {
+                        Sellers sModel = Sellers.fromJson(
+                            snapshot.data!.docs[index].data()!
+                                as Map<String, dynamic>);
+                        //design for display sellers-cafes-restuarents
+                        return InfoDesignWidget(
+                          model: sModel,
+                          context: context,
+                        );
+                      },
+                      itemCount: snapshot.data!.docs.length,
+                    );
             },
           ),
         ],

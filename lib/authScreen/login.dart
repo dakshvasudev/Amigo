@@ -92,12 +92,12 @@ class _PhoneNumberState extends State<PhoneNumber> {
             await sharedPreferences!.setString("photoUrl", snapshot.data()?["photoUrl"]);
 
             Navigator.pop(context);
-            Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
+            Navigator.push(context, MaterialPageRoute(builder: (c)=>  HomeScreen()));
 
           }else{
             firebaseAuth.signOut();
             Navigator.pop(context);
-            Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
+            Navigator.push(context, MaterialPageRoute(builder: (c)=>  HomeScreen()));
 
             showDialog(
                 context: context,
