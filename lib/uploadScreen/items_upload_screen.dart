@@ -6,25 +6,19 @@ import 'package:firebase_storage/firebase_storage.dart' as storageRef;
 import 'package:selller_amigo_app/constants.dart';
 import 'package:selller_amigo_app/mainScreens/home_screen.dart';
 import 'package:selller_amigo_app/model/menus.dart';
+import 'package:selller_amigo_app/widgets/customTextField.dart';
 import 'package:selller_amigo_app/widgets/error_dialog.dart';
 import 'package:selller_amigo_app/widgets/progress_bar.dart';
 
-
-
-class ItemsUploadScreen extends StatefulWidget
-{
+class ItemsUploadScreen extends StatefulWidget {
   final Menus? model;
   const ItemsUploadScreen({super.key, this.model});
-
 
   @override
   _ItemsUploadScreenState createState() => _ItemsUploadScreenState();
 }
 
-
-
-class _ItemsUploadScreenState extends State<ItemsUploadScreen>
-{
+class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
   XFile? imageXFile;
   final ImagePicker _picker = ImagePicker();
 
@@ -36,8 +30,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
   bool uploading = false;
   String uniqueIdName = DateTime.now().millisecondsSinceEpoch.toString();
 
-  defaultScreen()
-  {
+  defaultScreen() {
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
@@ -45,15 +38,18 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
         ),
         title: const Text(
           "Add New Items",
-          style: TextStyle(fontSize: 30, fontFamily: "Lobster"),
+          style: TextStyle(fontSize: 30),
         ),
         centerTitle: true,
         automaticallyImplyLeading: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white,),
-          onPressed: ()
-          {
-            Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (c) => const HomeScreen()));
           },
         ),
       ),
@@ -62,7 +58,11 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.shop_two, color: Colors.grey, size: 200.0,),
+              const Icon(
+                Icons.shop_two,
+                color: Colors.grey,
+                size: 200.0,
+              ),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(kColorRed),
@@ -72,8 +72,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
                     ),
                   ),
                 ),
-                onPressed: ()
-                {
+                onPressed: () {
                   takeImage(context);
                 },
                 child: const Text(
@@ -91,14 +90,15 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
     );
   }
 
-  takeImage(mContext)
-  {
+  takeImage(mContext) {
     return showDialog(
       context: mContext,
-      builder: (context)
-      {
+      builder: (context) {
         return SimpleDialog(
-          title: const Text("Menu Image", style: TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold),),
+          title: const Text(
+            "Menu Image",
+            style: TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold),
+          ),
           children: [
             SimpleDialogOption(
               onPressed: captureImageWithCamera,
@@ -119,7 +119,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
                 "Cancel",
                 style: TextStyle(color: Colors.red),
               ),
-              onPressed: ()=> Navigator.pop(context),
+              onPressed: () => Navigator.pop(context),
             ),
           ],
         );
@@ -127,13 +127,12 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
     );
   }
 
-  captureImageWithCamera() async
-  {
+  captureImageWithCamera() async {
     Navigator.pop(context);
 
     imageXFile = await _picker.pickImage(
       source: ImageSource.camera,
-      maxHeight: 720 ,
+      maxHeight: 720,
       maxWidth: 1280,
     );
 
@@ -142,13 +141,12 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
     });
   }
 
-  pickImageFromGallery() async
-  {
+  pickImageFromGallery() async {
     Navigator.pop(context);
 
     imageXFile = await _picker.pickImage(
       source: ImageSource.gallery,
-      maxHeight: 720 ,
+      maxHeight: 720,
       maxWidth: 1280,
     );
 
@@ -157,24 +155,11 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
     });
   }
 
-
-  itemsUploadFormScreen()
-  {
+  itemsUploadFormScreen() {
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.cyan,
-                  Colors.amber,
-                ],
-                begin:  FractionalOffset(0.0, 0.0),
-                end:  FractionalOffset(1.0, 0.0),
-                stops: [0.0, 1.0],
-                tileMode: TileMode.clamp,
-              )
-          ),
+          color: kColorRed,
         ),
         title: const Text(
           "Uploading New Item",
@@ -183,137 +168,88 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
         centerTitle: true,
         automaticallyImplyLeading: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white,),
-          onPressed: ()
-          {
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
             clearMenusUploadForm();
           },
         ),
         actions: [
           TextButton(
-            onPressed: uploading ? null : ()=> validateUploadForm(),
+            onPressed: uploading ? null : () => validateUploadForm(),
             child: const Text(
               "Add",
               style: TextStyle(
-                color: Colors.cyan,
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
-                fontFamily: "Varela",
+                color: Colors.white,
               ),
             ),
           ),
         ],
       ),
-      body: ListView(
-        children: [
-          uploading == true ? linearProgress() : const Text(""),
-          SizedBox(
-            height: 230,
-            width: MediaQuery.of(context).size.width * 0.8,
-            child: Center(
-              child: AspectRatio(
-                aspectRatio: 16/9,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: FileImage(
-                          File(imageXFile!.path)
+      body: Padding(
+        padding: const EdgeInsets.only(left: 75*0.36,right: 85*0.36),
+        child: Column(
+          children: [
+            uploading == true ? linearProgress() : const Text(""),
+            SizedBox(
+              height: 200,
+              width: MediaQuery.of(context).size.width,
+              child: Center(
+                child: AspectRatio(
+                  aspectRatio: 16 / 9,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: FileImage(File(imageXFile!.path)),
+                        fit: BoxFit.cover,
                       ),
-                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-          const Divider(
-            color: Colors.amber,
-            thickness: 1,
-          ),
-          ListTile(
-            leading: const Icon(Icons.perm_device_information,  color: Colors.cyan,),
-            title: SizedBox(
-              width: 250,
-              child: TextField(
-                style: const TextStyle(color: Colors.black),
-                controller: shortInfoController,
-                decoration: const InputDecoration(
-                  hintText: "info",
-                  hintStyle: TextStyle(color: Colors.grey),
-                  border: InputBorder.none,
-                ),
-              ),
+            CustomTextField(
+              controller: shortInfoController,
+              leadingIcon: Icon(Icons.perm_device_information),
+              hintText: 'Info',
             ),
-          ),
-          const Divider(
-            color: Colors.amber,
-            thickness: 1,
-          ),
-          ListTile(
-            leading: const Icon(Icons.title,  color: Colors.cyan,),
-            title: SizedBox(
-              width: 250,
-              child: TextField(
-                style: const TextStyle(color: Colors.black),
-                controller: titleController,
-                decoration: const InputDecoration(
-                  hintText: "title",
-                  hintStyle: TextStyle(color: Colors.grey),
-                  border: InputBorder.none,
-                ),
-              ),
+            SizedBox(
+              height: 15,
             ),
-          ),
-          const Divider(
-            color: Colors.amber,
-            thickness: 1,
-          ),
-          ListTile(
-            leading: const Icon(Icons.description,  color: Colors.cyan,),
-            title: SizedBox(
-              width: 250,
-              child: TextField(
-                style: const TextStyle(color: Colors.black),
-                controller: descriptionController,
-                decoration: const InputDecoration(
-                  hintText: "description",
-                  hintStyle: TextStyle(color: Colors.grey),
-                  border: InputBorder.none,
-                ),
-              ),
+            CustomTextField(
+              controller: titleController,
+              hintText: 'Title',
+              leadingIcon: Icon(Icons.title),
+            ),SizedBox(
+              height: 15,
             ),
-          ),
-          const Divider(
-            color: Colors.amber,
-            thickness: 1,
-          ),
-          ListTile(
-            leading: const Icon(Icons.camera,  color: Colors.cyan,),
-            title: SizedBox(
-              width: 250,
-              child: TextField(
-                keyboardType: TextInputType.number,
-                style: const TextStyle(color: Colors.black),
-                controller: priceController,
-                decoration: const InputDecoration(
-                  hintText: "price",
-                  hintStyle: TextStyle(color: Colors.grey),
-                  border: InputBorder.none,
-                ),
-              ),
+            CustomTextField(
+              controller: descriptionController,
+              leadingIcon: Icon(Icons.description),
+              hintText: 'Description',
+            ),SizedBox(
+              height: 15,
             ),
-          ),
-          const Divider(
-            color: Colors.amber,
-            thickness: 1,
-          ),
-        ],
+            CustomTextField(
+              keyboardType: TextInputType.number,
+              controller: priceController,
+              hintText: 'Price',
+              leadingIcon: Icon(Icons.currency_rupee),
+            ),SizedBox(
+              height: 15,
+            ),
+
+          ],
+        ),
       ),
     );
   }
 
-  clearMenusUploadForm()
-  {
+  clearMenusUploadForm() {
     setState(() {
       shortInfoController.clear();
       titleController.clear();
@@ -324,12 +260,12 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
     });
   }
 
-  validateUploadForm() async
-  {
-    if(imageXFile != null)
-    {
-      if(shortInfoController.text.isNotEmpty && titleController.text.isNotEmpty && descriptionController.text.isNotEmpty && priceController.text.isNotEmpty)
-      {
+  validateUploadForm() async {
+    if (imageXFile != null) {
+      if (shortInfoController.text.isNotEmpty &&
+          titleController.text.isNotEmpty &&
+          descriptionController.text.isNotEmpty &&
+          priceController.text.isNotEmpty) {
         setState(() {
           uploading = true;
         });
@@ -339,40 +275,32 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
 
         //save info to firestore
         saveInfo(downloadUrl);
-      }
-      else
-      {
+      } else {
         showDialog(
             context: context,
-            builder: (c)
-            {
+            builder: (c) {
               return ErrorDialog(
                 message: "Please write title and info for menu.",
               );
-            }
-        );
+            });
       }
-    }
-    else
-    {
+    } else {
       showDialog(
           context: context,
-          builder: (c)
-          {
+          builder: (c) {
             return ErrorDialog(
               message: "Please pick an image for menu.",
             );
-          }
-      );
+          });
     }
   }
 
-  saveInfo(String downloadUrl)
-  {
+  saveInfo(String downloadUrl) {
     final ref = FirebaseFirestore.instance
         .collection("sellers")
         .doc(sharedPreferences!.getString("uid"))
-        .collection("menus").doc(widget.model!.menuID)
+        .collection("menus")
+        .doc(widget.model!.menuID)
         .collection("items");
 
     ref.doc(uniqueIdName).set({
@@ -387,10 +315,8 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
       "publishedDate": DateTime.now(),
       "status": "available",
       "thumbnailUrl": downloadUrl,
-    }).then((value)
-    {
-      final itemsRef = FirebaseFirestore.instance
-          .collection("items");
+    }).then((value) {
+      final itemsRef = FirebaseFirestore.instance.collection("items");
 
       itemsRef.doc(uniqueIdName).set({
         "itemID": uniqueIdName,
@@ -405,7 +331,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
         "status": "available",
         "thumbnailUrl": downloadUrl,
       });
-    }).then((value){
+    }).then((value) {
       clearMenusUploadForm();
 
       setState(() {
@@ -415,14 +341,12 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
     });
   }
 
-  uploadImage(mImageFile) async
-  {
-    storageRef.Reference reference = storageRef.FirebaseStorage
-        .instance
-        .ref()
-        .child("items");
+  uploadImage(mImageFile) async {
+    storageRef.Reference reference =
+        storageRef.FirebaseStorage.instance.ref().child("items");
 
-    storageRef.UploadTask uploadTask = reference.child(uniqueIdName + ".jpg").putFile(mImageFile);
+    storageRef.UploadTask uploadTask =
+        reference.child(uniqueIdName + ".jpg").putFile(mImageFile);
 
     storageRef.TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() {});
 
@@ -432,8 +356,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
   }
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return imageXFile == null ? defaultScreen() : itemsUploadFormScreen();
   }
 }
