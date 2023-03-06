@@ -9,7 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class HomeScreen extends StatefulWidget {
-   HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
   Sellers? model;
 
   @override
@@ -55,11 +55,11 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: kColorRed,
         title: Text(
           sharedPreferences!.getString("name")!,
-          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 28),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
         ),
         centerTitle: true,
       ),
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(

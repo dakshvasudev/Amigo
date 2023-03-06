@@ -49,7 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if (passwordController.text == confirmPasswordController.text) {
         if (confirmPasswordController.text.isNotEmpty &&
             emailController.text.isNotEmpty &&
-            nameController.text.isNotEmpty ) {
+            nameController.text.isNotEmpty) {
           //start uploading image
           showDialog(
               context: context,

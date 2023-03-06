@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:user_amigo_app/authScreen/auth_screen.dart';
 import 'package:user_amigo_app/mainScreens/home_screen.dart';
 
 import 'constants.dart';
-
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -15,17 +15,16 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
-  startTimer(){
+  startTimer() {
     Timer(const Duration(seconds: 3), () async {
-      if(firebaseAuth.currentUser != null)
-      {
-        Navigator.push(context, MaterialPageRoute(builder: (c)=>  HomeScreen()));
+      if (firebaseAuth.currentUser != null) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => HomeScreen()));
       }
       //if seller is NOT logged in already
-      else
-      {
-        Navigator.push(context, MaterialPageRoute(builder: (c)=> const AuthScreen()));
+      else {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => const AuthScreen()));
       }
     });
   }
@@ -36,17 +35,25 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     startTimer();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kColorRed,
-      body: Center(
-        child: Image.asset(
-          "assets/images/LatestIcon.png",
-          width: 700.0,
-          height: 300.0,
+      backgroundColor: kColorGreen,
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.fastfood,color: Colors.white,size: 110,),
+            SizedBox(
+              height: 15,
+            ),
+            Text('AMIGO',style: GoogleFonts.francoisOne(fontSize: 55,color: Colors.white),),
+          ],
         ),
-      ),
+      )
     );
   }
 }

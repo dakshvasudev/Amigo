@@ -47,10 +47,15 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
                         widget.model!.sellerAvatarUrl!,
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Text(
                       widget.model!.sellerName!,
-                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize: 20),
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
                     ),
                   ],
                 ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
-
 class ErrorDialog extends StatelessWidget {
   ErrorDialog({Key? key, required this.message}) : super(key: key);
   String message;
@@ -14,13 +13,13 @@ class ErrorDialog extends StatelessWidget {
       content: Text(message),
       actions: [
         ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: kColorRed),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Center(
-              child: Text('OK'),
-            ),
+          style: ElevatedButton.styleFrom(backgroundColor: kColorRed),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Center(
+            child: Text('OK'),
+          ),
         ),
       ],
     );

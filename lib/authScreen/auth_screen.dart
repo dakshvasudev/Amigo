@@ -4,7 +4,6 @@ import 'package:user_amigo_app/authScreen/login.dart';
 import 'package:user_amigo_app/authScreen/register.dart';
 import 'package:user_amigo_app/constants.dart';
 
-
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
 
