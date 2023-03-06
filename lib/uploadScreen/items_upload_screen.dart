@@ -32,6 +32,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
 
   defaultScreen() {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         flexibleSpace: Container(
           color: kColorRed,
@@ -53,8 +54,10 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
           },
         ),
       ),
-      body: Container(
-        child: Center(
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height * 0.8,
+          width: MediaQuery.of(context).size.width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -157,6 +160,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
 
   itemsUploadFormScreen() {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         flexibleSpace: Container(
           color: kColorRed,
@@ -190,60 +194,62 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 75*0.36,right: 85*0.36),
-        child: Column(
-          children: [
-            uploading == true ? linearProgress() : const Text(""),
-            SizedBox(
-              height: 200,
-              width: MediaQuery.of(context).size.width,
-              child: Center(
-                child: AspectRatio(
-                  aspectRatio: 16 / 9,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: FileImage(File(imageXFile!.path)),
-                        fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 75*0.36,right: 85*0.36),
+          child: Column(
+            children: [
+              uploading == true ? linearProgress() : const Text(""),
+              SizedBox(
+                height: 200,
+                width: MediaQuery.of(context).size.width,
+                child: Center(
+                  child: AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: FileImage(File(imageXFile!.path)),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-            CustomTextField(
-              controller: shortInfoController,
-              leadingIcon: Icon(Icons.perm_device_information),
-              hintText: 'Info',
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            CustomTextField(
-              controller: titleController,
-              hintText: 'Title',
-              leadingIcon: Icon(Icons.title),
-            ),SizedBox(
-              height: 15,
-            ),
-            CustomTextField(
-              controller: descriptionController,
-              leadingIcon: Icon(Icons.description),
-              hintText: 'Description',
-            ),SizedBox(
-              height: 15,
-            ),
-            CustomTextField(
-              keyboardType: TextInputType.number,
-              controller: priceController,
-              hintText: 'Price',
-              leadingIcon: Icon(Icons.currency_rupee),
-            ),SizedBox(
-              height: 15,
-            ),
+              CustomTextField(
+                controller: shortInfoController,
+                leadingIcon: const Icon(Icons.perm_device_information),
+                hintText: 'Info',
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              CustomTextField(
+                controller: titleController,
+                hintText: 'Title',
+                leadingIcon: const Icon(Icons.title),
+              ),const SizedBox(
+                height: 15,
+              ),
+              CustomTextField(
+                controller: descriptionController,
+                leadingIcon: const Icon(Icons.description),
+                hintText: 'Description',
+              ),const SizedBox(
+                height: 15,
+              ),
+              CustomTextField(
+                keyboardType: TextInputType.number,
+                controller: priceController,
+                hintText: 'Price',
+                leadingIcon: const Icon(Icons.currency_rupee),
+              ),const SizedBox(
+                height: 15,
+              ),
 
-          ],
+            ],
+          ),
         ),
       ),
     );

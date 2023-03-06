@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:selller_amigo_app/constants.dart';
 import 'package:selller_amigo_app/mainScreens/home_screen.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:selller_amigo_app/widgets/customTextField.dart';
 import 'package:selller_amigo_app/widgets/error_dialog.dart';
 import 'package:selller_amigo_app/widgets/progress_bar.dart';
 
@@ -124,20 +125,10 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
   menusUploadFormScreen()
   {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         flexibleSpace: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.cyan,
-                  Colors.amber,
-                ],
-                begin:  FractionalOffset(0.0, 0.0),
-                end:  FractionalOffset(1.0, 0.0),
-                stops: [0.0, 1.0],
-                tileMode: TileMode.clamp,
-              )
-          ),
+          color: kColorRed,
         ),
         title: const Text(
           "Uploading New Menu",
@@ -158,80 +149,61 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
             child: const Text(
               "Add",
               style: TextStyle(
-                color: Colors.cyan,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
-                fontFamily: "Varela",
               ),
             ),
           ),
         ],
       ),
-      body: ListView(
-        children: [
-          uploading == true ? linearProgress() : const Text(""),
-          SizedBox(
-            height: 230,
-            width: MediaQuery.of(context).size.width * 0.8,
-            child: Center(
-              child: AspectRatio(
-                aspectRatio: 16/9,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: FileImage(
-                          File(imageXFile!.path)
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 75*0.36,right: 85*0.36),
+            child: Column(
+              children: [
+                uploading == true ? linearProgress() : const Text(""),
+                SizedBox(
+                  height: 230,
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Center(
+                    child: AspectRatio(
+                      aspectRatio: 16/9,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: FileImage(
+                                File(imageXFile!.path)
+                            ),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
-                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
-              ),
-            ),
-          ),
-          const Divider(
-            color: Colors.amber,
-            thickness: 1,
-          ),
-          ListTile(
-            leading: const Icon(Icons.perm_device_information,  color: Colors.cyan,),
-            title: SizedBox(
-              width: 250,
-              child: TextField(
-                style: const TextStyle(color: Colors.black),
-                controller: shortInfoController,
-                decoration: const InputDecoration(
-                  hintText: "menu info",
-                  hintStyle: TextStyle(color: Colors.grey),
-                  border: InputBorder.none,
+                const SizedBox(
+                  height: 15,
                 ),
-              ),
-            ),
-          ),
-          const Divider(
-            color: Colors.amber,
-            thickness: 1,
-          ),
-          ListTile(
-            leading: const Icon(Icons.title,  color: Colors.cyan,),
-            title: SizedBox(
-              width: 250,
-              child: TextField(
-                style: const TextStyle(color: Colors.black),
-                controller: titleController,
-                decoration: const InputDecoration(
-                  hintText: "menu title",
-                  hintStyle: TextStyle(color: Colors.grey),
-                  border: InputBorder.none,
+                CustomTextField(
+                    controller: shortInfoController,
+                    leadingIcon: const Icon(Icons.perm_device_information),
+                    hintText: 'Menu Info',
+                  ),
+                const SizedBox(
+                  height: 15,
                 ),
-              ),
+                CustomTextField(
+                  controller: shortInfoController,
+                  leadingIcon: const Icon(Icons.title),
+                  hintText: 'Menu Title',
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+              ],
             ),
           ),
-          const Divider(
-            color: Colors.amber,
-            thickness: 1,
-          ),
-        ],
       ),
     );
   }

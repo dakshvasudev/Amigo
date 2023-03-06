@@ -27,13 +27,14 @@ class _ItemsScreenState extends State<ItemsScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         flexibleSpace: Container(
           color: kColorRed,
         ),
         title: Text(
           sharedPreferences!.getString("name")!,
-          style: const TextStyle(fontSize: 30, fontFamily: "Lobster"),
+          style: const TextStyle(fontSize: 30,),
         ),
         centerTitle: true,
         automaticallyImplyLeading: true,

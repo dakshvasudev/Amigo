@@ -26,11 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: kColorYellow,
         scrolledUnderElevation: 15,
         shadowColor: kColorYellow,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(20),
-          ),
-        ),
         title: Center(
           child: Text(
             sharedPreferences!.getString('name')!,
