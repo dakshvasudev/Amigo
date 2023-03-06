@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:user_amigo_app/authScreen/auth_screen.dart';
 import 'package:user_amigo_app/constants.dart';
+import 'package:user_amigo_app/get_started_screen.dart';
 
-
-
-class MyDrawer extends StatelessWidget
-{
+class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
 
-
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Drawer(
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-            topRight: Radius.circular(120),
-            bottomRight: Radius.circular(40)),
+            topRight: Radius.circular(120), bottomRight: Radius.circular(40)),
       ),
       child: ListView(
         children: [
@@ -35,16 +29,18 @@ class MyDrawer extends StatelessWidget
                       width: 100,
                       child: CircleAvatar(
                         backgroundImage: NetworkImage(
-                          sharedPreferences!.getString("photoUrl")!
-                        ),
+                            sharedPreferences!.getString("photoUrl")!),
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 Text(
-                    sharedPreferences!.getString("name")!,
-                  style: const TextStyle(color: Colors.black, fontSize: 20, fontFamily: "Train"),
+                  sharedPreferences!.getString("name")!,
+                  style: const TextStyle(
+                      color: Colors.black, fontSize: 20, fontFamily: "Train"),
                 ),
               ],
             ),
@@ -52,15 +48,15 @@ class MyDrawer extends StatelessWidget
           Column(
             children: [
               ListTile(
-                leading: const Icon(Icons.home, color: Colors.black,),
+                leading: const Icon(
+                  Icons.home,
+                  color: Colors.black,
+                ),
                 title: const Text(
                   "Home",
                   style: TextStyle(color: Colors.black),
                 ),
-                onTap: ()
-                {
-
-                },
+                onTap: () {},
               ),
               const Divider(
                 height: 10,
@@ -68,15 +64,15 @@ class MyDrawer extends StatelessWidget
                 thickness: 2,
               ),
               ListTile(
-                leading: const Icon(Icons.reorder, color: Colors.black,),
+                leading: const Icon(
+                  Icons.reorder,
+                  color: Colors.black,
+                ),
                 title: const Text(
                   "My Orders",
                   style: TextStyle(color: Colors.black),
                 ),
-                onTap: ()
-                {
-
-                },
+                onTap: () {},
               ),
               const Divider(
                 height: 10,
@@ -84,15 +80,15 @@ class MyDrawer extends StatelessWidget
                 thickness: 2,
               ),
               ListTile(
-                leading: const Icon(Icons.access_time, color: Colors.black,),
+                leading: const Icon(
+                  Icons.access_time,
+                  color: Colors.black,
+                ),
                 title: const Text(
                   "History",
                   style: TextStyle(color: Colors.black),
                 ),
-                onTap: ()
-                {
-
-                },
+                onTap: () {},
               ),
               const Divider(
                 height: 10,
@@ -100,15 +96,15 @@ class MyDrawer extends StatelessWidget
                 thickness: 2,
               ),
               ListTile(
-                leading: const Icon(Icons.search, color: Colors.black,),
+                leading: const Icon(
+                  Icons.search,
+                  color: Colors.black,
+                ),
                 title: const Text(
                   "Search",
                   style: TextStyle(color: Colors.black),
                 ),
-                onTap: ()
-                {
-
-                },
+                onTap: () {},
               ),
               const Divider(
                 height: 10,
@@ -116,15 +112,15 @@ class MyDrawer extends StatelessWidget
                 thickness: 2,
               ),
               ListTile(
-                leading: const Icon(Icons.add_location, color: Colors.black,),
+                leading: const Icon(
+                  Icons.add_location,
+                  color: Colors.black,
+                ),
                 title: const Text(
                   "Add New Address",
                   style: TextStyle(color: Colors.black),
                 ),
-                onTap: ()
-                {
-
-                },
+                onTap: () {},
               ),
               const Divider(
                 height: 10,
@@ -132,15 +128,20 @@ class MyDrawer extends StatelessWidget
                 thickness: 2,
               ),
               ListTile(
-                leading: const Icon(Icons.exit_to_app, color: Colors.black,),
+                leading: const Icon(
+                  Icons.exit_to_app,
+                  color: Colors.black,
+                ),
                 title: const Text(
                   "Sign Out",
                   style: TextStyle(color: Colors.black),
                 ),
-                onTap: ()
-                {
-                  firebaseAuth.signOut().then((value){
-                    Navigator.push(context, MaterialPageRoute(builder: (c)=> const AuthScreen()));
+                onTap: () {
+                  firebaseAuth.signOut().then((value) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (c) => const GetStartedScreen()));
                   });
                 },
               ),

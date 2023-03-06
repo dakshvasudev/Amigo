@@ -13,7 +13,11 @@ class ErrorDialog extends StatelessWidget {
       content: Text(message),
       actions: [
         ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: kColorRed),
+          style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(kColorGreen),shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                side: BorderSide(color: kColorGreen)),
+          ),),
           onPressed: () {
             Navigator.pop(context);
           },

@@ -105,7 +105,7 @@ class _PhoneNumberState extends State<PhoneNumber> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xffd9d9d9),
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Padding(
@@ -113,24 +113,8 @@ class _PhoneNumberState extends State<PhoneNumber> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        opacity: (0.3),
-                        image: AssetImage("assets/images/overlay.png"),
-                        fit: BoxFit.fitHeight)),
-              ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.35,
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      child: Image.asset("assets/images/burger1.png")),
-                ),
-              ),
               const SizedBox(
-                height: 20,
+                height: 40,
               ),
               Container(
                 margin: const EdgeInsets.only(left: 25, right: 25),
@@ -138,34 +122,44 @@ class _PhoneNumberState extends State<PhoneNumber> {
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Please enter your details",
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.normal,
-                          color: kColorRed,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 24),
+                        child: Text(
+                          "Enter your email address",
+                          style: GoogleFonts.inter(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          )
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20,
                       ),
                       Form(
                         key: _formKey,
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: CustomTextField(
                                 leadingIcon: Icon(
                                   Icons.email,
-                                  color: kColorRed,
                                   size: 22,
                                 ),
                                 controller: emailController,
-                                hintText: 'Enter your registered email',
+                                hintText: 'johnalexander@yahoo.com',
                                 keyboardType: TextInputType.emailAddress,
+                              ),
+                            ),
+                            SizedBox(height: 10,),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 24),
+                              child: Text(
+                                  "Enter your password",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                  )
                               ),
                             ),
                             Padding(
@@ -173,20 +167,20 @@ class _PhoneNumberState extends State<PhoneNumber> {
                               child: CustomTextField(
                                 leadingIcon: Icon(
                                   Icons.password_rounded,
-                                  color: kColorRed,
                                   size: 22,
                                 ),
                                 controller: passwordController,
-                                hintText: 'Enter your password',
+                                hintText: '*************',
                                 obscureText: true,
                                 keyboardType: TextInputType.visiblePassword,
                               ),
                             ),
+
                           ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 20, bottom: 30),
+                        padding: const EdgeInsets.only(top: 20, bottom: 10),
                         child: GestureDetector(
                           onTap: () {
                             formValidationLogin();
@@ -196,26 +190,19 @@ class _PhoneNumberState extends State<PhoneNumber> {
                             height: 55,
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             decoration: BoxDecoration(
-                                color: kColorYellow,
+                                color: Colors.black,
                                 borderRadius: BorderRadius.circular(20)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   "Login",
-                                  style: GoogleFonts.lato(
+                                  style: GoogleFonts.ibmPlexSans(
                                       textStyle: TextStyle(
                                           fontSize: 18,
-                                          color: kColorRed,
-                                          fontWeight: FontWeight.w900)),
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w400)),
                                 ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Icon(
-                                  Icons.arrow_forward,
-                                  color: kColorRed,
-                                )
                               ],
                             ),
                           ),

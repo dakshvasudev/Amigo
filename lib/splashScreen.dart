@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:user_amigo_app/authScreen/auth_screen.dart';
+import 'package:user_amigo_app/get_started_screen.dart';
 import 'package:user_amigo_app/mainScreens/home_screen.dart';
-
 import 'constants.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -24,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
       //if seller is NOT logged in already
       else {
         Navigator.push(
-            context, MaterialPageRoute(builder: (c) => const AuthScreen()));
+            context, MaterialPageRoute(builder: (c) => const GetStartedScreen()));
       }
     });
   }

@@ -142,7 +142,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xffd9d9d9),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Padding(
@@ -158,8 +158,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     _getImage();
                   },
                   child: CircleAvatar(
-                    radius: MediaQuery.of(context).size.width * 0.18,
-                    backgroundColor: kColorRed,
+                    radius: MediaQuery.of(context).size.width * 0.12,
+                    backgroundColor: Colors.black,
                     backgroundImage: imageXFile == null
                         ? null
                         : FileImage(
@@ -169,7 +169,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ? Icon(
                             Icons.add_photo_alternate_rounded,
                             color: Colors.white38,
-                            size: MediaQuery.of(context).size.width * 0.15,
+                            size: MediaQuery.of(context).size.width * 0.09,
                           )
                         : null,
                   ),
@@ -184,7 +184,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextField(
                         leadingIcon: Icon(
                           Icons.drive_file_rename_outline_sharp,
-                          color: kColorRed,
+                          color: Colors.black,
                           size: 22,
                         ),
                         controller: nameController,
@@ -196,7 +196,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextField(
                         leadingIcon: Icon(
                           Icons.email,
-                          color: kColorRed,
+                          color: Colors.black,
                           size: 22,
                         ),
                         controller: emailController,
@@ -209,7 +209,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextField(
                         leadingIcon: Icon(
                           Icons.password_rounded,
-                          color: kColorRed,
+                          color: Colors.black,
                           size: 22,
                         ),
                         controller: passwordController,
@@ -223,7 +223,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextField(
                         leadingIcon: Icon(
                           Icons.password_rounded,
-                          color: kColorRed,
+                          color: Colors.black,
                           size: 22,
                         ),
                         controller: confirmPasswordController,
@@ -235,18 +235,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 25,
+                  height: 20,
                 ),
                 GestureDetector(
                   onTap: () {
                     registerFormValidation();
                   },
                   child: Container(
-                    width: MediaQuery.of(context).size.width * 0.6,
+                    width: MediaQuery.of(context).size.width * 0.65,
                     height: 55,
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     decoration: BoxDecoration(
-                        color: kColorRed,
+                        color: Colors.black,
                         borderRadius: BorderRadius.circular(20)),
                     child: Center(
                       child: Row(
@@ -254,19 +254,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         children: [
                           Text(
                             "Register",
-                            style: GoogleFonts.lato(
+                            style: GoogleFonts.ibmPlexSans(
                                 textStyle: const TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 16,
                                     color: Colors.white,
-                                    fontWeight: FontWeight.w900)),
+                                  fontWeight: FontWeight.w400
+                                    ),
+                            ),
                           ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
-                          )
                         ],
                       ),
                     ),
