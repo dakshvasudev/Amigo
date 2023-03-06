@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:selller_amigo_app/constants.dart';
+import 'package:selller_amigo_app/mainScreens/itemsScreen.dart';
 import 'package:selller_amigo_app/model/menus.dart';
 
 class InfoDesignWidget extends StatefulWidget {
-  Menus? model;
+  final Menus? model;
   BuildContext? context;
 
   InfoDesignWidget({super.key, this.model, this.context});
@@ -17,6 +18,9 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
   Widget build(BuildContext context) {
     return InkWell(
         splashColor: Colors.amber,
+        onTap: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(model: widget.model)));
+        },
         child: Container(
           height: 210,
           width: 90,
@@ -36,7 +40,9 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
           child: Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(model: widget.model)));
+              },
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(

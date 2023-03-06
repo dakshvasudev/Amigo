@@ -41,18 +41,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.cyan,
-                  Colors.amber,
-                ],
-                begin:  FractionalOffset(0.0, 0.0),
-                end:  FractionalOffset(1.0, 0.0),
-                stops: [0.0, 1.0],
-                tileMode: TileMode.clamp,
-              )
-          ),
+          color: kColorRed,
         ),
         title: const Text(
           "Add New Items",
@@ -69,26 +58,14 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
         ),
       ),
       body: Container(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.cyan,
-                Colors.amber,
-              ],
-              begin:  FractionalOffset(0.0, 0.0),
-              end:  FractionalOffset(1.0, 0.0),
-              stops: [0.0, 1.0],
-              tileMode: TileMode.clamp,
-            )
-        ),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.shop_two, color: Colors.white, size: 200.0,),
+              const Icon(Icons.shop_two, color: Colors.grey, size: 200.0,),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
+                  backgroundColor: MaterialStateProperty.all<Color>(kColorRed),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -121,7 +98,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
       builder: (context)
       {
         return SimpleDialog(
-          title: const Text("Menu Image", style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),),
+          title: const Text("Menu Image", style: TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold),),
           children: [
             SimpleDialogOption(
               onPressed: captureImageWithCamera,
@@ -222,7 +199,6 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
                 fontFamily: "Varela",
-                letterSpacing: 3,
               ),
             ),
           ),

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:selller_amigo_app/constants.dart';
 
-
-
-class TextWidgetHeader extends SliverPersistentHeaderDelegate
-{
+class TextWidgetHeader extends SliverPersistentHeaderDelegate {
   String? title;
   TextWidgetHeader({this.title});
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent,)
-  {
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return InkWell(
       child: Container(
         color: kColorRed,
-        height: 80.0,
+        height: 100.0,
         width: MediaQuery.of(context).size.width,
         alignment: Alignment.center,
         child: InkWell(
@@ -23,7 +23,7 @@ class TextWidgetHeader extends SliverPersistentHeaderDelegate
             maxLines: 2,
             textAlign: TextAlign.center,
             style: const TextStyle(
-              fontSize: 30,
+              fontSize: 20,
               letterSpacing: 2,
               color: Colors.white,
             ),
@@ -42,5 +42,6 @@ class TextWidgetHeader extends SliverPersistentHeaderDelegate
   double get minExtent => 50;
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => true;
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
+      true;
 }

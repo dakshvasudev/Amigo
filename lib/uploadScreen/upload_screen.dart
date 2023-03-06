@@ -162,7 +162,6 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
                 fontFamily: "Varela",
-                letterSpacing: 3,
               ),
             ),
           ),
