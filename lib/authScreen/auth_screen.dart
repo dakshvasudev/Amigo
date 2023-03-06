@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:user_amigo_app/authScreen/login.dart';
 import 'package:user_amigo_app/authScreen/register.dart';
 import 'package:user_amigo_app/constants.dart';
@@ -34,6 +35,8 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
           ),
           bottom: TabBar(
+            labelColor: Colors.black,
+            labelStyle: GoogleFonts.ibmPlexSans(),
             tabs: const [
               Tab(
                 icon: Icon(
