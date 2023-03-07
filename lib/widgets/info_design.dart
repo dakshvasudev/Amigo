@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/models/sellers.dart';
 
@@ -16,20 +17,20 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        splashColor: Colors.amber,
+        splashColor: kColorGreen,
         child: Container(
-          height: 210,
-          width: 90,
+          height: 220,
+          width: 70,
           margin:
               const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
           decoration: BoxDecoration(
-            color: kColorRed,
+            color: const Color(0xffd9d9d9),
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(
                 offset: const Offset(0, 4),
                 blurRadius: 20,
-                color: kColorRed.withOpacity(0.32),
+                color: const Color(0xffd9d9d9).withOpacity(0.32),
               ),
             ],
           ),
@@ -40,22 +41,22 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     CircleAvatar(
-                      radius: 65,
+                      radius: 60,
                       backgroundImage: NetworkImage(
                         widget.model!.sellerAvatarUrl!,
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    const Spacer(),
                     Text(
                       widget.model!.sellerName!,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),
+                      style:  GoogleFonts.ibmPlexSans(
+                          color: kColorGreen,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 21),
+                      textAlign: TextAlign.center,
                     ),
                   ],
                 ),

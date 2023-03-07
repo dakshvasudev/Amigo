@@ -37,11 +37,11 @@ class _AuthScreenState extends State<AuthScreen> {
           bottom: TabBar(
             labelColor: Colors.black,
             labelStyle: GoogleFonts.ibmPlexSans(),
-            tabs: const [
+            tabs:  [
               Tab(
                 icon: Icon(
                   Icons.lock,
-                  color: Colors.black,
+                  color: kColorGreen,
                   size: 35,
                 ),
                 text: 'Login',
@@ -49,7 +49,7 @@ class _AuthScreenState extends State<AuthScreen> {
               Tab(
                 icon: Icon(
                   Icons.person,
-                  color: Colors.black,
+                  color: kColorGreen,
                   size: 35,
                 ),
                 text: 'Register',
