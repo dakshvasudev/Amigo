@@ -7,6 +7,7 @@ import 'package:user_amigo_app/widgets/my_drawer.dart';
 import 'package:user_amigo_app/widgets/progress_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:user_amigo_app/widgets/searchBox.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -123,6 +124,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontWeight: FontWeight.w400, fontSize: 30),
               ),
             ),
+          ),
+          const SliverToBoxAdapter(
+            child: SearchBox(),
           ),
           SliverToBoxAdapter(
             child: Padding(
