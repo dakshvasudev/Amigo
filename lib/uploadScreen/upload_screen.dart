@@ -11,7 +11,6 @@ import 'package:selller_amigo_app/widgets/customTextField.dart';
 import 'package:selller_amigo_app/widgets/error_dialog.dart';
 import 'package:selller_amigo_app/widgets/progress_bar.dart';
 
-
 class MenuUploadScreen extends StatefulWidget {
   const MenuUploadScreen({Key? key}) : super(key: key);
 
@@ -111,6 +110,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
       imageXFile;
     });
   }
+
   pickImageFromGallery() async {
     Navigator.pop(context);
     imageXFile = await _picker.pickImage(
@@ -122,8 +122,8 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
       imageXFile;
     });
   }
-  menusUploadFormScreen()
-  {
+
+  menusUploadFormScreen() {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
@@ -137,15 +137,18 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
         centerTitle: true,
         automaticallyImplyLeading: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white,),
-          onPressed: ()
-          {
-            Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (c) => const HomeScreen()));
           },
         ),
         actions: [
           TextButton(
-            onPressed: uploading ? null : ()=> validateUploadForm(),
+            onPressed: uploading ? null : () => validateUploadForm(),
             child: const Text(
               "Add",
               style: TextStyle(
@@ -159,57 +162,54 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(left: 75*0.36,right: 85*0.36),
-            child: Column(
-              children: [
-                uploading == true ? linearProgress() : const Text(""),
-                SizedBox(
-                  height: 230,
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  child: Center(
-                    child: AspectRatio(
-                      aspectRatio: 16/9,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: FileImage(
-                                File(imageXFile!.path)
-                            ),
-                            fit: BoxFit.cover,
-                          ),
+          padding: const EdgeInsets.only(left: 75 * 0.36, right: 85 * 0.36),
+          child: Column(
+            children: [
+              uploading == true ? linearProgress() : const Text(""),
+              SizedBox(
+                height: 230,
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: Center(
+                  child: AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: FileImage(File(imageXFile!.path)),
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 15,
-                ),
-                CustomTextField(
-                    controller: shortInfoController,
-                    leadingIcon: const Icon(Icons.perm_device_information),
-                    hintText: 'Menu Info',
-                  ),
-                const SizedBox(
-                  height: 15,
-                ),
-                CustomTextField(
-                  controller: shortInfoController,
-                  leadingIcon: const Icon(Icons.title),
-                  hintText: 'Menu Title',
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              CustomTextField(
+                controller: shortInfoController,
+                leadingIcon: const Icon(Icons.perm_device_information),
+                hintText: 'Menu Info',
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              CustomTextField(
+                controller: shortInfoController,
+                leadingIcon: const Icon(Icons.title),
+                hintText: 'Menu Title',
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+            ],
           ),
+        ),
       ),
     );
   }
 
-  clearMenusUploadForm()
-  {
+  clearMenusUploadForm() {
     setState(() {
       shortInfoController.clear();
       titleController.clear();
@@ -217,12 +217,10 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
     });
   }
 
-  validateUploadForm() async
-  {
-    if(imageXFile != null)
-    {
-      if(shortInfoController.text.isNotEmpty && titleController.text.isNotEmpty)
-      {
+  validateUploadForm() async {
+    if (imageXFile != null) {
+      if (shortInfoController.text.isNotEmpty &&
+          titleController.text.isNotEmpty) {
         setState(() {
           uploading = true;
         });
@@ -232,36 +230,27 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
 
         //save info to firestore
         saveInfo(downloadUrl);
-      }
-      else
-      {
+      } else {
         showDialog(
             context: context,
-            builder: (c)
-            {
+            builder: (c) {
               return ErrorDialog(
                 message: "Please write title and info for menu.",
               );
-            }
-        );
+            });
       }
-    }
-    else
-    {
+    } else {
       showDialog(
           context: context,
-          builder: (c)
-          {
+          builder: (c) {
             return ErrorDialog(
               message: "Please pick an image for menu.",
             );
-          }
-      );
+          });
     }
   }
 
-  saveInfo(String downloadUrl)
-  {
+  saveInfo(String downloadUrl) {
     final ref = FirebaseFirestore.instance
         .collection("sellers")
         .doc(sharedPreferences!.getString("uid"))
@@ -285,14 +274,12 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
     });
   }
 
-  uploadImage(mImageFile) async
-  {
-    storageRef.Reference reference = storageRef.FirebaseStorage
-        .instance
-        .ref()
-        .child("menus");
+  uploadImage(mImageFile) async {
+    storageRef.Reference reference =
+        storageRef.FirebaseStorage.instance.ref().child("menus");
 
-    storageRef.UploadTask uploadTask = reference.child(uniqueIdName + ".jpg").putFile(mImageFile);
+    storageRef.UploadTask uploadTask =
+        reference.child(uniqueIdName + ".jpg").putFile(mImageFile);
 
     storageRef.TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() {});
 
@@ -303,6 +290,6 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return imageXFile==null ? defaultScreen() : menusUploadFormScreen();
+    return imageXFile == null ? defaultScreen() : menusUploadFormScreen();
   }
 }

@@ -7,7 +7,6 @@ import 'package:selller_amigo_app/mainScreens/home_screen.dart';
 import 'package:selller_amigo_app/widgets/error_dialog.dart';
 import 'package:selller_amigo_app/widgets/loading_dialog.dart';
 import '../widgets/customTextField.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 class PhoneNumber extends StatefulWidget {
   const PhoneNumber({Key? key}) : super(key: key);
@@ -21,94 +20,85 @@ class _PhoneNumberState extends State<PhoneNumber> {
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  formValidationLogin()
-  {
-    if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty)
-    {
+  formValidationLogin() {
+    if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
       //login
       loginNow();
-    }
-    else
-    {
+    } else {
       showDialog(
           context: context,
-          builder: (c)
-          {
+          builder: (c) {
             return ErrorDialog(
-              message: "One of the credentials is missing. \n Please re-enter data",
+              message:
+                  "One of the credentials is missing. \n Please re-enter data",
             );
-          }
-      );
+          });
     }
   }
 
-
-  loginNow() async
-  {
+  loginNow() async {
     showDialog(
         context: context,
-        builder: (c)
-        {
+        builder: (c) {
           return const LoadingDialog(
             message: "Checking Credentials",
           );
-        }
-    );
+        });
 
     User? currentUser;
-    await firebaseAuth.signInWithEmailAndPassword(
+    await firebaseAuth
+        .signInWithEmailAndPassword(
       email: emailController.text.trim(),
       password: passwordController.text.trim(),
-    ).then((auth){
+    )
+        .then((auth) {
       currentUser = auth.user!;
-    }).catchError((error){
+    }).catchError((error) {
       Navigator.pop(context);
       showDialog(
           context: context,
-          builder: (c)
-          {
+          builder: (c) {
             return ErrorDialog(
               message: error.message.toString(),
             );
-          }
-      );
+          });
     });
-    if(currentUser != null)
-    {
+    if (currentUser != null) {
       readDataAndSetDataLocally(currentUser!);
     }
   }
 
-  Future readDataAndSetDataLocally(User currentUser) async
-  {
-    await FirebaseFirestore.instance.collection("sellers")
+  Future readDataAndSetDataLocally(User currentUser) async {
+    await FirebaseFirestore.instance
+        .collection("sellers")
         .doc(currentUser.uid)
         .get()
         .then((snapshot) async {
+      if (snapshot.exists) {
+        await sharedPreferences!.setString("uid", currentUser.uid);
+        await sharedPreferences!
+            .setString("email", snapshot.data()!["sellerEmail"]);
+        await sharedPreferences!
+            .setString("name", snapshot.data()!["sellerName"]);
+        await sharedPreferences!
+            .setString("photoUrl", snapshot.data()!["sellerAvatarUrl"]);
 
-          if(snapshot.exists){
-            await sharedPreferences!.setString("uid", currentUser.uid);
-            await sharedPreferences!.setString("email", snapshot.data()!["sellerEmail"]);
-            await sharedPreferences!.setString("name", snapshot.data()!["sellerName"]);
-            await sharedPreferences!.setString("photoUrl", snapshot.data()!["sellerAvatarUrl"]);
-
-            Navigator.pop(context);
-            Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
-          }else{
-            firebaseAuth.signOut();
-            Navigator.pop(context);
-            Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
-            showDialog(
-                context: context,
-                builder: (c)
-                {
-                  return ErrorDialog(
-                    message: 'No record found.',
-                  );
-                }
-            );
-          }
-
+        Navigator.pop(context);
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => const HomeScreen()));
+      } else {
+        firebaseAuth.signOut();
+        Navigator.pop(context);
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => const HomeScreen()));
+        showDialog(
+            context: context,
+            builder: (c) {
+              return ErrorDialog(
+                message: 'No record found.',
+              );
+            });
+      }
     });
   }
 
@@ -149,7 +139,7 @@ class _PhoneNumberState extends State<PhoneNumber> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                       Text(
+                      Text(
                         "Please enter your details",
                         style: TextStyle(
                           fontSize: 22,
@@ -214,7 +204,7 @@ class _PhoneNumberState extends State<PhoneNumber> {
                                 Text(
                                   "Login",
                                   style: GoogleFonts.lato(
-                                      textStyle:  TextStyle(
+                                      textStyle: TextStyle(
                                           fontSize: 18,
                                           color: kColorRed,
                                           fontWeight: FontWeight.w900)),
@@ -222,7 +212,7 @@ class _PhoneNumberState extends State<PhoneNumber> {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                 Icon(
+                                Icon(
                                   Icons.arrow_forward,
                                   color: kColorRed,
                                 )

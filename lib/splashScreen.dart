@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:selller_amigo_app/authScreen/auth_screen.dart';
-import 'package:selller_amigo_app/authScreen/login.dart';
 import 'package:flutter/material.dart';
 import 'package:selller_amigo_app/mainScreens/home_screen.dart';
 import 'constants.dart';
@@ -13,17 +12,16 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
-  startTimer(){
+  startTimer() {
     Timer(const Duration(seconds: 3), () async {
-      if(firebaseAuth.currentUser != null)
-      {
-        Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
+      if (firebaseAuth.currentUser != null) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => const HomeScreen()));
       }
       //if seller is NOT logged in already
-      else
-      {
-        Navigator.push(context, MaterialPageRoute(builder: (c)=> const AuthScreen()));
+      else {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => const AuthScreen()));
       }
     });
   }
@@ -34,6 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     startTimer();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

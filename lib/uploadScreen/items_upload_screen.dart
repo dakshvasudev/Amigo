@@ -196,7 +196,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(left: 75*0.36,right: 85*0.36),
+          padding: const EdgeInsets.only(left: 75 * 0.36, right: 85 * 0.36),
           child: Column(
             children: [
               uploading == true ? linearProgress() : const Text(""),
@@ -229,14 +229,16 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
                 controller: titleController,
                 hintText: 'Title',
                 leadingIcon: const Icon(Icons.title),
-              ),const SizedBox(
+              ),
+              const SizedBox(
                 height: 15,
               ),
               CustomTextField(
                 controller: descriptionController,
                 leadingIcon: const Icon(Icons.description),
                 hintText: 'Description',
-              ),const SizedBox(
+              ),
+              const SizedBox(
                 height: 15,
               ),
               CustomTextField(
@@ -244,10 +246,10 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
                 controller: priceController,
                 hintText: 'Price',
                 leadingIcon: const Icon(Icons.currency_rupee),
-              ),const SizedBox(
+              ),
+              const SizedBox(
                 height: 15,
               ),
-
             ],
           ),
         ),

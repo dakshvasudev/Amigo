@@ -4,13 +4,12 @@ import 'package:selller_amigo_app/constants.dart';
 import 'package:selller_amigo_app/splashScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-Future<void> main() async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp();
   sharedPreferences = await SharedPreferences.getInstance();
   runApp(MyApp());
 }
-
 
 Map<int, Color> color = {
   50: const Color.fromRGBO(136, 14, 79, .1),
@@ -24,7 +23,6 @@ Map<int, Color> color = {
   800: const Color.fromRGBO(136, 14, 79, .9),
   900: const Color.fromRGBO(136, 14, 79, 1),
 };
-
 
 class MyApp extends StatelessWidget {
   MaterialColor colorCustom = MaterialColor(0xffcf2c4e, color);

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:selller_amigo_app/widgets/progress_bar.dart';
 
-class LoadingDialog extends StatelessWidget
-{
+class LoadingDialog extends StatelessWidget {
   final String? message;
 
   const LoadingDialog({super.key, this.message});
@@ -15,7 +14,9 @@ class LoadingDialog extends StatelessWidget
         mainAxisSize: MainAxisSize.min,
         children: [
           circularProgress(),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           Text("${message!}, Please wait..."),
         ],
       ),

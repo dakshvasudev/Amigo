@@ -18,8 +18,11 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
   Widget build(BuildContext context) {
     return InkWell(
         splashColor: Colors.amber,
-        onTap: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(model: widget.model)));
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ItemsScreen(model: widget.model)));
         },
         child: Container(
           height: 210,
@@ -41,7 +44,11 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
             color: Colors.transparent,
             child: InkWell(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(model: widget.model)));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            ItemsScreen(model: widget.model)));
               },
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -53,10 +60,15 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
                         widget.model!.thumbnailUrl!,
                       ),
                     ),
-                    const SizedBox(height: 10,),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Text(
                       widget.model!.menuTitle!,
-                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize: 20),
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
                     ),
                   ],
                 ),

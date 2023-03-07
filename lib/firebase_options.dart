@@ -67,7 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '967796727639',
     projectId: 'selleramigo',
     storageBucket: 'selleramigo.appspot.com',
-    iosClientId: '967796727639-22akpj78gs1ino36sft46kncti5d4jgs.apps.googleusercontent.com',
+    iosClientId:
+        '967796727639-22akpj78gs1ino36sft46kncti5d4jgs.apps.googleusercontent.com',
     iosBundleId: 'com.example.selllerAmigoApp',
   );
 
@@ -77,7 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '967796727639',
     projectId: 'selleramigo',
     storageBucket: 'selleramigo.appspot.com',
-    iosClientId: '967796727639-22akpj78gs1ino36sft46kncti5d4jgs.apps.googleusercontent.com',
+    iosClientId:
+        '967796727639-22akpj78gs1ino36sft46kncti5d4jgs.apps.googleusercontent.com',
     iosBundleId: 'com.example.selllerAmigoApp',
   );
 }

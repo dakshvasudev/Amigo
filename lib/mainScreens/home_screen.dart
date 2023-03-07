@@ -39,38 +39,48 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         actions: [
-          IconButton(onPressed: (){Navigator.push(context,MaterialPageRoute(builder: (context)=>const MenuUploadScreen()));}, icon: const Icon(Icons.post_add_rounded))
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MenuUploadScreen()));
+              },
+              icon: const Icon(Icons.post_add_rounded))
         ],
       ),
       body: CustomScrollView(
         slivers: [
-          SliverPersistentHeader(pinned: true, delegate: TextWidgetHeader(title: "My Menus")),
+          SliverPersistentHeader(
+              pinned: true, delegate: TextWidgetHeader(title: "My Menus")),
           StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
                 .collection("sellers")
                 .doc(sharedPreferences!.getString("uid"))
-                .collection("menus").snapshots(),
-            builder: (context, snapshot)
-            {
+                .collection("menus")
+                .snapshots(),
+            builder: (context, snapshot) {
               return !snapshot.hasData
                   ? SliverToBoxAdapter(
-                child: Center(child: circularProgress(),),
-              )
+                      child: Center(
+                        child: circularProgress(),
+                      ),
+                    )
                   : SliverStaggeredGrid.countBuilder(
-                crossAxisCount: 1,
-                staggeredTileBuilder: (c) => const StaggeredTile.fit(1),
-                itemBuilder: (context, index)
-                {
-                  Menus model = Menus.fromJson(
-                    snapshot.data!.docs[index].data()! as Map<String, dynamic>,
-                  );
-                  return InfoDesignWidget(
-                    model: model,
-                    context: context,
-                  );
-                },
-                itemCount: snapshot.data!.docs.length,
-              );
+                      crossAxisCount: 1,
+                      staggeredTileBuilder: (c) => const StaggeredTile.fit(1),
+                      itemBuilder: (context, index) {
+                        Menus model = Menus.fromJson(
+                          snapshot.data!.docs[index].data()!
+                              as Map<String, dynamic>,
+                        );
+                        return InfoDesignWidget(
+                          model: model,
+                          context: context,
+                        );
+                      },
+                      itemCount: snapshot.data!.docs.length,
+                    );
             },
           ),
         ],
