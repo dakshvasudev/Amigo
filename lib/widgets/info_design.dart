@@ -19,8 +19,8 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
     return InkWell(
         splashColor: kColorGreen,
         child: Container(
-          height: 220,
-          width: 70,
+          height: 230,
+          width: 100,
           margin:
               const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
           decoration: BoxDecoration(

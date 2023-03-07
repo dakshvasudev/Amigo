@@ -25,7 +25,7 @@ Map<int, Color> color = {
 };
 
 class MyApp extends StatelessWidget {
-  MaterialColor colorCustom = MaterialColor(0xff000000, color);
+  MaterialColor colorCustom = MaterialColor(0xff377b36, color);
   MyApp({super.key});
 
   // This widget is the root of your application.
@@ -35,8 +35,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Users app',
       theme: ThemeData(
-        primarySwatch: colorCustom,
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: Colors.white, colorScheme: ColorScheme.fromSwatch(primarySwatch: colorCustom).copyWith(secondary: kColorGreen),
       ),
       home: const SplashScreen(),
     );

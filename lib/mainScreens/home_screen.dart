@@ -53,13 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 70,
         backgroundColor: Colors.white,
         elevation: 0,
-        // title: Text(
-        //   sharedPreferences!.getString("name")!,
-        //   style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
-        // ),
-        // centerTitle: true,
         iconTheme: IconThemeData(color: kColorGreen),
       ),
       drawer: const MyDrawer(),
@@ -117,7 +113,8 @@ class _HomeScreenState extends State<HomeScreen> {
           // ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.only(left: 75 * 0.36,bottom: 10),
+              padding:
+                  const EdgeInsets.only(top: 31, left: 75 * 0.36, bottom: 10),
               child: Text(
                 'What would you \n like to Eat?',
                 style: GoogleFonts.lobster(
@@ -130,14 +127,16 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           SliverToBoxAdapter(
             child: Padding(
-                padding: const EdgeInsets.only(left: 75 * 0.36,bottom: 10),
-                child: Text(
-                  'Restaurants',
-                  style: GoogleFonts.lemon(
-                      fontSize: 21,
-                      fontWeight: FontWeight.w400,
-                      color: kColorGreen),
-                )),
+              padding: const EdgeInsets.only(left: 75 * 0.36, bottom: 10),
+              child: Text(
+                'Restaurants',
+                style: GoogleFonts.lemon(
+                  fontSize: 21,
+                  fontWeight: FontWeight.w400,
+                  color: kColorGreen,
+                ),
+              ),
+            ),
           ),
           StreamBuilder<QuerySnapshot>(
             stream:
@@ -151,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                   : SliverStaggeredGrid.countBuilder(
                       crossAxisCount: 2,
-                      staggeredTileBuilder: (c) => StaggeredTile.fit(1),
+                      staggeredTileBuilder: (c) => const StaggeredTile.fit(1),
                       itemBuilder: (context, index) {
                         Sellers sModel = Sellers.fromJson(
                             snapshot.data!.docs[index].data()!
@@ -169,11 +168,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.shopping_cart,color: Colors.black,),
         isExtended: true,
         elevation: 10,
         backgroundColor: kColorGreen,
-        onPressed: (){},
+        onPressed: () {},
+        child: const Icon(
+          Icons.shopping_cart,
+          color: Colors.black,
+        ),
       ),
     );
   }
