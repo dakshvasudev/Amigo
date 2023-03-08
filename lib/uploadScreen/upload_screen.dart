@@ -29,46 +29,101 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
   String uniqueIdName = DateTime.now().millisecondsSinceEpoch.toString();
   defaultScreen() {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: kColorYellow,
-        scrolledUnderElevation: 15,
-        shadowColor: kColorYellow,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(20),
-          ),
-        ),
-        title: Center(
-          child: Text(
-            'Add New Menu',
-            style: GoogleFonts.workSans(
-              textStyle: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 26,
-                color: kColorRed,
+      // appBar: AppBar(
+      //   backgroundColor: kColorYellow,
+      //   scrolledUnderElevation: 15,
+      //   shadowColor: kColorYellow,
+      //   shape: const RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.vertical(
+      //       bottom: Radius.circular(20),
+      //     ),
+      //   ),
+      //   title: Center(
+      //     child: Text(
+      //       'Add Menu',
+      //       style: GoogleFonts.workSans(
+      //         textStyle: TextStyle(
+      //           fontWeight: FontWeight.w700,
+      //           fontSize: 26,
+      //           color: kColorRed,
+      //         ),
+      //       ),
+      //     ),
+      //   ),
+      // ),
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Stack(
+          children: [
+            Positioned(
+              top: 30,
+              child: Container(
+                height: 59,
+                width: MediaQuery.of(context).size.width * 0.8,
+                decoration: BoxDecoration(
+                  color: kColorGreen,
+                  border: Border.all(color: kColorGreen),
+                  borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back_ios,color: Colors.white,)),
+                    SizedBox(
+                      width: 50,
+                    ),
+                    Center(
+                      child: Text(
+                        'Add Menu',
+                        style: GoogleFonts.lemon(
+                            color: Colors.white,
+                            fontSize: 21,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ),
-      ),
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.8,
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              Icons.menu_book,
-              size: 180,
+            Positioned(
+              top: 260,
+              left: 125,
+              right: 125,
+              child: const Icon(
+                Icons.menu_book,
+                size: 120,
+              ),
             ),
-            const SizedBox(
-              height: 10,
+            Positioned(
+              top: 400,
+              left: 120,
+              right: 110,
+              child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(kColorGreen),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          side: BorderSide(color: kColorGreen)),
+                    ),
+                  ),
+                  onPressed: () {
+                    takeImage(context);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(24, 9, 24, 9),
+                    child: Text(
+                      'Add',
+                      style: GoogleFonts.lemon(
+                          fontWeight: FontWeight.w400, fontSize: 21),
+                    ),
+                  )),
             ),
-            ElevatedButton(
-                onPressed: () {
-                  takeImage(context);
-                },
-                child: const Text('Add New Menu')),
           ],
         ),
       ),
