@@ -57,7 +57,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
         child: Stack(
           children: [
             Positioned(
-              top: 30,
+              top: 50,
               child: Container(
                 height: 59,
                 width: MediaQuery.of(context).size.width * 0.8,
@@ -72,7 +72,14 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back_ios,color: Colors.white,)),
+                    IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          color: Colors.white,
+                        )),
                     SizedBox(
                       width: 50,
                     ),
@@ -96,6 +103,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
               child: const Icon(
                 Icons.menu_book,
                 size: 120,
+                color: Colors.grey,
               ),
             ),
             Positioned(
@@ -242,7 +250,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
                 height: 15,
               ),
               CustomTextField(
-                controller: shortInfoController,
+                controller: titleController,
                 leadingIcon: const Icon(Icons.perm_device_information),
                 hintText: 'Menu Info',
               ),

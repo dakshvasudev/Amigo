@@ -145,7 +145,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xffd9d9d9),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Padding(
@@ -162,7 +162,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   },
                   child: CircleAvatar(
                     radius: MediaQuery.of(context).size.width * 0.18,
-                    backgroundColor: kColorRed,
+                    backgroundColor: Colors.black,
                     backgroundImage: imageXFile == null
                         ? null
                         : FileImage(
@@ -187,7 +187,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextField(
                         leadingIcon: Icon(
                           Icons.drive_file_rename_outline_sharp,
-                          color: kColorRed,
+                          color: kColorGreen,
                           size: 22,
                         ),
                         controller: nameController,
@@ -199,7 +199,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextField(
                         leadingIcon: Icon(
                           Icons.email,
-                          color: kColorRed,
+                          color: kColorGreen,
                           size: 22,
                         ),
                         controller: emailController,
@@ -212,7 +212,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextField(
                         leadingIcon: Icon(
                           Icons.password_rounded,
-                          color: kColorRed,
+                          color: kColorGreen,
                           size: 22,
                         ),
                         controller: passwordController,
@@ -226,7 +226,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextField(
                         leadingIcon: Icon(
                           Icons.password_rounded,
-                          color: kColorRed,
+                          color: kColorGreen,
                           size: 22,
                         ),
                         controller: confirmPasswordController,
@@ -240,7 +240,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextField(
                         leadingIcon: Icon(
                           Icons.phone,
-                          color: kColorRed,
+                          color: kColorGreen,
                           size: 22,
                         ),
                         controller: phoneNumberController,
@@ -262,7 +262,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 55,
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     decoration: BoxDecoration(
-                        color: kColorRed,
+                        color: Colors.black,
                         borderRadius: BorderRadius.circular(20)),
                     child: Center(
                       child: Row(
