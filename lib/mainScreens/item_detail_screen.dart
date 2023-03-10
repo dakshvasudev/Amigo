@@ -42,14 +42,14 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                     border: Border.all(color: const Color(0xffd9d9d9)),
                     borderRadius: BorderRadius.circular(15),
                     image: DecorationImage(
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                       image: NetworkImage(
                         widget.model!.thumbnailUrl!,
                       ),
                     ),
                   ),
-                  height: MediaQuery.of(context).size.height * 0.25,
-                  width: MediaQuery.of(context).size.width * 0.5,
+                  height: 135,
+                  width: 238,
                 ),
               ),
               Padding(

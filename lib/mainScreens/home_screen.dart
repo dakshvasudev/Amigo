@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SliverToBoxAdapter(
             child: Padding(
               padding:
-                  const EdgeInsets.only(top: 31, left: 75 * 0.36, bottom: 10),
+                  const EdgeInsets.only(top: 10, left: 75 * 0.36, bottom: 10),
               child: Text(
                 'What would you \n like to Eat?',
                 style: GoogleFonts.lobster(
