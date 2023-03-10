@@ -1,23 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:user_amigo_app/constants.dart';
+import 'package:user_amigo_app/mainScreens/menus_screen.dart';
 import 'package:user_amigo_app/models/sellers.dart';
 
-class InfoDesignWidget extends StatefulWidget {
+class SellerDesignWidget extends StatefulWidget {
   Sellers? model;
   BuildContext? context;
 
-  InfoDesignWidget({this.model, this.context});
+  SellerDesignWidget({this.model, this.context});
 
   @override
-  _InfoDesignWidgetState createState() => _InfoDesignWidgetState();
+  _SellerDesignWidgetState createState() => _SellerDesignWidgetState();
 }
 
-class _InfoDesignWidgetState extends State<InfoDesignWidget> {
+class _SellerDesignWidgetState extends State<SellerDesignWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
         splashColor: kColorGreen,
+        onTap: () {
+          print('tapped it');
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => MenusScreen(
+                        model: widget.model,
+                      )));
+        },
         child: Container(
           height: 230,
           width: 100,
@@ -52,7 +62,7 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
                     const Spacer(),
                     Text(
                       widget.model!.sellerName!,
-                      style:  GoogleFonts.ibmPlexSans(
+                      style: GoogleFonts.ibmPlexSans(
                           color: kColorGreen,
                           fontWeight: FontWeight.w700,
                           fontSize: 21),

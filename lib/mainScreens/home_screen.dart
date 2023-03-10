@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/models/sellers.dart';
-import 'package:user_amigo_app/widgets/info_design.dart';
+import 'package:user_amigo_app/widgets/sellers_design.dart';
 import 'package:user_amigo_app/widgets/my_drawer.dart';
 import 'package:user_amigo_app/widgets/progress_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -156,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             snapshot.data!.docs[index].data()!
                                 as Map<String, dynamic>);
                         //design for display sellers-cafes-restuarents
-                        return InfoDesignWidget(
+                        return SellerDesignWidget(
                           model: sModel,
                           context: context,
                         );

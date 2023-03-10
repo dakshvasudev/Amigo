@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/get_started_screen.dart';
+import 'package:user_amigo_app/mainScreens/home_screen.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -8,9 +10,10 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Color(0xffd9d9d9),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-            topRight: Radius.circular(120), bottomRight: Radius.circular(40)),
+            topRight: Radius.circular(53), bottomRight: Radius.circular(53)),
       ),
       child: ListView(
         children: [
@@ -25,8 +28,8 @@ class MyDrawer extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(1.0),
                     child: SizedBox(
-                      height: 100,
-                      width: 100,
+                      height: 130,
+                      width: 130,
                       child: CircleAvatar(
                         backgroundImage: NetworkImage(
                             sharedPreferences!.getString("photoUrl")!),
@@ -39,118 +42,102 @@ class MyDrawer extends StatelessWidget {
                 ),
                 Text(
                   sharedPreferences!.getString("name")!,
-                  style: const TextStyle(
-                      color: Colors.black, fontSize: 20, fontFamily: "Train"),
+                  style: GoogleFonts.kaiseiOpti(fontWeight:FontWeight.bold,color: Colors.black,fontSize: 20)
                 ),
               ],
             ),
           ),
-          Column(
-            children: [
-              ListTile(
-                leading: const Icon(
-                  Icons.home,
-                  color: Colors.black,
+          SizedBox(
+            height: 30,
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 26,right: 26),
+            child: Column(
+              children: [
+                Divider(
+                  height: 10,
+                  color: Colors.grey,
+                  thickness: 2,
                 ),
-                title: const Text(
-                  "Home",
-                  style: TextStyle(color: Colors.black),
+                ListTile(
+                  leading: const Icon(
+                    Icons.home,
+                    size: 30,
+                    color: Colors.black,
+                  ),
+                  title:  Text(
+                    "Home",
+                    style: GoogleFonts.kaiseiOpti(fontWeight:FontWeight.bold,color: Colors.black,fontSize: 20),
+                  ),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+                  },
                 ),
-                onTap: () {},
-              ),
-              const Divider(
-                height: 10,
-                color: Colors.grey,
-                thickness: 2,
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.reorder,
-                  color: Colors.black,
+                const Divider(
+                  height: 10,
+                  color: Colors.grey,
+                  thickness: 2,
                 ),
-                title: const Text(
-                  "My Orders",
-                  style: TextStyle(color: Colors.black),
+                ListTile(
+                  leading: const Icon(
+                    Icons.reorder,
+                    size: 30,
+                    color: Colors.black,
+                  ),
+                  title:  Text(
+                    "My Orders",
+                    style: GoogleFonts.kaiseiOpti(fontWeight:FontWeight.bold,color: Colors.black,fontSize: 20),
+                  ),
+                  onTap: () {},
                 ),
-                onTap: () {},
-              ),
-              const Divider(
-                height: 10,
-                color: Colors.grey,
-                thickness: 2,
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.access_time,
-                  color: Colors.black,
+                const Divider(
+                  height: 10,
+                  color: Colors.grey,
+                  thickness: 2,
                 ),
-                title: const Text(
-                  "History",
-                  style: TextStyle(color: Colors.black),
+                ListTile(
+                  leading: const Icon(
+                    Icons.access_time,
+                    size: 30,
+                    color: Colors.black,
+                  ),
+                  title:  Text(
+                    "History",
+                    style: GoogleFonts.kaiseiOpti(fontWeight:FontWeight.bold,color: Colors.black,fontSize: 20),
+                  ),
+                  onTap: () {},
                 ),
-                onTap: () {},
-              ),
-              const Divider(
-                height: 10,
-                color: Colors.grey,
-                thickness: 2,
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.search,
-                  color: Colors.black,
+                const Divider(
+                  height: 10,
+                  color: Colors.grey,
+                  thickness: 2,
                 ),
-                title: const Text(
-                  "Search",
-                  style: TextStyle(color: Colors.black),
+                ListTile(
+                  leading: const Icon(
+                    Icons.exit_to_app,
+                    size: 30,
+                    color: Colors.black,
+                  ),
+                  title:  Text(
+                    "Sign Out",
+                    style: GoogleFonts.kaiseiOpti(fontWeight:FontWeight.bold,color: Colors.black,fontSize: 20),
+                  ),
+                  onTap: () {
+                    firebaseAuth.signOut().then((value) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (c) => const GetStartedScreen()));
+                    });
+                  },
                 ),
-                onTap: () {},
-              ),
-              const Divider(
-                height: 10,
-                color: Colors.grey,
-                thickness: 2,
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.add_location,
-                  color: Colors.black,
+                const Divider(
+                  height: 10,
+                  color: Colors.grey,
+                  thickness: 2,
                 ),
-                title: const Text(
-                  "Add New Address",
-                  style: TextStyle(color: Colors.black),
-                ),
-                onTap: () {},
-              ),
-              const Divider(
-                height: 10,
-                color: Colors.grey,
-                thickness: 2,
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.exit_to_app,
-                  color: Colors.black,
-                ),
-                title: const Text(
-                  "Sign Out",
-                  style: TextStyle(color: Colors.black),
-                ),
-                onTap: () {
-                  firebaseAuth.signOut().then((value) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (c) => const GetStartedScreen()));
-                  });
-                },
-              ),
-              const Divider(
-                height: 10,
-                color: Colors.grey,
-                thickness: 2,
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

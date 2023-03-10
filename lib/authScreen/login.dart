@@ -200,10 +200,10 @@ class _PhoneNumberState extends State<PhoneNumber> {
                                 Text(
                                   "Login",
                                   style: GoogleFonts.ibmPlexSans(
-                                      textStyle: TextStyle(
                                           fontSize: 18,
                                           color: Colors.white,
-                                          fontWeight: FontWeight.w400)),
+                                          fontWeight: FontWeight.w400,
+                                  ),
                                 ),
                               ],
                             ),
