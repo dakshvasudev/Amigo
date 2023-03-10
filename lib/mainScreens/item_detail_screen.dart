@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:number_inc_dec/number_inc_dec.dart';
+import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/model/items.dart';
 import 'package:user_amigo_app/widgets/app_bar.dart';
 
@@ -18,76 +20,120 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.network(widget.model!.thumbnailUrl.toString()),
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: NumberInputPrefabbed.roundedButtons(
-              controller: counterTextEditingController,
-              incDecBgColor: Colors.amber,
-              min: 1,
-              max: 9,
-              initialValue: 1,
-              buttonArrangement: ButtonArrangement.incRightDecLeft,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              widget.model!.title.toString(),
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              widget.model!.longDescription.toString(),
-              textAlign: TextAlign.justify,
-              style:
-                  const TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              widget.model!.price.toString() + " €",
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Center(
-            child: InkWell(
-              onTap: () {
-                //add to cart
-              },
-              child: Container(
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                  colors: [
-                    Colors.cyan,
-                    Colors.amber,
-                  ],
-                  begin: FractionalOffset(0.0, 0.0),
-                  end: FractionalOffset(1.0, 0.0),
-                  stops: [0.0, 1.0],
-                  tileMode: TileMode.clamp,
-                )),
-                width: MediaQuery.of(context).size.width - 13,
-                height: 50,
-                child: const Center(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                widget.model!.title.toString(),
+                // 'Description',
+                style: GoogleFonts.kaiseiOpti(fontWeight: FontWeight.bold, fontSize: 30),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: const Color(0xffd9d9d9),
+                    border: Border.all(color: const Color(0xffd9d9d9)),
+                    borderRadius: BorderRadius.circular(15),
+                    image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: NetworkImage(
+                        widget.model!.thumbnailUrl!,
+                      ),
+                    ),
+                  ),
+                  height: MediaQuery.of(context).size.height * 0.25,
+                  width: MediaQuery.of(context).size.width * 0.5,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: NumberInputPrefabbed.roundedButtons(
+                  controller: counterTextEditingController,
+                  incDecBgColor: kColorGreen,
+                  incIcon: Icons.add_circle,
+                  incIconColor: Colors.black,
+                  decIcon: Icons.remove_circle,
+                  decIconColor: Colors.black,
+                  min: 1,
+                  max: 15,
+                  initialValue: 1,
+                  buttonArrangement: ButtonArrangement.incRightDecLeft,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  // widget.model!.title.toString(),
+                  'Description',
+                  style: GoogleFonts.kaiseiOpti(fontWeight: FontWeight.bold, fontSize: 30),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: const Color(0xffd9d9d9),
+                    border: Border.all(color: const Color(0xffd9d9d9)),
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color(0xffd9d9d9),
+                        spreadRadius: 2,
+                        // blurRadius: 1,
+                        offset: Offset(1, 0), // changes position of shadow
+                      ),
+                    ],
+                  ),
+                  padding: const EdgeInsets.all(8),
                   child: Text(
-                    "Add to Cart",
-                    style: TextStyle(color: Colors.white, fontSize: 15),
+                    widget.model!.longDescription.toString(),
+                    textAlign: TextAlign.justify,
+                    style:
+                        const TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
                   ),
                 ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Price: ₹ '+ widget.model!.price.toString(),
+                  style: GoogleFonts.kaiseiOpti(fontWeight: FontWeight.bold, fontSize: 22),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Center(
+                child: InkWell(
+                  onTap: () {
+                    //add to cart
+                  },
+                  child: Container(
+                    color: kColorGreen,
+                    width: MediaQuery.of(context).size.width - 13,
+                    height: 50,
+                    child: Center(
+                      child: Text(
+                        "Add to Cart",
+                        style: GoogleFonts.ibmPlexSans(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                        ),                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
