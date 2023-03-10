@@ -40,10 +40,11 @@ class MyDrawer extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Text(
-                  sharedPreferences!.getString("name")!,
-                  style: GoogleFonts.kaiseiOpti(fontWeight:FontWeight.bold,color: Colors.black,fontSize: 20)
-                ),
+                Text(sharedPreferences!.getString("name")!,
+                    style: GoogleFonts.kaiseiOpti(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 20)),
               ],
             ),
           ),
@@ -51,7 +52,7 @@ class MyDrawer extends StatelessWidget {
             height: 30,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 26,right: 26),
+            padding: const EdgeInsets.only(left: 26, right: 26),
             child: Column(
               children: [
                 const Divider(
@@ -65,12 +66,16 @@ class MyDrawer extends StatelessWidget {
                     size: 30,
                     color: Colors.black,
                   ),
-                  title:  Text(
+                  title: Text(
                     "Home",
-                    style: GoogleFonts.kaiseiOpti(fontWeight:FontWeight.bold,color: Colors.black,fontSize: 20),
+                    style: GoogleFonts.kaiseiOpti(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 20),
                   ),
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()));
                   },
                 ),
                 const Divider(
@@ -84,9 +89,12 @@ class MyDrawer extends StatelessWidget {
                     size: 30,
                     color: Colors.black,
                   ),
-                  title:  Text(
+                  title: Text(
                     "My Orders",
-                    style: GoogleFonts.kaiseiOpti(fontWeight:FontWeight.bold,color: Colors.black,fontSize: 20),
+                    style: GoogleFonts.kaiseiOpti(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 20),
                   ),
                   onTap: () {},
                 ),
@@ -101,9 +109,12 @@ class MyDrawer extends StatelessWidget {
                     size: 30,
                     color: Colors.black,
                   ),
-                  title:  Text(
+                  title: Text(
                     "History",
-                    style: GoogleFonts.kaiseiOpti(fontWeight:FontWeight.bold,color: Colors.black,fontSize: 20),
+                    style: GoogleFonts.kaiseiOpti(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 20),
                   ),
                   onTap: () {},
                 ),
@@ -118,9 +129,12 @@ class MyDrawer extends StatelessWidget {
                     size: 30,
                     color: Colors.black,
                   ),
-                  title:  Text(
+                  title: Text(
                     "Sign Out",
-                    style: GoogleFonts.kaiseiOpti(fontWeight:FontWeight.bold,color: Colors.black,fontSize: 20),
+                    style: GoogleFonts.kaiseiOpti(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 20),
                   ),
                   onTap: () {
                     firebaseAuth.signOut().then((value) {

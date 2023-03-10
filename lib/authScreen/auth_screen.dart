@@ -37,7 +37,7 @@ class _AuthScreenState extends State<AuthScreen> {
           bottom: TabBar(
             labelColor: Colors.black,
             labelStyle: GoogleFonts.ibmPlexSans(),
-            tabs:  [
+            tabs: [
               Tab(
                 icon: Icon(
                   Icons.lock,

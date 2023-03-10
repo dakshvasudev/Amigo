@@ -126,13 +126,11 @@ class _PhoneNumberState extends State<PhoneNumber> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 24),
-                        child: Text(
-                          "Enter your email address",
-                          style: GoogleFonts.inter(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                          )
-                        ),
+                        child: Text("Enter your email address",
+                            style: GoogleFonts.inter(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                            )),
                       ),
                       Form(
                         key: _formKey,
@@ -152,16 +150,16 @@ class _PhoneNumberState extends State<PhoneNumber> {
                                 keyboardType: TextInputType.emailAddress,
                               ),
                             ),
-                            SizedBox(height: 10,),
+                            SizedBox(
+                              height: 10,
+                            ),
                             Padding(
                               padding: const EdgeInsets.only(left: 24),
-                              child: Text(
-                                  "Enter your password",
+                              child: Text("Enter your password",
                                   style: GoogleFonts.inter(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
-                                  )
-                              ),
+                                  )),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -177,7 +175,6 @@ class _PhoneNumberState extends State<PhoneNumber> {
                                 keyboardType: TextInputType.visiblePassword,
                               ),
                             ),
-
                           ],
                         ),
                       ),
@@ -200,9 +197,9 @@ class _PhoneNumberState extends State<PhoneNumber> {
                                 Text(
                                   "Login",
                                   style: GoogleFonts.ibmPlexSans(
-                                          fontSize: 18,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w400,
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ],

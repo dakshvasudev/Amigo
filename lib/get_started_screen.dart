@@ -30,7 +30,10 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
           left: 45,
           right: 21,
           bottom: 118,
-          child:  Text('Flavours of your choice...',style: GoogleFonts.lobster(fontSize: 30,color: Colors.white),),
+          child: Text(
+            'Flavours of your choice...',
+            style: GoogleFonts.lobster(fontSize: 30, color: Colors.white),
+          ),
         ),
         Positioned(
           left: 63,

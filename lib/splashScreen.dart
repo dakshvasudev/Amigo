@@ -21,8 +21,8 @@ class _SplashScreenState extends State<SplashScreen> {
       }
       //if seller is NOT logged in already
       else {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (c) => const GetStartedScreen()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (c) => const GetStartedScreen()));
       }
     });
   }
@@ -37,21 +37,28 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kColorGreen,
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.fastfood,color: Colors.white,size: 110,),
-            SizedBox(
-              height: 15,
-            ),
-            Text('AMIGO',style: GoogleFonts.francoisOne(fontSize: 55,color: Colors.white),),
-          ],
-        ),
-      )
-    );
+        backgroundColor: kColorGreen,
+        body: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.fastfood,
+                color: Colors.white,
+                size: 110,
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Text(
+                'AMIGO',
+                style:
+                    GoogleFonts.francoisOne(fontSize: 55, color: Colors.white),
+              ),
+            ],
+          ),
+        ));
   }
 }

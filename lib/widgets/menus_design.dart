@@ -4,9 +4,7 @@ import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/mainScreens/items_screen.dart';
 import 'package:user_amigo_app/model/menus.dart';
 
-
-class MenusDesignWidget extends StatefulWidget
-{
+class MenusDesignWidget extends StatefulWidget {
   Menus? model;
   BuildContext? context;
 
@@ -16,26 +14,26 @@ class MenusDesignWidget extends StatefulWidget
   _MenusDesignWidgetState createState() => _MenusDesignWidgetState();
 }
 
-
-
 class _MenusDesignWidgetState extends State<MenusDesignWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()
-      {
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(model: widget.model)));
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ItemsScreen(model: widget.model)));
       },
       splashColor: kColorGreen,
       child: Padding(
-        padding: const EdgeInsets.all(75*0.36),
+        padding: const EdgeInsets.all(75 * 0.36),
         child: Container(
           decoration: BoxDecoration(
             color: const Color(0xffd9d9d9),
             border: Border.all(color: const Color(0xffd9d9d9)),
             borderRadius: BorderRadius.circular(15),
             boxShadow: const [
-                BoxShadow(
+              BoxShadow(
                 color: Color(0xffd9d9d9),
                 spreadRadius: 2,
                 // blurRadius: 1,
@@ -67,10 +65,8 @@ class _MenusDesignWidgetState extends State<MenusDesignWidget> {
               ),
               Text(
                 widget.model!.menuTitle!,
-                style:  GoogleFonts.kaiseiOpti(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold
-                ),
+                style: GoogleFonts.kaiseiOpti(
+                    fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ],
           ),

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:user_amigo_app/mainScreens/item_detail_screen.dart';
 import 'package:user_amigo_app/model/items.dart';
 
-
-class ItemsDesignWidget extends StatefulWidget
-{
+class ItemsDesignWidget extends StatefulWidget {
   Items? model;
   BuildContext? context;
 
@@ -14,54 +13,82 @@ class ItemsDesignWidget extends StatefulWidget
   _ItemsDesignWidgetState createState() => _ItemsDesignWidgetState();
 }
 
-
-
 class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()
-      {
-        Navigator.push(context, MaterialPageRoute(builder: (c)=> ItemDetailsScreen(model: widget.model)));
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (c) => ItemDetailsScreen(model: widget.model)));
       },
       splashColor: Colors.amber,
       child: Padding(
-        padding: const EdgeInsets.all(5.0),
+        padding: const EdgeInsets.all(10.0),
         child: Container(
-          height: 280,
-          width: MediaQuery.of(context).size.width,
-          child: Column(
+          decoration: BoxDecoration(
+            color: const Color(0xffd9d9d9),
+            border: Border.all(color: const Color(0xffd9d9d9)),
+            borderRadius: BorderRadius.circular(15),
+            boxShadow: const [
+              BoxShadow(
+                color: Color(0xffd9d9d9),
+                spreadRadius: 2,
+                // blurRadius: 1,
+                offset: Offset(1, 0), // changes position of shadow
+              ),
+            ],
+          ),
+          height: MediaQuery.of(context).size.height * 0.18,
+          padding: const EdgeInsets.all(16),
+          child: Row(
             children: [
-              Divider(
-                height: 4,
-                thickness: 3,
-                color: Colors.grey[300],
-              ),
-              Image.network(
-                widget.model!.thumbnailUrl!,
-                height: 220.0,
-                fit: BoxFit.cover,
-              ),
-              const SizedBox(height: 1.0,),
-              Text(
-                widget.model!.title!,
-                style: const TextStyle(
-                  color: Colors.cyan,
-                  fontSize: 20,
-                  fontFamily: "Train",
+              Container(
+                decoration: BoxDecoration(
+                  color: const Color(0xffd9d9d9),
+                  border: Border.all(color: const Color(0xffd9d9d9)),
+                  borderRadius: BorderRadius.circular(15),
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: NetworkImage(
+                      widget.model!.thumbnailUrl!,
+                    ),
+                  ),
                 ),
+                height: 100,
+                width: 100,
               ),
-              Text(
-                widget.model!.shortInfo!,
-                style: const TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12,
-                ),
+              SizedBox(
+                width: 20,
               ),
-              Divider(
-                height: 4,
-                thickness: 3,
-                color: Colors.grey[300],
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.model!.title!,
+                    style: GoogleFonts.kaiseiOpti(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    widget.model!.shortInfo!,
+                    style: GoogleFonts.kaiseiOpti(
+                      color: Colors.grey,
+                      fontSize: 13,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    '₹ ' + widget.model!.price!.toString(),
+                    style: GoogleFonts.kaiseiOpti(
+                      color: Colors.black,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

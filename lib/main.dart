@@ -35,7 +35,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Users app',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white, colorScheme: ColorScheme.fromSwatch(primarySwatch: colorCustom).copyWith(secondary: kColorGreen),
+        scaffoldBackgroundColor: Colors.white,
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: colorCustom)
+            .copyWith(secondary: kColorGreen),
       ),
       home: const SplashScreen(),
     );

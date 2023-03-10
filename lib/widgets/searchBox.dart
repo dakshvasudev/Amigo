@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:user_amigo_app/constants.dart';
 
-
 class SearchBox extends StatelessWidget {
   // final ValueChanged<String> onChanged;
   const SearchBox({
@@ -22,7 +21,7 @@ class SearchBox extends StatelessWidget {
       ),
       child: TextField(
         // onChanged: onChanged,
-        onChanged: (hello){},
+        onChanged: (hello) {},
         decoration: const InputDecoration(
           border: InputBorder.none,
           icon: Icon(Icons.search),

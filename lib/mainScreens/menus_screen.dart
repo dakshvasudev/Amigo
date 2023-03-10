@@ -33,20 +33,20 @@ class _MenusScreenState extends State<MenusScreen> {
           // SliverPersistentHeader(pinned: true, delegate: TextWidgetHeader(title: widget.model!.sellerName.toString() + " Menus")),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.only(left: 85*0.36,bottom: 10),
+              padding: const EdgeInsets.only(left: 85 * 0.36, bottom: 10),
               child: Text(
                 widget.model!.sellerName!,
                 style: GoogleFonts.lobster(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 32,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 32,
                 ),
               ),
             ),
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.only(left: 85*0.36),
+              padding: const EdgeInsets.only(left: 85 * 0.36),
               child: Text(
                 'Select your favourites...',
                 style: GoogleFonts.lobsterTwo(
@@ -61,12 +61,12 @@ class _MenusScreenState extends State<MenusScreen> {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.only(left: 85*0.36),
+              padding: const EdgeInsets.only(left: 85 * 0.36),
               child: Text(
                 'Menu',
                 style: GoogleFonts.lemon(
-                    color: kColorGreen,
-                    fontSize: 24,
+                  color: kColorGreen,
+                  fontSize: 24,
                 ),
               ),
             ),

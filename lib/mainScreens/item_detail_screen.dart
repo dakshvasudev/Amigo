@@ -3,9 +3,7 @@ import 'package:number_inc_dec/number_inc_dec.dart';
 import 'package:user_amigo_app/model/items.dart';
 import 'package:user_amigo_app/widgets/app_bar.dart';
 
-
-class ItemDetailsScreen extends StatefulWidget
-{
+class ItemDetailsScreen extends StatefulWidget {
   final Items? model;
   ItemDetailsScreen({this.model});
 
@@ -13,23 +11,17 @@ class ItemDetailsScreen extends StatefulWidget
   _ItemDetailsScreenState createState() => _ItemDetailsScreenState();
 }
 
-
-
-
-class _ItemDetailsScreenState extends State<ItemDetailsScreen>
-{
+class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
   TextEditingController counterTextEditingController = TextEditingController();
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.network(widget.model!.thumbnailUrl.toString()),
-
           Padding(
             padding: const EdgeInsets.all(18.0),
             child: NumberInputPrefabbed.roundedButtons(
@@ -41,7 +33,6 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen>
               buttonArrangement: ButtonArrangement.incRightDecLeft,
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
@@ -49,16 +40,15 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen>
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
               widget.model!.longDescription.toString(),
               textAlign: TextAlign.justify,
-              style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
+              style:
+                  const TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
@@ -66,28 +56,26 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen>
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
             ),
           ),
-
-          const SizedBox(height: 10,),
-
+          const SizedBox(
+            height: 10,
+          ),
           Center(
             child: InkWell(
-              onTap: ()
-              {
+              onTap: () {
                 //add to cart
               },
               child: Container(
                 decoration: const BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [
-                        Colors.cyan,
-                        Colors.amber,
-                      ],
-                      begin:  FractionalOffset(0.0, 0.0),
-                      end:  FractionalOffset(1.0, 0.0),
-                      stops: [0.0, 1.0],
-                      tileMode: TileMode.clamp,
-                    )
-                ),
+                  colors: [
+                    Colors.cyan,
+                    Colors.amber,
+                  ],
+                  begin: FractionalOffset(0.0, 0.0),
+                  end: FractionalOffset(1.0, 0.0),
+                  stops: [0.0, 1.0],
+                  tileMode: TileMode.clamp,
+                )),
                 width: MediaQuery.of(context).size.width - 13,
                 height: 50,
                 child: const Center(
