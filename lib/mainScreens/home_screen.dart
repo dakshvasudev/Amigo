@@ -7,7 +7,7 @@ import 'package:selller_amigo_app/uploadScreen/upload_screen.dart';
 import 'package:selller_amigo_app/widgets/info_design.dart';
 import 'package:selller_amigo_app/widgets/my_drawer.dart';
 import 'package:selller_amigo_app/widgets/progress_bar.dart';
-import 'package:selller_amigo_app/widgets/text_widget_header.dart';
+import 'package:selller_amigo_app/widgets/searchBox.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,21 +23,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       drawer: const MyDrawer(),
       appBar: AppBar(
-        backgroundColor: kColorYellow,
-        scrolledUnderElevation: 15,
-        shadowColor: kColorYellow,
-        title: Center(
-          child: Text(
-            sharedPreferences!.getString('name')!,
-            style: GoogleFonts.workSans(
-              textStyle: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 32,
-                color: kColorRed,
-              ),
-            ),
-          ),
-        ),
+        toolbarHeight: 70,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        iconTheme: IconThemeData(color: kColorGreen),
         actions: [
           IconButton(
               onPressed: () {
@@ -51,8 +40,37 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: CustomScrollView(
         slivers: [
-          SliverPersistentHeader(
-              pinned: true, delegate: TextWidgetHeader(title: "My Menus")),
+          // SliverPersistentHeader(
+          //     pinned: true, delegate: TextWidgetHeader(title: "My Menus")),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding:
+                  const EdgeInsets.only(top: 10, left: 75 * 0.36),
+              child: Text(
+                sharedPreferences!.getString('name')!,
+                style: GoogleFonts.lobster(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 34,
+                    color: Colors.black),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding:
+                  const EdgeInsets.only(top: 10, left: 75 * 0.36, bottom: 10),
+              child: Text(
+                'Serving the best..',
+                style: GoogleFonts.lobster(
+                    color: kColorGreen,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 24),
+              ),
+            ),
+          ),
+          const SliverToBoxAdapter(
+            child: SearchBox(),
+          ),
           StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
                 .collection("sellers")

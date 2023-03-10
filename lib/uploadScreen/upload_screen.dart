@@ -76,11 +76,11 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.arrow_back_ios,
                           color: Colors.white,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       width: 50,
                     ),
                     Center(
@@ -96,11 +96,11 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
                 ),
               ),
             ),
-            Positioned(
+            const Positioned(
               top: 260,
               left: 125,
               right: 125,
-              child: const Icon(
+              child: Icon(
                 Icons.menu_book,
                 size: 120,
                 color: Colors.grey,
