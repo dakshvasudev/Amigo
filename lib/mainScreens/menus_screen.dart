@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/model/menus.dart';
 import 'package:user_amigo_app/models/sellers.dart';
+import 'package:user_amigo_app/widgets/FloatingShoppingCart.dart';
 import 'package:user_amigo_app/widgets/menus_design.dart';
 import 'package:user_amigo_app/widgets/progress_bar.dart';
 import 'package:user_amigo_app/widgets/searchBox.dart';
@@ -47,7 +48,7 @@ class _MenusScreenState extends State<MenusScreen> {
             child: Padding(
               padding: const EdgeInsets.only(left: 85*0.36),
               child: Text(
-                'Sellers favourites...',
+                'Select your favourites...',
                 style: GoogleFonts.lobsterTwo(
                     color: kColorGreen,
                     fontWeight: FontWeight.w400,
@@ -103,6 +104,7 @@ class _MenusScreenState extends State<MenusScreen> {
           ),
         ],
       ),
+      floatingActionButton: FloatingShoppingCart(),
     );
   }
 }

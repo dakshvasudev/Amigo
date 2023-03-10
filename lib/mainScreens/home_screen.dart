@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/models/sellers.dart';
+import 'package:user_amigo_app/widgets/FloatingShoppingCart.dart';
 import 'package:user_amigo_app/widgets/sellers_design.dart';
 import 'package:user_amigo_app/widgets/my_drawer.dart';
 import 'package:user_amigo_app/widgets/progress_bar.dart';
@@ -167,16 +168,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        isExtended: true,
-        elevation: 10,
-        backgroundColor: kColorGreen,
-        onPressed: () {},
-        child: const Icon(
-          Icons.shopping_cart,
-          color: Colors.black,
-        ),
-      ),
+      floatingActionButton: FloatingShoppingCart(),
     );
   }
 }
+
+
