@@ -10,7 +10,7 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Color(0xffd9d9d9),
+      backgroundColor: const Color(0xffd9d9d9),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
             topRight: Radius.circular(53), bottomRight: Radius.circular(53)),
@@ -47,14 +47,14 @@ class MyDrawer extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Padding(
-            padding: EdgeInsets.only(left: 26,right: 26),
+            padding: const EdgeInsets.only(left: 26,right: 26),
             child: Column(
               children: [
-                Divider(
+                const Divider(
                   height: 10,
                   color: Colors.grey,
                   thickness: 2,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/mainScreens/items_screen.dart';
 import 'package:user_amigo_app/model/menus.dart';
 
@@ -24,49 +26,51 @@ class _MenusDesignWidgetState extends State<MenusDesignWidget> {
       {
         Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(model: widget.model)));
       },
-      splashColor: Colors.amber,
+      splashColor: kColorGreen,
       child: Padding(
-        padding: const EdgeInsets.all(5.0),
+        padding: const EdgeInsets.all(75*0.36),
         child: Container(
-          color: Color(0xffd9d9d9),
-          height: MediaQuery.of(context).size.height * 0.2,
-          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            color: const Color(0xffd9d9d9),
+            border: Border.all(color: const Color(0xffd9d9d9)),
+            borderRadius: BorderRadius.circular(15),
+            boxShadow: const [
+                BoxShadow(
+                color: Color(0xffd9d9d9),
+                spreadRadius: 2,
+                blurRadius: 1,
+                offset: Offset(1, 0), // changes position of shadow
+              ),
+            ],
+          ),
+          height: MediaQuery.of(context).size.height * 0.15,
+          padding: const EdgeInsets.all(16),
           child: Row(
             children: [
               Container(
-                height: 100,
-                width: 100,
-                child: Image.network(
-                  widget.model!.thumbnailUrl!,
-                  height: 220.0,
-                  fit: BoxFit.fill,
+                decoration: BoxDecoration(
+                  color: const Color(0xffd9d9d9),
+                  border: Border.all(color: const Color(0xffd9d9d9)),
+                  borderRadius: BorderRadius.circular(15),
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: NetworkImage(
+                      widget.model!.thumbnailUrl!,
+                    ),
+                  ),
                 ),
+                height: 90,
+                width: 90,
               ),
-              const SizedBox(height: 1.0,),
-              Column(
-                children: [
-                  Text(
-                    widget.model!.menuTitle!,
-                    style: const TextStyle(
-                      color: Colors.cyan,
-                      fontSize: 20,
-                      fontFamily: "Train",
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.6,
-                    child: Text(
-                      widget.model!.menuInfo!,
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ),
-                ],
+              const SizedBox(
+                width: 20,
+              ),
+              Text(
+                widget.model!.menuTitle!,
+                style:  GoogleFonts.kaiseiOpti(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold
+                ),
               ),
             ],
           ),
