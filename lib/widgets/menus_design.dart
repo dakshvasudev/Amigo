@@ -38,7 +38,7 @@ class _MenusDesignWidgetState extends State<MenusDesignWidget> {
                 BoxShadow(
                 color: Color(0xffd9d9d9),
                 spreadRadius: 2,
-                blurRadius: 1,
+                // blurRadius: 1,
                 offset: Offset(1, 0), // changes position of shadow
               ),
             ],
