@@ -78,7 +78,7 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
         //   ),
         // )
       child: Padding(
-        padding: const EdgeInsets.all(75 * 0.36),
+        padding: const EdgeInsets.only(left: 75 * 0.36,bottom: 20,right: 75 * 0.36),
         child: Container(
           decoration: BoxDecoration(
             color: const Color(0xffd9d9d9),
@@ -103,7 +103,7 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
                   border: Border.all(color: const Color(0xffd9d9d9)),
                   borderRadius: BorderRadius.circular(15),
                   image: DecorationImage(
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                     image: NetworkImage(
                       widget.model!.thumbnailUrl!,
                     ),
