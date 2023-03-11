@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:selller_amigo_app/constants.dart';
 import 'package:selller_amigo_app/model/items.dart';
 import 'package:selller_amigo_app/model/menus.dart';
@@ -8,7 +9,7 @@ import 'package:selller_amigo_app/uploadScreen/items_upload_screen.dart';
 import 'package:selller_amigo_app/widgets/items_design.dart';
 import 'package:selller_amigo_app/widgets/my_drawer.dart';
 import 'package:selller_amigo_app/widgets/progress_bar.dart';
-import 'package:selller_amigo_app/widgets/text_widget_header.dart';
+import 'package:selller_amigo_app/widgets/searchBox.dart';
 
 class ItemsScreen extends StatefulWidget {
   final Menus? model;
@@ -24,17 +25,10 @@ class _ItemsScreenState extends State<ItemsScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        flexibleSpace: Container(
-          color: kColorRed,
-        ),
-        title: Text(
-          sharedPreferences!.getString("name")!,
-          style: const TextStyle(
-            fontSize: 30,
-          ),
-        ),
-        centerTitle: true,
-        automaticallyImplyLeading: true,
+        toolbarHeight: 70,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        iconTheme: IconThemeData(color: kColorGreen),
         actions: [
           IconButton(
             icon: const Icon(Icons.library_add),
@@ -50,11 +44,41 @@ class _ItemsScreenState extends State<ItemsScreen> {
       drawer: MyDrawer(),
       body: CustomScrollView(
         slivers: [
-          SliverPersistentHeader(
-              pinned: true,
-              delegate: TextWidgetHeader(
-                  title:
-                      "My " + widget.model!.menuTitle.toString() + "'s Items")),
+          // SliverPersistentHeader(
+          //     pinned: true,
+          //     delegate: TextWidgetHeader(
+          //         title:
+          //             "My " + widget.model!.menuTitle.toString() + "'s Items")),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding:
+              const EdgeInsets.only(top: 10, left: 75 * 0.36),
+              child: Text(
+                sharedPreferences!.getString('name')!,
+                style: GoogleFonts.lobster(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 34,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding:
+              const EdgeInsets.only(top: 10, left: 75 * 0.36, bottom: 10),
+              child: Text(
+                'Serving the best..',
+                style: GoogleFonts.lobster(
+                    color: kColorGreen,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 24),
+              ),
+            ),
+          ),
+          const SliverToBoxAdapter(
+            child: SearchBox(),
+          ),
           StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
                 .collection("sellers")

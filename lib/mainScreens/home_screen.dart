@@ -51,7 +51,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: GoogleFonts.lobster(
                     fontWeight: FontWeight.w400,
                     fontSize: 34,
-                    color: Colors.black),
+                    color: Colors.black,
+                ),
               ),
             ),
           ),
