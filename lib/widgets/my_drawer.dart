@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:selller_amigo_app/authScreen/auth_screen.dart';
 import 'package:selller_amigo_app/constants.dart';
+import 'package:selller_amigo_app/mainScreens/home_screen.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -13,10 +14,11 @@ class MyDrawer extends StatelessWidget {
             topRight: Radius.circular(120), bottomRight: Radius.circular(40)),
       ),
       child: ListView(
+        padding: EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 10),
         children: [
           //header drawer
           Container(
-            padding: const EdgeInsets.only(top: 25, bottom: 10),
+            padding: const EdgeInsets.only(top: 105, bottom: 10),
             child: Column(
               children: [
                 Material(
@@ -45,6 +47,9 @@ class MyDrawer extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(
+            height: 15,
+          ),
           Column(
             children: [
               ListTile(
@@ -56,7 +61,9 @@ class MyDrawer extends StatelessWidget {
                   "Home",
                   style: TextStyle(color: Colors.black),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+                },
               ),
               const Divider(
                 height: 10,
