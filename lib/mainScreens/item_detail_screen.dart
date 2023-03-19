@@ -32,7 +32,8 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
               Text(
                 widget.model!.title.toString(),
                 // 'Description',
-                style: GoogleFonts.kaiseiOpti(fontWeight: FontWeight.bold, fontSize: 30),
+                style: GoogleFonts.kaiseiOpti(
+                    fontWeight: FontWeight.bold, fontSize: 30),
               ),
               SizedBox(
                 height: 20,
@@ -74,7 +75,8 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                 child: Text(
                   // widget.model!.title.toString(),
                   'Description',
-                  style: GoogleFonts.kaiseiOpti(fontWeight: FontWeight.bold, fontSize: 30),
+                  style: GoogleFonts.kaiseiOpti(
+                      fontWeight: FontWeight.bold, fontSize: 30),
                 ),
               ),
               Padding(
@@ -97,16 +99,17 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                   child: Text(
                     widget.model!.longDescription.toString(),
                     textAlign: TextAlign.justify,
-                    style:
-                        const TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.normal, fontSize: 14),
                   ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Price: ₹ '+ widget.model!.price.toString(),
-                  style: GoogleFonts.kaiseiOpti(fontWeight: FontWeight.bold, fontSize: 22),
+                  'Price: ₹ ' + widget.model!.price.toString(),
+                  style: GoogleFonts.kaiseiOpti(
+                      fontWeight: FontWeight.bold, fontSize: 22),
                 ),
               ),
               const SizedBox(
@@ -115,11 +118,14 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
               Center(
                 child: InkWell(
                   onTap: () {
-                    int itemCounter = int.parse(counterTextEditingController.text);
+                    int itemCounter =
+                        int.parse(counterTextEditingController.text);
+                    List<String> separateItemIDsList = separateItemIDs();
+
                     //1.check if item exist already in cart
-                    // separateItemIDsList.contains(widget.model!.itemID)
-                    //     ? Fluttertoast.showToast(msg: "Item is already in Cart.")
-                    //     :
+                    separateItemIDsList.contains(widget.model!.itemID)
+                        ? Fluttertoast.showToast(msg: "Item is already in Cart.")
+                        :
                     //2.add to cart
                     addItemToCart(widget.model!.itemID, context, itemCounter);
                   },
@@ -134,7 +140,8 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                           fontSize: 18,
                           color: Colors.white,
                           fontWeight: FontWeight.w400,
-                        ),                      ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
