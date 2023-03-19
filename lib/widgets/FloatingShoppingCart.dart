@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:user_amigo_app/assistantMethods/cart_Item_counter.dart';
 import 'package:user_amigo_app/constants.dart';
+import 'package:user_amigo_app/mainScreens/cart_screen.dart';
 
 class FloatingShoppingCart extends StatelessWidget {
-  const FloatingShoppingCart({
-    Key? key,
+  final String? sellerUID;
+   const FloatingShoppingCart({
+    Key? key, this.sellerUID
   }) : super(key: key);
 
   @override
@@ -22,7 +24,9 @@ class FloatingShoppingCart extends StatelessWidget {
                 Icons.shopping_cart,
                 color: Colors.black,
               ),
-              onPressed: () {}),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>CartScreen(sellerUID: sellerUID,)));
+              }),
           Positioned(
             right: 2,
             child: Stack(

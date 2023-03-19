@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:user_amigo_app/assistantMethods/assistant_methods.dart';
 import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/models/sellers.dart';
 import 'package:user_amigo_app/widgets/FloatingShoppingCart.dart';
@@ -49,6 +50,11 @@ class _HomeScreenState extends State<HomeScreen> {
   //   "assets/slider/26.jpg",
   //   "assets/slider/27.jpg",
   // ];
+  void initState() {
+    super.initState();
+
+    clearCartNow(context);
+  }
 
   @override
   Widget build(BuildContext context) {

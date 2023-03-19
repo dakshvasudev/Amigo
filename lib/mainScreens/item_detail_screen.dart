@@ -151,7 +151,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
           ),
         ),
       ),
-      floatingActionButton: const FloatingShoppingCart(),
+      floatingActionButton: FloatingShoppingCart(sellerUID: widget.model!.sellerUID,),
     );
   }
 }
