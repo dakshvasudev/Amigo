@@ -81,6 +81,8 @@ class _PhoneNumberState extends State<PhoneNumber> {
         await sharedPreferences!.setString("name", snapshot.data()?["Name"]);
         await sharedPreferences!
             .setString("photoUrl", snapshot.data()?["photoUrl"]);
+        List<String> userCartList = snapshot.data()!["userCart"].cast<String>();
+        await sharedPreferences!.setStringList("userCart", userCartList);
 
         Navigator.pop(context);
         Navigator.push(

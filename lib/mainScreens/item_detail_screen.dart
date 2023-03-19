@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:number_inc_dec/number_inc_dec.dart';
 import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/model/items.dart';
 import 'package:user_amigo_app/widgets/app_bar.dart';
+import 'package:user_amigo_app/assistantMethods/assistant_methods.dart';
 
 class ItemDetailsScreen extends StatefulWidget {
   final Items? model;
@@ -113,7 +115,13 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
               Center(
                 child: InkWell(
                   onTap: () {
-                    //add to cart
+                    int itemCounter = int.parse(counterTextEditingController.text);
+                    //1.check if item exist already in cart
+                    // separateItemIDsList.contains(widget.model!.itemID)
+                    //     ? Fluttertoast.showToast(msg: "Item is already in Cart.")
+                    //     :
+                    //2.add to cart
+                    addItemToCart(widget.model!.itemID, context, itemCounter);
                   },
                   child: Container(
                     color: kColorGreen,
