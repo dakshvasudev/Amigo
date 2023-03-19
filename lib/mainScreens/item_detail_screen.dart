@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:number_inc_dec/number_inc_dec.dart';
 import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/model/items.dart';
+import 'package:user_amigo_app/widgets/FloatingShoppingCart.dart';
 import 'package:user_amigo_app/widgets/app_bar.dart';
 import 'package:user_amigo_app/assistantMethods/assistant_methods.dart';
 
@@ -150,6 +151,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
           ),
         ),
       ),
+      floatingActionButton: const FloatingShoppingCart(),
     );
   }
 }

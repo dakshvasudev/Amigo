@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:user_amigo_app/assistantMethods/cart_Item_counter.dart';
 import 'package:user_amigo_app/splashScreen.dart';
 import 'constants.dart';
 
@@ -31,15 +33,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Users app',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: colorCustom)
-            .copyWith(secondary: kColorGreen),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (c)=> CartItemCounter()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Users app',
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: colorCustom)
+              .copyWith(secondary: kColorGreen),
+        ),
+        home: const SplashScreen(),
       ),
-      home: const SplashScreen(),
     );
   }
 }
