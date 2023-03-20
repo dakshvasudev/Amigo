@@ -1,19 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:user_amigo_app/assistantMethods/assistant_methods.dart';
 import 'package:user_amigo_app/assistantMethods/cart_Item_counter.dart';
 import 'package:user_amigo_app/assistantMethods/total_amount.dart';
+import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/model/items.dart';
 import 'package:user_amigo_app/splashScreen.dart';
 import 'package:user_amigo_app/widgets/cart_item_design.dart';
 import 'package:user_amigo_app/widgets/progress_bar.dart';
 import 'package:user_amigo_app/widgets/text_widget_header.dart';
 
-
-class CartScreen extends StatefulWidget
-{
+class CartScreen extends StatefulWidget {
   final String? sellerUID;
 
   CartScreen({this.sellerUID});
@@ -22,11 +22,7 @@ class CartScreen extends StatefulWidget
   _CartScreenState createState() => _CartScreenState();
 }
 
-
-
-
-class _CartScreenState extends State<CartScreen>
-{
+class _CartScreenState extends State<CartScreen> {
   List<int>? separateItemQuantityList;
   num totalAmount = 0;
 
@@ -44,88 +40,31 @@ class _CartScreenState extends State<CartScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.cyan,
-                  Colors.amber,
-                ],
-                begin:  FractionalOffset(0.0, 0.0),
-                end:  FractionalOffset(1.0, 0.0),
-                stops: [0.0, 1.0],
-                tileMode: TileMode.clamp,
-              )
-          ),
-        ),
-        leading: IconButton(
-          icon: const Icon(Icons.clear_all),
-          onPressed: ()
-          {
-            // clearCartNow(context);
-          },
-        ),
-        title: const Text(
-          "iFood",
-          style: TextStyle(fontSize: 45, fontFamily: "Signatra"),
-        ),
-        centerTitle: true,
-        automaticallyImplyLeading: true,
-        actions: [
-          Stack(
-            children: [
-              IconButton(
-                icon: const Icon(Icons.shopping_cart, color: Colors.cyan,),
-                onPressed: ()
-                {
-                  print("clicked");
-                },
-              ),
-              Positioned(
-                child: Stack(
-                  children: [
-                    const Icon(
-                      Icons.brightness_1,
-                      size: 20.0,
-                      color: Colors.green,
-                    ),
-                    Positioned(
-                      top: 3,
-                      right: 4,
-                      child: Center(
-                        child: Consumer<CartItemCounter>(
-                          builder: (context, counter, c)
-                          {
-                            return Text(
-                              counter.count.toString(),
-                              style: const TextStyle(color: Colors.white, fontSize: 12),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
+        toolbarHeight: 70,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        iconTheme: IconThemeData(color: kColorGreen),
       ),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          const SizedBox(width: 10,),
+          const SizedBox(
+            width: 10,
+          ),
           Align(
             alignment: Alignment.bottomLeft,
             child: FloatingActionButton.extended(
-              label: const Text("Clear Cart", style: TextStyle(fontSize: 16),),
-              backgroundColor: Colors.cyan,
+              label: const Text(
+                "Clear Cart",
+                style: TextStyle(fontSize: 16),
+              ),
+              backgroundColor: kColorGreen,
               icon: const Icon(Icons.clear_all),
-              onPressed: ()
-              {
+              onPressed: () {
                 clearCartNow(context);
 
-                Navigator.push(context, MaterialPageRoute(builder: (c)=> const SplashScreen()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (c) => const SplashScreen()));
 
                 Fluttertoast.showToast(msg: "Cart has been cleared.");
               },
@@ -134,11 +73,13 @@ class _CartScreenState extends State<CartScreen>
           Align(
             alignment: Alignment.bottomLeft,
             child: FloatingActionButton.extended(
-              label: const Text("Check Out", style: TextStyle(fontSize: 16),),
-              backgroundColor: Colors.cyan,
+              label: const Text(
+                "Check Out",
+                style: TextStyle(fontSize: 16),
+              ),
+              backgroundColor: kColorGreen,
               icon: const Icon(Icons.navigate_next),
-              onPressed: ()
-              {
+              onPressed: () {
                 // Navigator.push(
                 //     context,
                 //     MaterialPageRoute(
@@ -155,34 +96,17 @@ class _CartScreenState extends State<CartScreen>
       ),
       body: CustomScrollView(
         slivers: [
-          
-          //overall total amount
-          SliverPersistentHeader(
-              pinned: true,
-              delegate: TextWidgetHeader(title: "My Cart List")
-          ),
-
           SliverToBoxAdapter(
-            child: Consumer2<TotalAmount, CartItemCounter>(builder: (context, amountProvider, cartProvider, c)
-            {
-              return Padding(
-                padding: const EdgeInsets.all(8),
-                child: Center(
-                  child: cartProvider.count == 0
-                      ? Container()
-                      : Text(
-                          "Total Price: " + amountProvider.tAmount.toString(),
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 18,
-                              fontWeight:  FontWeight.w500,
-                            ),
-                        ),
-                ),
-              );
-            }),
+            child: Padding(
+              padding:
+                  const EdgeInsets.only(top: 10, left: 75 * 0.36, bottom: 10),
+              child: Text(
+                'My Cart',
+                style: GoogleFonts.lobster(
+                    fontWeight: FontWeight.w400, fontSize: 30),
+              ),
+            ),
           ),
-
           //display cart items with quantity number
           StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
@@ -190,47 +114,85 @@ class _CartScreenState extends State<CartScreen>
                 .where("itemID", whereIn: separateItemIDs())
                 .orderBy("publishedDate", descending: true)
                 .snapshots(),
-            builder: (context, snapshot)
-            {
+            builder: (context, snapshot) {
               return !snapshot.hasData
-                  ? SliverToBoxAdapter(child: Center(child: circularProgress(),),)
+                  ? SliverToBoxAdapter(
+                      child: Center(
+                        child: circularProgress(),
+                      ),
+                    )
                   : snapshot.data!.docs.length == 0
-                  ? //startBuildingCart()
-                     Container()
-                  : SliverList(
-                    delegate: SliverChildBuilderDelegate((context, index)
-                    {
-                      Items model = Items.fromJson(
-                        snapshot.data!.docs[index].data()! as Map<String, dynamic>,
-                      );
+                      ? //startBuildingCart()
+                      Container()
+                      : SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            (context, index) {
+                              Items model = Items.fromJson(
+                                snapshot.data!.docs[index].data()!
+                                    as Map<String, dynamic>,
+                              );
 
-                      if(index == 0)
-                      {
-                        totalAmount = 0;
-                        totalAmount = totalAmount + (model.price! * separateItemQuantityList![index]);
-                      }
-                      else
-                      {
-                        totalAmount = totalAmount + (model.price! * separateItemQuantityList![index]);
-                      }
+                              if (index == 0) {
+                                totalAmount = 0;
+                                totalAmount = totalAmount +
+                                    (model.price! *
+                                        separateItemQuantityList![index]);
+                              } else {
+                                totalAmount = totalAmount +
+                                    (model.price! *
+                                        separateItemQuantityList![index]);
+                              }
 
-                      if(snapshot.data!.docs.length - 1 == index)
-                      {
-                        WidgetsBinding.instance!.addPostFrameCallback((timeStamp)
-                        {
-                          Provider.of<TotalAmount>(context, listen: false).displayTotalAmount(totalAmount.toDouble());
-                        });
-                      }
-                      return CartItemDesign(
-                        model: model,
-                        context: context,
-                        quanNumber: separateItemQuantityList![index],
-                      );
-                    },
-                    childCount: snapshot.hasData ? snapshot.data!.docs.length : 0,
-                  ),
-                 );
+                              if (snapshot.data!.docs.length - 1 == index) {
+                                WidgetsBinding.instance
+                                    .addPostFrameCallback((timeStamp) {
+                                  Provider.of<TotalAmount>(context,
+                                          listen: false)
+                                      .displayTotalAmount(
+                                          totalAmount.toDouble());
+                                });
+                              }
+                              return CartItemDesign(
+                                model: model,
+                                context: context,
+                                quanNumber: separateItemQuantityList![index],
+                              );
+                            },
+                            childCount: snapshot.hasData
+                                ? snapshot.data!.docs.length
+                                : 0,
+                          ),
+                        );
             },
+          ),
+          SliverToBoxAdapter(
+            child: Consumer2<TotalAmount, CartItemCounter>(
+                builder: (context, amountProvider, cartProvider, c) {
+              return Padding(
+                padding: const EdgeInsets.all(8),
+                child: Center(
+                  child: cartProvider.count == 0
+                      ? Container()
+                      : Container(
+                          height: 45,
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          decoration: BoxDecoration(
+                              color: kColorGreen,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Center(
+                            child: Text(
+                              "Total Price: ${amountProvider.tAmount}",
+                              style: GoogleFonts.kaiseiOpti(
+                                color: Colors.black,
+                                fontSize: 24,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                ),
+              );
+            }),
           ),
         ],
       ),
