@@ -11,7 +11,6 @@ import 'package:user_amigo_app/model/items.dart';
 import 'package:user_amigo_app/splashScreen.dart';
 import 'package:user_amigo_app/widgets/cart_item_design.dart';
 import 'package:user_amigo_app/widgets/progress_bar.dart';
-import 'package:user_amigo_app/widgets/text_widget_header.dart';
 
 class CartScreen extends StatefulWidget {
   final String? sellerUID;

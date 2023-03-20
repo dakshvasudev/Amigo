@@ -68,56 +68,6 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: const MyDrawer(),
       body: CustomScrollView(
         slivers: [
-          // SliverToBoxAdapter(
-          //   child: Padding(
-          //     padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-          //     child: SizedBox(
-          //       height: MediaQuery.of(context).size.height * .15,
-          //       width: MediaQuery.of(context).size.width,
-          //       child: CarouselSlider(
-          //         options: CarouselOptions(
-          //           height: MediaQuery.of(context).size.height * .3,
-          //           aspectRatio: 16 / 9,
-          //           viewportFraction: 0.8,
-          //           initialPage: 0,
-          //           enableInfiniteScroll: true,
-          //           reverse: false,
-          //           autoPlay: true,
-          //           autoPlayInterval: const Duration(seconds: 2),
-          //           autoPlayAnimationDuration:
-          //               const Duration(milliseconds: 500),
-          //           autoPlayCurve: Curves.decelerate,
-          //           enlargeCenterPage: true,
-          //           scrollDirection: Axis.horizontal,
-          //         ),
-          //         items: items.map((index) {
-          //           return Builder(builder: (BuildContext context) {
-          //             return SizedBox(
-          //               width: MediaQuery.of(context).size.width,
-          //               child: Row(
-          //                 children: [
-          //                   CircleAvatar(
-          //                     radius: 60,
-          //                     backgroundImage: AssetImage(
-          //                       index,
-          //                     ),
-          //                   ),
-          //                   const SizedBox(
-          //                     width: 30,
-          //                   ),
-          //                   CircleAvatar(
-          //                     radius: 60,
-          //                     backgroundColor: kColorRed,
-          //                   ),
-          //                 ],
-          //               ),
-          //             );
-          //           });
-          //         }).toList(),
-          //       ),
-          //     ),
-          //   ),
-          // ),
           SliverToBoxAdapter(
             child: Padding(
               padding:
