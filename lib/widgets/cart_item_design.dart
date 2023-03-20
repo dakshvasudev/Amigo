@@ -3,9 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/model/items.dart';
 
-
-class CartItemDesign extends StatefulWidget
-{
+class CartItemDesign extends StatefulWidget {
   final Items? model;
   BuildContext? context;
   final int? quanNumber;
@@ -26,7 +24,8 @@ class _CartItemDesignState extends State<CartItemDesign> {
     return InkWell(
       splashColor: Colors.cyan,
       child: Padding(
-        padding: const EdgeInsets.only(left: 75*0.36,right: 75*0.36,top: 10,bottom: 5),
+        padding: const EdgeInsets.only(
+            left: 75 * 0.36, right: 75 * 0.36, top: 10, bottom: 5),
         child: Container(
           height: 120,
           decoration: BoxDecoration(
@@ -51,7 +50,9 @@ class _CartItemDesignState extends State<CartItemDesign> {
                     widget.model!.thumbnailUrl!,
                   ),
                 ),
-                const SizedBox(width: 10,),
+                const SizedBox(
+                  width: 10,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
@@ -72,7 +73,7 @@ class _CartItemDesignState extends State<CartItemDesign> {
                     //quantity number // x 7
                     Row(
                       children: [
-                         Text(
+                        Text(
                           "x ",
                           style: GoogleFonts.kaiseiOpti(
                             color: Colors.black,
@@ -103,23 +104,17 @@ class _CartItemDesignState extends State<CartItemDesign> {
                         ),
                         Text(
                           "₹̐ ",
-                          style: TextStyle(
-                              color: kColorGreen,
-                              fontSize: 16.0
-                          ),
+                          style: TextStyle(color: kColorGreen, fontSize: 16.0),
                         ),
-                        Text(
-                            widget.model!.price.toString(),
+                        Text(widget.model!.price.toString(),
                             style: TextStyle(
                               fontSize: 16,
                               color: kColorGreen,
-                            )
-                        ),
+                            )),
                       ],
                     ),
                   ],
                 ),
-
               ],
             ),
           ),

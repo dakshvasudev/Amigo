@@ -6,9 +6,7 @@ import 'package:user_amigo_app/mainScreens/cart_screen.dart';
 
 class FloatingShoppingCart extends StatelessWidget {
   final String? sellerUID;
-   const FloatingShoppingCart({
-    Key? key, this.sellerUID
-  }) : super(key: key);
+  const FloatingShoppingCart({Key? key, this.sellerUID}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +23,12 @@ class FloatingShoppingCart extends StatelessWidget {
                 color: Colors.black,
               ),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>CartScreen(sellerUID: sellerUID,)));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CartScreen(
+                              sellerUID: sellerUID,
+                            )));
               }),
           Positioned(
             right: 2,

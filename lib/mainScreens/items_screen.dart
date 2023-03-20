@@ -101,7 +101,9 @@ class _ItemsScreenState extends State<ItemsScreen> {
           ),
         ],
       ),
-      floatingActionButton: FloatingShoppingCart(sellerUID: widget.model!.sellerUID,),
+      floatingActionButton: FloatingShoppingCart(
+        sellerUID: widget.model!.sellerUID,
+      ),
     );
   }
 }

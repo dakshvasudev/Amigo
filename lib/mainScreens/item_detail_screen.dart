@@ -125,10 +125,12 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
 
                     //1.check if item exist already in cart
                     separateItemIDsList.contains(widget.model!.itemID)
-                        ? Fluttertoast.showToast(msg: "Item is already in Cart.")
+                        ? Fluttertoast.showToast(
+                            msg: "Item is already in Cart.")
                         :
-                    //2.add to cart
-                    addItemToCart(widget.model!.itemID, context, itemCounter);
+                        //2.add to cart
+                        addItemToCart(
+                            widget.model!.itemID, context, itemCounter);
                   },
                   child: Container(
                     color: kColorGreen,
@@ -151,7 +153,9 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
           ),
         ),
       ),
-      floatingActionButton: FloatingShoppingCart(sellerUID: widget.model!.sellerUID,),
+      floatingActionButton: FloatingShoppingCart(
+        sellerUID: widget.model!.sellerUID,
+      ),
     );
   }
 }

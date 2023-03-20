@@ -26,7 +26,8 @@ class _MenusDesignWidgetState extends State<MenusDesignWidget> {
       },
       splashColor: kColorGreen,
       child: Padding(
-        padding: const EdgeInsets.only(top:10,left: 75 * 0.36,right:75 * 0.36,bottom: 10),
+        padding: const EdgeInsets.only(
+            top: 10, left: 75 * 0.36, right: 75 * 0.36, bottom: 10),
         child: Container(
           decoration: BoxDecoration(
             color: const Color(0xffd9d9d9),
