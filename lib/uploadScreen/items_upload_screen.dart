@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as storageRef;
 import 'package:selller_amigo_app/constants.dart';
-import 'package:selller_amigo_app/mainScreens/home_screen.dart';
 import 'package:selller_amigo_app/model/menus.dart';
 import 'package:selller_amigo_app/widgets/customTextField.dart';
 import 'package:selller_amigo_app/widgets/error_dialog.dart';
