@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as storageRef;
 import 'package:selller_amigo_app/constants.dart';
@@ -34,41 +35,44 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        flexibleSpace: Container(
-          color: kColorRed,
-        ),
-        title: const Text(
-          "Add New Items",
-          style: TextStyle(fontSize: 30),
-        ),
-        centerTitle: true,
-        automaticallyImplyLeading: true,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (c) => const HomeScreen()));
-          },
-        ),
+        toolbarHeight: 70,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        iconTheme: IconThemeData(color: kColorGreen),
       ),
       body: SingleChildScrollView(
         child: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.8,
+          height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Padding(
+                padding:
+                const EdgeInsets.only(top: 10, bottom: 10),
+                child: Text(
+                  'Add to cart',
+                  style: GoogleFonts.lobster(
+                      color: kColorGreen,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 36),
+                ),
+              ),
+              const SizedBox(
+                height: 100,
+              ),
               const Icon(
                 Icons.shop_two,
                 color: Colors.grey,
                 size: 200.0,
               ),
+              const SizedBox(
+                height: 35,
+              ),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(kColorRed),
+                  backgroundColor: MaterialStateProperty.all<Color>(kColorGreen),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -78,11 +82,17 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
                 onPressed: () {
                   takeImage(context);
                 },
-                child: const Text(
-                  "Add New Item",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
+                child: const SizedBox(
+                  height: 54,
+                  width: 200,
+                  child: Center(
+                    child:  Text(
+                      "Add New Item",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -163,11 +173,11 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         flexibleSpace: Container(
-          color: kColorRed,
+          color: kColorGreen,
         ),
         title: const Text(
           "Uploading New Item",
-          style: TextStyle(fontSize: 20, fontFamily: "Lobster"),
+          style: TextStyle(fontSize: 20),
         ),
         centerTitle: true,
         automaticallyImplyLeading: true,

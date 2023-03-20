@@ -191,11 +191,11 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         flexibleSpace: Container(
-          color: kColorRed,
+          color: kColorGreen,
         ),
         title: const Text(
           "Uploading New Menu",
-          style: TextStyle(fontSize: 20, fontFamily: "Lobster"),
+          style: TextStyle(fontSize: 20),
         ),
         centerTitle: true,
         automaticallyImplyLeading: true,
@@ -230,11 +230,11 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
             children: [
               uploading == true ? linearProgress() : const Text(""),
               SizedBox(
-                height: 230,
-                width: MediaQuery.of(context).size.width * 0.8,
+                height: 150,
+                width: 150,
                 child: Center(
                   child: AspectRatio(
-                    aspectRatio: 16 / 9,
+                    aspectRatio: 1 / 1,
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
