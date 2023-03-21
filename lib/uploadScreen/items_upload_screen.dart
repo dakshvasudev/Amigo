@@ -48,8 +48,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding:
-                const EdgeInsets.only(top: 10, bottom: 10),
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
                 child: Text(
                   'Add to cart',
                   style: GoogleFonts.lobster(
@@ -71,7 +70,8 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
               ),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(kColorGreen),
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(kColorGreen),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -85,7 +85,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
                   height: 54,
                   width: 200,
                   child: Center(
-                    child:  Text(
+                    child: Text(
                       "Add New Item",
                       style: TextStyle(
                         color: Colors.white,
