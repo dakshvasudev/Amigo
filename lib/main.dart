@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:web_panel_amigo/authentication/login_screen.dart';
 import 'package:web_panel_amigo/main_screens/home_screen.dart';
 
 void main() {
@@ -17,8 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: LoginScreen(),
     );
   }
 }
-
