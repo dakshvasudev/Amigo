@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:selller_amigo_app/constants.dart';
+import 'package:selller_amigo_app/mainScreens/itemsScreen.dart';
 import 'package:selller_amigo_app/model/items.dart';
+import 'package:selller_amigo_app/splashScreen.dart';
 
 class ItemsDesignWidget extends StatefulWidget {
   Items? model;
@@ -14,63 +18,34 @@ class ItemsDesignWidget extends StatefulWidget {
 }
 
 class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
+  deleteItem(String itemID)
+  {
+    FirebaseFirestore.instance
+        .collection("sellers")
+        .doc(sharedPreferences!.getString("uid"))
+        .collection("menus")
+        .doc(widget.model!.menuID!)
+        .collection("items")
+        .doc(itemID)
+        .delete().then((value)
+    {
+      FirebaseFirestore.instance
+          .collection("items")
+          .doc(itemID)
+          .delete();
+
+      Navigator.push(context, MaterialPageRoute(builder: (c)=> const SplashScreen()));
+      Fluttertoast.showToast(msg: "Item Deleted Successfully.");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        //Navigator.push(context, MaterialPageRoute(builder: (c)=> ItemsScreen(model: widget.model)));
+        // Navigator.push(context, MaterialPageRoute(builder: (c)=> ItemsScreen(model: widget.model)));
       },
       splashColor: kColorGreen,
-      // child: Padding(
-      //     padding: const EdgeInsets.all(5.0),
-      //     child: Container(
-      //       height: 210,
-      //       width: 90,
-      //       margin:
-      //           const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
-      //       decoration: BoxDecoration(
-      //         color: kColorRed,
-      //         borderRadius: BorderRadius.circular(10),
-      //         boxShadow: [
-      //           BoxShadow(
-      //             offset: const Offset(0, 4),
-      //             blurRadius: 20,
-      //             color: kColorRed.withOpacity(0.32),
-      //           ),
-      //         ],
-      //       ),
-      //       child: Material(
-      //         color: Colors.transparent,
-      //         child: InkWell(
-      //           onTap: () {
-      //             // Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(model: widget.model)));
-      //           },
-      //           child: Padding(
-      //             padding: const EdgeInsets.all(20.0),
-      //             child: Column(
-      //               children: <Widget>[
-      //                 CircleAvatar(
-      //                   radius: 65,
-      //                   backgroundImage: NetworkImage(
-      //                     widget.model!.thumbnailUrl!,
-      //                   ),
-      //                 ),
-      //                 const SizedBox(
-      //                   height: 10,
-      //                 ),
-      //                 Text(
-      //                   widget.model!.title!,
-      //                   style: const TextStyle(
-      //                       color: Colors.white,
-      //                       fontWeight: FontWeight.bold,
-      //                       fontSize: 20),
-      //                 ),
-      //               ],
-      //             ),
-      //           ),
-      //         ),
-      //       ),
-      //     )),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(
@@ -106,7 +81,7 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
                 height: 100,
                 width: 100,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               Column(
@@ -125,17 +100,29 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
                       fontSize: 13,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
-                    '₹ ' + widget.model!.price!.toString(),
+                    '₹ ${widget.model!.price!}',
                     style: GoogleFonts.kaiseiOpti(
                       color: Colors.black,
                       fontSize: 16,
                     ),
                   ),
                 ],
+              ),
+              const Spacer(),
+              IconButton(
+                  onPressed: () {
+                    //delete item
+                    deleteItem(widget.model!.itemID!);
+                  },
+                  icon: const Icon(
+                    Icons.delete_forever,
+                    color: Colors.redAccent,
+                    size: 30,
+                  ),
               ),
             ],
           ),
