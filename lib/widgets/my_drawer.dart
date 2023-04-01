@@ -98,7 +98,10 @@ class MyDrawer extends StatelessWidget {
                         fontSize: 20),
                   ),
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>MyOrdersScreen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MyOrdersScreen()));
                   },
                 ),
                 const Divider(

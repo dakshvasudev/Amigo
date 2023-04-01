@@ -6,9 +6,7 @@ import 'package:user_amigo_app/constants.dart';
 
 import 'home_screen.dart';
 
-
-class PlacedOrderScreen extends StatefulWidget
-{
+class PlacedOrderScreen extends StatefulWidget {
   double? totalAmount;
   String? sellerUID;
 
@@ -18,14 +16,10 @@ class PlacedOrderScreen extends StatefulWidget
   _PlacedOrderScreenState createState() => _PlacedOrderScreenState();
 }
 
-
-
-class _PlacedOrderScreenState extends State<PlacedOrderScreen>
-{
+class _PlacedOrderScreenState extends State<PlacedOrderScreen> {
   String orderId = DateTime.now().millisecondsSinceEpoch.toString();
 
-  addOrderDetails()
-  {
+  addOrderDetails() {
     writeOrderDetailsForUser({
       "totalAmount": widget.totalAmount,
       "orderBy": sharedPreferences!.getString("uid"),
@@ -48,18 +42,19 @@ class _PlacedOrderScreenState extends State<PlacedOrderScreen>
       "sellerUID": widget.sellerUID,
       "status": "normal",
       "orderId": orderId,
-    }).whenComplete((){
+    }).whenComplete(() {
       clearCartNow(context);
       setState(() {
-        orderId="";
-        Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
-        Fluttertoast.showToast(msg: "Congratulations, Order has been placed successfully.");
+        orderId = "";
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomeScreen()));
+        Fluttertoast.showToast(
+            msg: "Congratulations, Order has been placed successfully.");
       });
     });
   }
-  
-  Future writeOrderDetailsForUser(Map<String, dynamic> data) async
-  {
+
+  Future writeOrderDetailsForUser(Map<String, dynamic> data) async {
     await FirebaseFirestore.instance
         .collection("users")
         .doc(sharedPreferences!.getString("uid"))
@@ -68,8 +63,7 @@ class _PlacedOrderScreenState extends State<PlacedOrderScreen>
         .set(data);
   }
 
-  Future writeOrderDetailsForSeller(Map<String, dynamic> data) async
-  {
+  Future writeOrderDetailsForSeller(Map<String, dynamic> data) async {
     await FirebaseFirestore.instance
         .collection("orders")
         .doc(orderId)
@@ -77,41 +71,36 @@ class _PlacedOrderScreenState extends State<PlacedOrderScreen>
   }
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Material(
       child: Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [
-                Colors.cyan,
-                Colors.amber,
-              ],
-              begin:  FractionalOffset(0.0, 0.0),
-              end:  FractionalOffset(1.0, 0.0),
-              stops: [0.0, 1.0],
-              tileMode: TileMode.clamp,
-            )
-        ),
+          colors: [
+            Colors.cyan,
+            Colors.amber,
+          ],
+          begin: FractionalOffset(0.0, 0.0),
+          end: FractionalOffset(1.0, 0.0),
+          stops: [0.0, 1.0],
+          tileMode: TileMode.clamp,
+        )),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
             Image.asset("images/delivery.jpg"),
-
-            const SizedBox(height: 12,),
-
+            const SizedBox(
+              height: 12,
+            ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.cyan,
               ),
-              onPressed: ()
-              {
+              onPressed: () {
                 addOrderDetails();
               },
               child: const Text("Place Order"),
             ),
-
           ],
         ),
       ),

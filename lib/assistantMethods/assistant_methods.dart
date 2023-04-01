@@ -5,15 +5,13 @@ import 'package:provider/provider.dart';
 import 'package:user_amigo_app/assistantMethods/cart_Item_counter.dart';
 import 'package:user_amigo_app/constants.dart';
 
-separateOrderItemIDs(orderIDs)
-{
-  List<String> separateItemIDsList=[], defaultItemList=[];
-  int i=0;
+separateOrderItemIDs(orderIDs) {
+  List<String> separateItemIDsList = [], defaultItemList = [];
+  int i = 0;
 
   defaultItemList = List<String>.from(orderIDs);
 
-  for(i; i<defaultItemList.length; i++)
-  {
+  for (i; i < defaultItemList.length; i++) {
     //56557657:7
     String item = defaultItemList[i].toString();
     var pos = item.lastIndexOf(":");
@@ -76,19 +74,17 @@ addItemToCart(String? foodItemId, BuildContext context, int itemCounter) {
         .displayCartListItemsNumber();
   });
 }
-separateOrderItemQuantities(orderIDs)
-{
-  List<String> separateItemQuantityList=[];
-  List<String> defaultItemList=[];
-  int i=1;
+
+separateOrderItemQuantities(orderIDs) {
+  List<String> separateItemQuantityList = [];
+  List<String> defaultItemList = [];
+  int i = 1;
 
   defaultItemList = List<String>.from(orderIDs);
 
-  for(i; i<defaultItemList.length; i++)
-  {
+  for (i; i < defaultItemList.length; i++) {
     //56557657:7
     String item = defaultItemList[i].toString();
-
 
     //0=:
     //1=7
@@ -108,6 +104,7 @@ separateOrderItemQuantities(orderIDs)
 
   return separateItemQuantityList;
 }
+
 separateItemQuantities() {
   List<int> separateItemQuantityList = [];
   List<String> defaultItemList = [];
@@ -151,4 +148,3 @@ clearCartNow(context) {
         .displayCartListItemsNumber();
   });
 }
-

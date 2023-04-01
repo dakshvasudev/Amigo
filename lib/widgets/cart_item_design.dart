@@ -84,7 +84,7 @@ class _CartItemDesignState extends State<CartItemDesign> {
                           widget.quanNumber.toString(),
                           style: GoogleFonts.kaiseiOpti(
                             color: Colors.black,
-                            fontSize: 22,
+                            fontSize: 18,
                           ),
                         ),
                       ],
