@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:selller_amigo_app/constants.dart';
-import 'package:selller_amigo_app/mainScreens/itemsScreen.dart';
 import 'package:selller_amigo_app/model/items.dart';
 import 'package:selller_amigo_app/splashScreen.dart';
 
