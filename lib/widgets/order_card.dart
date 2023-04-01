@@ -150,7 +150,7 @@ Widget placedOrderDesignWidget(
             CircleAvatar(
               radius: 60,
               backgroundImage: NetworkImage(
-                model!.thumbnailUrl!,
+                model.thumbnailUrl!,
               ),
             ),
             const SizedBox(
@@ -163,7 +163,7 @@ Widget placedOrderDesignWidget(
               children: [
 //title
                 Text(
-                  model!.title!,
+                  model.title!,
                   style: GoogleFonts.kaiseiOpti(
                     color: Colors.black,
                     fontWeight: FontWeight.w700,
@@ -209,7 +209,7 @@ Widget placedOrderDesignWidget(
                       "₹̐ ",
                       style: TextStyle(color: kColorGreen, fontSize: 16.0),
                     ),
-                    Text(model!.price.toString(),
+                    Text(model.price.toString(),
                         style: TextStyle(
                           fontSize: 16,
                           color: kColorGreen,
