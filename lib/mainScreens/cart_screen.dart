@@ -7,6 +7,7 @@ import 'package:user_amigo_app/assistantMethods/assistant_methods.dart';
 import 'package:user_amigo_app/assistantMethods/cart_Item_counter.dart';
 import 'package:user_amigo_app/assistantMethods/total_amount.dart';
 import 'package:user_amigo_app/constants.dart';
+import 'package:user_amigo_app/mainScreens/placed_order_screen.dart';
 import 'package:user_amigo_app/model/items.dart';
 import 'package:user_amigo_app/splashScreen.dart';
 import 'package:user_amigo_app/widgets/cart_item_design.dart';
@@ -53,6 +54,7 @@ class _CartScreenState extends State<CartScreen> {
           Align(
             alignment: Alignment.bottomLeft,
             child: FloatingActionButton.extended(
+              heroTag: 'btn1',
               label: const Text(
                 "Clear Cart",
                 style: TextStyle(fontSize: 16),
@@ -72,6 +74,7 @@ class _CartScreenState extends State<CartScreen> {
           Align(
             alignment: Alignment.bottomLeft,
             child: FloatingActionButton.extended(
+              heroTag: 'btn2',
               label: const Text(
                 "Check Out",
                 style: TextStyle(fontSize: 16),
@@ -88,6 +91,13 @@ class _CartScreenState extends State<CartScreen> {
                 //         ),
                 //     ),
                 // );
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PlacedOrderScreen(
+                              sellerUID: widget.sellerUID,
+                              totalAmount: totalAmount.toDouble(),
+                            )));
               },
             ),
           ),

@@ -152,7 +152,7 @@ class _PhoneNumberState extends State<PhoneNumber> {
                                 keyboardType: TextInputType.emailAddress,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Padding(
