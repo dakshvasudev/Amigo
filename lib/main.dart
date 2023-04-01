@@ -1,8 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:web_panel_amigo/authentication/login_screen.dart';
-import 'package:web_panel_amigo/main_screens/home_screen.dart';
 
-void main() {
+Future<void> main() async{
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'WEB PORTAL AMIGO',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
