@@ -58,7 +58,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
             child: Padding(
               padding: const EdgeInsets.only(left: 85 * 0.36, bottom: 10),
               child: Text(
-                'Items of ' + widget.model!.menuTitle.toString(),
+                'Items of ${widget.model!.menuTitle}',
                 style: GoogleFonts.lemon(
                   color: kColorGreen,
                   fontSize: 20,

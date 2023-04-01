@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:user_amigo_app/assistantMethods/assistant_methods.dart';
 import 'package:user_amigo_app/constants.dart';
 
@@ -73,36 +74,33 @@ class _PlacedOrderScreenState extends State<PlacedOrderScreen> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Container(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          colors: [
-            Colors.cyan,
-            Colors.amber,
-          ],
-          begin: FractionalOffset(0.0, 0.0),
-          end: FractionalOffset(1.0, 0.0),
-          stops: [0.0, 1.0],
-          tileMode: TileMode.clamp,
-        )),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset("images/delivery.jpg"),
-            const SizedBox(
-              height: 12,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height * 0.5,
+              width: MediaQuery.of(context).size.width,
+              child: Image.asset("assets/images/orderplaced.png",fit: BoxFit.fill,),
+          ),
+          const SizedBox(
+            height: 12,
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.deepPurple,
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.cyan,
-              ),
-              onPressed: () {
-                addOrderDetails();
-              },
-              child: const Text("Place Order"),
-            ),
-          ],
-        ),
+            onPressed: () {
+              addOrderDetails();
+            },
+            child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18),
+                ),
+                height: 42,
+                width:MediaQuery.of(context).size.width * 0.6,
+                child: Center(child: Text("Place Order",style: GoogleFonts.ibmPlexSans(fontSize: 18,fontWeight: FontWeight.w500),))),
+          ),
+        ],
       ),
     );
   }
