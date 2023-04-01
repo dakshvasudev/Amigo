@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/get_started_screen.dart';
 import 'package:user_amigo_app/mainScreens/home_screen.dart';
+import 'package:user_amigo_app/mainScreens/my_orders_screen.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -96,7 +97,9 @@ class MyDrawer extends StatelessWidget {
                         color: Colors.black,
                         fontSize: 20),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>MyOrdersScreen()));
+                  },
                 ),
                 const Divider(
                   height: 10,
