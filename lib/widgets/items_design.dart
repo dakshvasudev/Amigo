@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/mainScreens/item_detail_screen.dart';
 import 'package:user_amigo_app/model/items.dart';
 
@@ -23,7 +24,7 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
             MaterialPageRoute(
                 builder: (c) => ItemDetailsScreen(model: widget.model)));
       },
-      splashColor: Colors.amber,
+      splashColor: kColorGreen,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(
@@ -59,7 +60,7 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
                 height: 100,
                 width: 100,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               Column(
@@ -78,11 +79,11 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
                       fontSize: 12,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
-                    '₹ ' + widget.model!.price!.toString(),
+                    '₹ ${widget.model!.price!}',
                     style: GoogleFonts.kaiseiOpti(
                       color: Colors.black,
                       fontSize: 18,
