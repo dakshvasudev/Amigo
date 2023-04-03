@@ -62,7 +62,7 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
             ],
           ),
           height: MediaQuery.of(context).size.height * 0.18,
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.only(left: 12,right: 12,bottom: 8,top: 8),
           child: Row(
             children: [
               Container(
@@ -71,7 +71,7 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
                   border: Border.all(color: const Color(0xffd9d9d9)),
                   borderRadius: BorderRadius.circular(15),
                   image: DecorationImage(
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                     image: NetworkImage(
                       widget.model!.thumbnailUrl!,
                     ),
@@ -83,45 +83,50 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
               const SizedBox(
                 width: 20,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.model!.title!,
-                    style: GoogleFonts.kaiseiOpti(
-                        fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    widget.model!.shortInfo!,
-                    style: GoogleFonts.kaiseiOpti(
-                      color: Colors.grey,
-                      fontSize: 13,
+              Expanded(
+                flex: 8,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.model!.title!,
+                      style: GoogleFonts.kaiseiOpti(
+                          fontSize: 16, fontWeight: FontWeight.bold),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    '₹ ${widget.model!.price!}',
-                    style: GoogleFonts.kaiseiOpti(
-                      color: Colors.black,
-                      fontSize: 16,
+                    Text(
+                      widget.model!.shortInfo!,
+                      style: GoogleFonts.kaiseiOpti(
+                        color: Colors.grey,
+                        fontSize: 14,
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      '₹ ${widget.model!.price!}',
+                      style: GoogleFonts.kaiseiOpti(
+                        color: Colors.black,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               const Spacer(),
-              IconButton(
-                  onPressed: () {
-                    //delete item
-                    deleteItem(widget.model!.itemID!);
-                  },
-                  icon: const Icon(
-                    Icons.delete_forever,
-                    color: Colors.redAccent,
-                    size: 30,
-                  ),
+              Expanded(
+                child: IconButton(
+                    onPressed: () {
+                      //delete item
+                      deleteItem(widget.model!.itemID!);
+                    },
+                    icon: const Icon(
+                      Icons.delete_forever,
+                      color: Colors.redAccent,
+                      size: 30,
+                    ),
+                ),
               ),
             ],
           ),
