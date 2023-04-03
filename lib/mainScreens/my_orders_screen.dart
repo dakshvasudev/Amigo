@@ -36,10 +36,9 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                         future: FirebaseFirestore.instance
                             .collection("items")
                             .where("itemID",
-                                whereIn: separateOrderItemIDs((snapshot
-                                        .data!.docs[index]
-                                        .data()!
-                                    as Map<String, dynamic>)["productIDs"]))
+                                whereIn: separateOrderItemIDs(
+                                    (snapshot.data!.docs[index].data()!
+                                        as Map<String, dynamic>)["productIDs"]))
                             .where("orderBy",
                                 whereIn: (snapshot.data!.docs[index].data()!
                                     as Map<String, dynamic>)["uid"])
@@ -54,11 +53,10 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                                     data: snap.data!.docs,
                                     orderID: snapshot.data!.docs[index].id,
                                     seperateQuantitiesList:
-                                        separateOrderItemQuantities((snapshot
-                                                    .data!.docs[index]
-                                                    .data()!
-                                                as Map<String, dynamic>)[
-                                            "productIDs"]),
+                                        separateOrderItemQuantities(
+                                            (snapshot.data!.docs[index].data()!
+                                                    as Map<String, dynamic>)[
+                                                "productIDs"]),
                                   ),
                                 )
                               : Center(child: circularProgress());

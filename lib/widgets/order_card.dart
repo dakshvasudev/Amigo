@@ -23,7 +23,10 @@ class OrderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (c)=> OrderDetailsScreen(orderID: orderID)));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (c) => OrderDetailsScreen(orderID: orderID)));
       },
       child: Container(
         decoration: BoxDecoration(

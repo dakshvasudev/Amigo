@@ -79,8 +79,11 @@ class _PlacedOrderScreenState extends State<PlacedOrderScreen> {
         children: [
           Container(
             height: MediaQuery.of(context).size.height * 0.5,
-              width: MediaQuery.of(context).size.width,
-              child: Image.asset("assets/images/orderplaced.png",fit: BoxFit.fill,),
+            width: MediaQuery.of(context).size.width,
+            child: Image.asset(
+              "assets/images/orderplaced.png",
+              fit: BoxFit.fill,
+            ),
           ),
           const SizedBox(
             height: 12,
@@ -97,8 +100,13 @@ class _PlacedOrderScreenState extends State<PlacedOrderScreen> {
                   borderRadius: BorderRadius.circular(18),
                 ),
                 height: 42,
-                width:MediaQuery.of(context).size.width * 0.6,
-                child: Center(child: Text("Place Order",style: GoogleFonts.ibmPlexSans(fontSize: 18,fontWeight: FontWeight.w500),))),
+                width: MediaQuery.of(context).size.width * 0.6,
+                child: Center(
+                    child: Text(
+                  "Place Order",
+                  style: GoogleFonts.ibmPlexSans(
+                      fontSize: 18, fontWeight: FontWeight.w500),
+                ))),
           ),
         ],
       ),
