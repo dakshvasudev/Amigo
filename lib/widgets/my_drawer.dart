@@ -100,22 +100,22 @@ class MyDrawer extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (context)=>NewOrdersScreen()));
                 },
               ),
-              const Divider(
-                height: 10,
-                color: Colors.grey,
-                thickness: 2,
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.local_shipping,
-                  color: Colors.black,
-                ),
-                title: const Text(
-                  "History of orders",
-                  style: TextStyle(color: Colors.black),
-                ),
-                onTap: () {},
-              ),
+              // const Divider(
+              //   height: 10,
+              //   color: Colors.grey,
+              //   thickness: 2,
+              // ),
+              // ListTile(
+              //   leading: const Icon(
+              //     Icons.local_shipping,
+              //     color: Colors.black,
+              //   ),
+              //   title: const Text(
+              //     "History of orders",
+              //     style: TextStyle(color: Colors.black),
+              //   ),
+              //   onTap: () {},
+              // ),
               const Divider(
                 height: 10,
                 color: Colors.grey,

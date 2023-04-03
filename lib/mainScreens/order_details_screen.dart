@@ -62,51 +62,49 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen>
               orderStatus = dataMap["status"].toString();
             }
             return snapshot.hasData
-                ? Container(
-                    child: Column(
-                      children: [
-                        StatusBanner(
-                          status: dataMap!["isSuccess"],
-                          orderStatus: orderStatus,
-                        ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "€  ${dataMap["totalAmount"]}",
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Order Id = ${widget.orderID!}",
-                            style: const TextStyle(fontSize: 16),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Order at: ${DateFormat("dd MMMM, yyyy - hh:mm aa")
-                                    .format(DateTime.fromMillisecondsSinceEpoch(int.parse(dataMap["orderTime"])))}",
-                            style: const TextStyle(fontSize: 16, color: Colors.grey),
-                          ),
-                        ),
-                        const Divider(thickness: 4,),
-                        orderStatus != "ended"
-                            ? Image.asset("images/packing.png")
-                            : Image.asset("images/delivered.jpg"),
-                      ],
+                ? Column(
+                  children: [
+                    StatusBanner(
+                      status: dataMap!["isSuccess"],
+                      orderStatus: orderStatus,
                     ),
-                  )
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "₹  ${dataMap["totalAmount"]}",
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Order Id = ${widget.orderID!}",
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Order at: ${DateFormat("dd MMMM, yyyy - hh:mm aa")
+                                .format(DateTime.fromMillisecondsSinceEpoch(int.parse(dataMap["orderTime"])))}",
+                        style: const TextStyle(fontSize: 16, color: Colors.grey),
+                      ),
+                    ),
+                    const Divider(thickness: 4,),
+                    orderStatus != "ended"
+                        ? Image.asset("images/packing.png")
+                        : Image.asset("images/delivered.jpg"),
+                  ],
+                )
                 : Center(child: circularProgress(),);
           },
         ),
