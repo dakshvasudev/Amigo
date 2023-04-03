@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/mainScreens/home_screen.dart';
 
 
@@ -19,19 +20,8 @@ class StatusBanner extends StatelessWidget
     status! ? message = "Successful" : message = "Unsuccessful";
 
     return Container(
-      decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Colors.cyan,
-              Colors.amber,
-            ],
-            begin:  FractionalOffset(0.0, 0.0),
-            end:  FractionalOffset(1.0, 0.0),
-            stops: [0.0, 1.0],
-            tileMode: TileMode.clamp,
-          )
-      ),
-      height: 40,
+      color: kColorGreen,
+      height: 60,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
