@@ -5,9 +5,7 @@ import 'package:selller_amigo_app/constants.dart';
 import 'package:selller_amigo_app/mainScreens/order_details_screen.dart';
 import 'package:selller_amigo_app/model/items.dart';
 
-
-class OrderCard extends StatelessWidget
-{
+class OrderCard extends StatelessWidget {
   final int? itemCount;
   final List<DocumentSnapshot>? data;
   final String? orderID;
@@ -23,9 +21,11 @@ class OrderCard extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()
-      {
-        Navigator.push(context, MaterialPageRoute(builder: (c)=> OrderDetailsScreen(orderID: orderID)));
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (c) => OrderDetailsScreen(orderID: orderID)));
       },
       child: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -37,10 +37,11 @@ class OrderCard extends StatelessWidget
           child: ListView.builder(
             itemCount: itemCount,
             physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index)
-            {
-              Items model = Items.fromJson(data![index].data()! as Map<String, dynamic>);
-              return placedOrderDesignWidget(model, context, seperateQuantitiesList![index]);
+            itemBuilder: (context, index) {
+              Items model =
+                  Items.fromJson(data![index].data()! as Map<String, dynamic>);
+              return placedOrderDesignWidget(
+                  model, context, seperateQuantitiesList![index]);
             },
           ),
         ),
@@ -49,11 +50,8 @@ class OrderCard extends StatelessWidget
   }
 }
 
-
-
-
-Widget placedOrderDesignWidget(Items model, BuildContext context, seperateQuantitiesList)
-{
+Widget placedOrderDesignWidget(
+    Items model, BuildContext context, seperateQuantitiesList) {
   // return Container(
   //   width: MediaQuery.of(context).size.width,
   //   height: 120,
@@ -230,5 +228,4 @@ Widget placedOrderDesignWidget(Items model, BuildContext context, seperateQuanti
       ),
     ),
   );
-
 }

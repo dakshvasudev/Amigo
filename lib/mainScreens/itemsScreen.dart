@@ -51,8 +51,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
           //             "My " + widget.model!.menuTitle.toString() + "'s Items")),
           SliverToBoxAdapter(
             child: Padding(
-              padding:
-              const EdgeInsets.only(top: 10, left: 75 * 0.36),
+              padding: const EdgeInsets.only(top: 10, left: 75 * 0.36),
               child: Text(
                 sharedPreferences!.getString('name')!,
                 style: GoogleFonts.lobster(
@@ -66,7 +65,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
           SliverToBoxAdapter(
             child: Padding(
               padding:
-              const EdgeInsets.only(top: 10, left: 75 * 0.36, bottom: 10),
+                  const EdgeInsets.only(top: 10, left: 75 * 0.36, bottom: 10),
               child: Text(
                 'Serving the best..',
                 style: GoogleFonts.lobster(

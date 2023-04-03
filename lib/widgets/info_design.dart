@@ -17,10 +17,9 @@ class InfoDesignWidget extends StatefulWidget {
 }
 
 class _InfoDesignWidgetState extends State<InfoDesignWidget> {
-
-  deleteMenu(String menuID)
-  {
-    FirebaseFirestore.instance.collection("sellers")
+  deleteMenu(String menuID) {
+    FirebaseFirestore.instance
+        .collection("sellers")
         .doc(sharedPreferences!.getString("uid"))
         .collection("menus")
         .doc(menuID)

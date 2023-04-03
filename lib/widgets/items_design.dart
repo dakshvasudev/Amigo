@@ -17,8 +17,7 @@ class ItemsDesignWidget extends StatefulWidget {
 }
 
 class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
-  deleteItem(String itemID)
-  {
+  deleteItem(String itemID) {
     FirebaseFirestore.instance
         .collection("sellers")
         .doc(sharedPreferences!.getString("uid"))
@@ -26,14 +25,12 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
         .doc(widget.model!.menuID!)
         .collection("items")
         .doc(itemID)
-        .delete().then((value)
-    {
-      FirebaseFirestore.instance
-          .collection("items")
-          .doc(itemID)
-          .delete();
+        .delete()
+        .then((value) {
+      FirebaseFirestore.instance.collection("items").doc(itemID).delete();
 
-      Navigator.push(context, MaterialPageRoute(builder: (c)=> const SplashScreen()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (c) => const SplashScreen()));
       Fluttertoast.showToast(msg: "Item Deleted Successfully.");
     });
   }
@@ -62,7 +59,8 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
             ],
           ),
           height: MediaQuery.of(context).size.height * 0.18,
-          padding: const EdgeInsets.only(left: 12,right: 12,bottom: 8,top: 8),
+          padding:
+              const EdgeInsets.only(left: 12, right: 12, bottom: 8, top: 8),
           child: Row(
             children: [
               Container(
@@ -117,15 +115,15 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
               const Spacer(),
               Expanded(
                 child: IconButton(
-                    onPressed: () {
-                      //delete item
-                      deleteItem(widget.model!.itemID!);
-                    },
-                    icon: const Icon(
-                      Icons.delete_forever,
-                      color: Colors.redAccent,
-                      size: 30,
-                    ),
+                  onPressed: () {
+                    //delete item
+                    deleteItem(widget.model!.itemID!);
+                  },
+                  icon: const Icon(
+                    Icons.delete_forever,
+                    color: Colors.redAccent,
+                    size: 30,
+                  ),
                 ),
               ),
             ],

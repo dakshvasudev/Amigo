@@ -2,17 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:selller_amigo_app/constants.dart';
 import 'package:selller_amigo_app/mainScreens/home_screen.dart';
 
-
-class StatusBanner extends StatelessWidget
-{
+class StatusBanner extends StatelessWidget {
   final bool? status;
   final String? orderStatus;
 
   StatusBanner({this.status, this.orderStatus});
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     String? message;
     IconData? iconData;
 
@@ -26,9 +23,9 @@ class StatusBanner extends StatelessWidget
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           GestureDetector(
-            onTap: ()
-            {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const HomeScreen()));
             },
             child: const Icon(
               Icons.arrow_back,

@@ -44,14 +44,13 @@ class _HomeScreenState extends State<HomeScreen> {
           //     pinned: true, delegate: TextWidgetHeader(title: "My Menus")),
           SliverToBoxAdapter(
             child: Padding(
-              padding:
-                  const EdgeInsets.only(top: 10, left: 75 * 0.36),
+              padding: const EdgeInsets.only(top: 10, left: 75 * 0.36),
               child: Text(
                 sharedPreferences!.getString('name')!,
                 style: GoogleFonts.lobster(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 34,
-                    color: Colors.black,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 34,
+                  color: Colors.black,
                 ),
               ),
             ),

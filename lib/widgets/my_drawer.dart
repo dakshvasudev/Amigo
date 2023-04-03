@@ -15,7 +15,7 @@ class MyDrawer extends StatelessWidget {
             topRight: Radius.circular(120), bottomRight: Radius.circular(40)),
       ),
       child: ListView(
-        padding: EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 10),
+        padding: EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
         children: [
           //header drawer
           Container(
@@ -63,7 +63,8 @@ class MyDrawer extends StatelessWidget {
                   style: TextStyle(color: Colors.black),
                 ),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
                 },
               ),
               const Divider(
@@ -97,7 +98,10 @@ class MyDrawer extends StatelessWidget {
                   style: TextStyle(color: Colors.black),
                 ),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>NewOrdersScreen()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => NewOrdersScreen()));
                 },
               ),
               // const Divider(
