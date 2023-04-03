@@ -69,13 +69,13 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
                   Text(
                     widget.model!.title!,
                     style: GoogleFonts.kaiseiOpti(
-                        fontSize: 20, fontWeight: FontWeight.bold),
+                        fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     widget.model!.shortInfo!,
                     style: GoogleFonts.kaiseiOpti(
                       color: Colors.grey,
-                      fontSize: 13,
+                      fontSize: 12,
                     ),
                   ),
                   SizedBox(
@@ -85,7 +85,7 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
                     '₹ ' + widget.model!.price!.toString(),
                     style: GoogleFonts.kaiseiOpti(
                       color: Colors.black,
-                      fontSize: 16,
+                      fontSize: 18,
                     ),
                   ),
                 ],
