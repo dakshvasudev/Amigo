@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:selller_amigo_app/constants.dart';
 
 
 class SimpleAppBar extends StatelessWidget with PreferredSizeWidget
@@ -15,26 +17,15 @@ class SimpleAppBar extends StatelessWidget with PreferredSizeWidget
   Widget build(BuildContext context)
   {
     return AppBar(
-      iconTheme: const IconThemeData(
-        color: Colors.white,
+      elevation: 0,
+      iconTheme:  IconThemeData(
+        color: kColorGreen,
       ),
-      flexibleSpace: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: [
-                Colors.cyan,
-                Colors.amber,
-              ],
-              begin: FractionalOffset(0.0, 0.0),
-              end: FractionalOffset(1.0, 0.0),
-              stops: [0.0, 1.0],
-              tileMode: TileMode.clamp),
-        ),
-      ),
+      backgroundColor: Colors.white,
       centerTitle: true,
       title: Text(
         title!,
-        style: const TextStyle(fontSize: 45.0, letterSpacing: 3, color: Colors.white, fontFamily: "Signatra"),
+        style: GoogleFonts.ibmPlexMono(fontSize: 24,fontWeight: FontWeight.w600,color: kColorGreen),
       ),
     );
   }

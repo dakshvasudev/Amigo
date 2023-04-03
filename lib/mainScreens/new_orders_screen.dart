@@ -6,15 +6,11 @@ import 'package:selller_amigo_app/widgets/order_card.dart';
 import 'package:selller_amigo_app/widgets/progress_bar.dart';
 import 'package:selller_amigo_app/widgets/simple_app_bar.dart';
 
-
-
 class NewOrdersScreen extends StatefulWidget
 {
   @override
   _NewOrdersScreenState createState() => _NewOrdersScreenState();
 }
-
-
 
 class _NewOrdersScreenState extends State<NewOrdersScreen>
 {
