@@ -50,7 +50,7 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
                   border: Border.all(color: const Color(0xffd9d9d9)),
                   borderRadius: BorderRadius.circular(15),
                   image: DecorationImage(
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                     image: NetworkImage(
                       widget.model!.thumbnailUrl!,
                     ),

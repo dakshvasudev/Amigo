@@ -5,9 +5,10 @@ import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/widgets/app_bar.dart';
 import 'package:user_amigo_app/widgets/order_card.dart';
 import 'package:user_amigo_app/widgets/progress_bar.dart';
-import 'package:user_amigo_app/widgets/simple_app_bar.dart';
 
 class MyOrdersScreen extends StatefulWidget {
+  const MyOrdersScreen({super.key});
+
   @override
   _MyOrdersScreenState createState() => _MyOrdersScreenState();
 }
