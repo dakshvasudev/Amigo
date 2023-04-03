@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:selller_amigo_app/authScreen/auth_screen.dart';
 import 'package:selller_amigo_app/constants.dart';
 import 'package:selller_amigo_app/mainScreens/home_screen.dart';
+import 'package:selller_amigo_app/mainScreens/new_orders_screen.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -95,7 +96,9 @@ class MyDrawer extends StatelessWidget {
                   "New Orders",
                   style: TextStyle(color: Colors.black),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>NewOrdersScreen()));
+                },
               ),
               const Divider(
                 height: 10,

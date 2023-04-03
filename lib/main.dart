@@ -35,8 +35,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Seller app',
       theme: ThemeData(
-        primarySwatch: colorCustom,
         scaffoldBackgroundColor: Colors.white,
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: colorCustom)
+            .copyWith(secondary: kColorGreen),
       ),
       home: const SplashScreen(),
     );
