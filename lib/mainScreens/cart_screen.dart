@@ -7,6 +7,7 @@ import 'package:user_amigo_app/assistantMethods/assistant_methods.dart';
 import 'package:user_amigo_app/assistantMethods/cart_Item_counter.dart';
 import 'package:user_amigo_app/assistantMethods/total_amount.dart';
 import 'package:user_amigo_app/constants.dart';
+import 'package:user_amigo_app/mainScreens/home_screen.dart';
 import 'package:user_amigo_app/mainScreens/placed_order_screen.dart';
 import 'package:user_amigo_app/model/items.dart';
 import 'package:user_amigo_app/splashScreen.dart';
@@ -44,6 +45,11 @@ class _CartScreenState extends State<CartScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: IconThemeData(color: kColorGreen),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+            },
+            icon: Icon(Icons.arrow_back)),
       ),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
