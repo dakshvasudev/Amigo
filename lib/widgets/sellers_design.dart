@@ -47,7 +47,14 @@ class _SellerDesignWidgetState extends State<SellerDesignWidget> {
           child: Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MenusScreen(
+                          model: widget.model,
+                        )));
+              },
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
