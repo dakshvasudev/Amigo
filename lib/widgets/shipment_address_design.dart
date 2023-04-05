@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:selller_amigo_app/constants.dart';
 import 'package:selller_amigo_app/splashScreen.dart';
@@ -9,8 +8,8 @@ class ShipmentAddressDesign extends StatelessWidget {
   final String? sellerId;
   final String? orderByUser;
 
-  ShipmentAddressDesign(
-      {this.orderStatus, this.orderId, this.sellerId, this.orderByUser});
+  const ShipmentAddressDesign(
+      {super.key, this.orderStatus, this.orderId, this.sellerId, this.orderByUser});
 
   @override
   Widget build(BuildContext context) {

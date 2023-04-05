@@ -77,10 +77,13 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
               const SizedBox(
                 width: 20,
               ),
-              Text(
-                widget.model!.menuTitle!,
-                style: GoogleFonts.kaiseiOpti(
-                    fontSize: 24, fontWeight: FontWeight.bold),
+              Expanded(
+                flex: 8,
+                child: Text(
+                  widget.model!.menuTitle!,
+                  style: GoogleFonts.kaiseiOpti(
+                      fontSize: 24, fontWeight: FontWeight.bold),
+                ),
               ),
               const Spacer(),
               IconButton(
