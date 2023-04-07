@@ -53,67 +53,73 @@ class _CartItemDesignState extends State<CartItemDesign> {
                 const SizedBox(
                   width: 10,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    //title
-                    Text(
-                      widget.model!.title!,
-                      style: GoogleFonts.kaiseiOpti(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 18,
+                Expanded(
+                  flex: 7,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      //title
+                      Text(
+                        widget.model!.title!,
+                        style: GoogleFonts.kaiseiOpti(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 18,
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 1,
-                    ),
-                    //quantity number // x 7
-                    Row(
-                      children: [
-                        Text(
-                          "x ",
-                          style: GoogleFonts.kaiseiOpti(
-                            color: Colors.black,
-                            fontSize: 18,
-                          ),
+                      const SizedBox(
+                        height: 1,
+                      ),
+                      //quantity number // x 7
+                      Expanded(
+                        flex: 4,
+                        child: Row(
+                          children: [
+                            Text(
+                              "x ",
+                              style: GoogleFonts.kaiseiOpti(
+                                color: Colors.black,
+                                fontSize: 18,
+                              ),
+                            ),
+                            Text(
+                              widget.quanNumber.toString(),
+                              style: GoogleFonts.kaiseiOpti(
+                                color: Colors.black,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          widget.quanNumber.toString(),
-                          style: GoogleFonts.kaiseiOpti(
-                            color: Colors.black,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    //price
-                    Row(
-                      children: [
-                        const Text(
-                          "Price: ",
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        Text(
-                          "₹̐ ",
-                          style: TextStyle(color: kColorGreen, fontSize: 16.0),
-                        ),
-                        Text(widget.model!.price.toString(),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      //price
+                      Row(
+                        children: [
+                          const Text(
+                            "Price: ",
                             style: TextStyle(
-                              fontSize: 16,
-                              color: kColorGreen,
-                            )),
-                      ],
-                    ),
-                  ],
+                              fontSize: 15,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          Text(
+                            "₹̐ ",
+                            style: TextStyle(color: kColorGreen, fontSize: 16.0),
+                          ),
+                          Text(widget.model!.price.toString(),
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: kColorGreen,
+                              )),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
