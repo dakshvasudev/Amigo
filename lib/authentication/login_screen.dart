@@ -1,66 +1,90 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:web_panel_amigo/constants.dart';
 import 'package:web_panel_amigo/main_screens/home_screen.dart';
 
-class LoginScreen extends StatefulWidget {
+
+class LoginScreen extends StatefulWidget
+{
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  String adminEmail = "";
-  String password = "";
 
-  allowAdminToLogin() async {
-    final snackBar = SnackBar(
+
+class _LoginScreenState extends State<LoginScreen>
+{
+  String adminEmail = "";
+  String adminPassword = "";
+
+  allowAdminToLogin() async
+  {
+    SnackBar snackBar = const SnackBar(
       content: Text(
-        'Checking credentials, Please wait...',
-        style: GoogleFonts.poppins(fontSize: 36),
+        "Checking Credentials, Please wait...",
+        style: TextStyle(
+          fontSize: 22,
+          color: Colors.black,
+        ),
       ),
-      backgroundColor: Colors.grey,
-      duration: const Duration(seconds: 5),
+      backgroundColor: Colors.cyan,
+      duration: Duration(seconds: 6),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
+
     User? currentAdmin;
-    await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: adminEmail, password: password)
-        .then((fAuth) {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: adminEmail,
+      password: adminPassword,
+    ).then((fAuth)
+    {
+      //success
       currentAdmin = fAuth.user;
-    }).catchError((onError) {
+    }).catchError((onError)
+    {
+      //in case of error
+      //display error message
       final snackBar = SnackBar(
         content: Text(
-          'Error Occured:' + onError.toString(),
-          style: GoogleFonts.poppins(fontSize: 36),
+          "Error Occured: " + onError.toString(),
+          style: const TextStyle(
+            fontSize: 22,
+            color: Colors.black,
+          ),
         ),
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.cyan,
         duration: const Duration(seconds: 5),
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     });
 
-    if (currentAdmin != null) {
+    if(currentAdmin != null)
+    {
+      //check if that admin record also exists in the admins collection in firestore database
       await FirebaseFirestore.instance
           .collection("admins")
           .doc(currentAdmin!.uid)
-          .get()
-          .then((snap) {
-        if (snap.exists) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomeScreen()));
-        } else {
-          final snackBar = SnackBar(
+          .get().then((snap)
+      {
+        if(snap.exists)
+        {
+          Navigator.push(context, MaterialPageRoute(builder: (c)=> HomeScreen()));
+        }
+        else
+        {
+          SnackBar snackBar = const SnackBar(
             content: Text(
-              'NO RECORD FOUND,PLEASE CONTACT THE DEVELOPER TO BE AN ADMIN OF THE APP',
-              style: GoogleFonts.poppins(fontSize: 36),
+              "No record found, you are not an admin.",
+              style: TextStyle(
+                fontSize: 22,
+                color: Colors.black,
+              ),
             ),
-            backgroundColor: Colors.grey,
-            duration: const Duration(seconds: 5),
+            backgroundColor: Colors.cyan,
+            duration: Duration(seconds: 6),
           );
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
@@ -69,88 +93,114 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Center(
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.7,
-            child: Column(
-              children: [
-                Image.asset('images/admin.png'),
-                Material(
-                  child: TextField(
-                    onChanged: (value) {
+  Widget build(BuildContext context)
+  {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Stack(
+        children: [
+          Center(
+            child: Container(
+              width: MediaQuery.of(context).size.width * .5,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+
+                  //image
+                  Image.asset(
+                      "images/admin.png"
+                  ),
+
+                  //email text field
+                  TextField(
+                    onChanged: (value)
+                    {
                       adminEmail = value;
                     },
-                    decoration: InputDecoration(
+                    style: const TextStyle(fontSize: 16, color: Colors.white),
+                    decoration: const InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: kColorGreen, width: 2)),
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.green, width: 2)),
-                      hintText: 'E-mail',
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Material(
-                  child: TextField(
-                    onChanged: (value) {
-                      password = value;
-                    },
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: kColorGreen, width: 2)),
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.green, width: 2)),
-                      hintText: 'Password',
-                    ),
-                    obscureText: true,
-                    obscuringCharacter: '*',
-                  ),
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-                Material(
-                  child: InkWell(
-                    onTap: () {
-                      allowAdminToLogin();
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.35,
-                      height: 65,
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(7)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Login",
-                            style: GoogleFonts.ibmPlexSans(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
+                          borderSide: BorderSide(
+                            color: Colors.cyan,
+                            width: 2,
+                          )
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.pinkAccent,
+                            width: 2,
+                          )
+                      ),
+                      hintText: "Email",
+                      hintStyle: TextStyle(color: Colors.grey),
+                      icon: Icon(
+                        Icons.email,
+                        color: Colors.cyan,
                       ),
                     ),
                   ),
-                ),
-              ],
+
+                  const SizedBox(height: 10,),
+
+                  //password text field
+                  TextField(
+                    onChanged: (value)
+                    {
+                      adminPassword = value;
+                    },
+                    obscureText: true,
+                    style: const TextStyle(fontSize: 16, color: Colors.white),
+                    decoration: const InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.cyan,
+                            width: 2,
+                          )
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.pinkAccent,
+                            width: 2,
+                          )
+                      ),
+                      hintText: "Password",
+                      hintStyle: TextStyle(color: Colors.grey),
+                      icon: Icon(
+                        Icons.admin_panel_settings,
+                        color: Colors.cyan,
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 30,),
+
+                  //button login
+                  ElevatedButton(
+                    onPressed: ()
+                    {
+                      allowAdminToLogin();
+                    },
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 100, vertical: 20)),
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.cyan),
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.pinkAccent),
+                    ),
+                    child: const Text(
+                      "Login",
+                      style: TextStyle(
+                        color: Colors.white,
+                        letterSpacing: 2,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
