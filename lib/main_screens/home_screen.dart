@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Text(
-                  timeText + "\n" + dateText,
+                  "$timeText\n$dateText",
                   style: const TextStyle(
                     fontSize: 20,
                     color: Colors.black,
@@ -96,9 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.white,
                       ),
                       label: Text(
-                        "Activate Users".toUpperCase() +
-                            "\n" +
-                            "Accounts".toUpperCase(),
+                        "${"Activate Users".toUpperCase()}\n${"Accounts".toUpperCase()}",
                         style: const TextStyle(
                           fontSize: 16,
                           color: Colors.white,
@@ -125,9 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.white,
                       ),
                       label: Text(
-                        "Block Users".toUpperCase() +
-                            "\n" +
-                            "Accounts".toUpperCase(),
+                        "${"Block Users".toUpperCase()}\n${"Accounts".toUpperCase()}",
                         style: const TextStyle(
                           fontSize: 16,
                           color: Colors.white,
@@ -156,9 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.white,
                       ),
                       label: Text(
-                        "Activate Sellers".toUpperCase() +
-                            "\n" +
-                            "Accounts".toUpperCase(),
+                        "${"Activate Sellers".toUpperCase()}\n${"Accounts".toUpperCase()}",
                         style: const TextStyle(
                           fontSize: 16,
                           color: Colors.white,
@@ -185,9 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.white,
                       ),
                       label: Text(
-                        "Block Sellers".toUpperCase() +
-                            "\n" +
-                            "Accounts".toUpperCase(),
+                        "${"Block Sellers".toUpperCase()}\n${"Accounts".toUpperCase()}",
                         style: const TextStyle(
                           fontSize: 16,
                           color: Colors.white,

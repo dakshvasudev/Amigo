@@ -118,29 +118,31 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 25,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    allowAdminToLogin();
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.35,
-                    height: 65,
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(7)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Login",
-                          style: GoogleFonts.ibmPlexSans(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
+                Material(
+                  child: InkWell(
+                    onTap: () {
+                      allowAdminToLogin();
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.35,
+                      height: 65,
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(7)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Login",
+                            style: GoogleFonts.ibmPlexSans(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
