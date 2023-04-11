@@ -158,7 +158,7 @@ class _AllVerifiedUsersScreenState extends State<AllVerifiedUsersScreen>
                     padding: const EdgeInsets.all(20.0),
                     child: ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.red,
+                        backgroundColor: Colors.red,
                       ),
                       icon: const Icon(
                         Icons.person_pin_sharp,

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:web_panel_amigo/constants.dart';
 import 'package:web_panel_amigo/main_screens/home_screen.dart';
 
 
