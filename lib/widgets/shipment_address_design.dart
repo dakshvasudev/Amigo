@@ -1,16 +1,24 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:selller_amigo_app/constants.dart';
-import 'package:selller_amigo_app/splashScreen.dart';
 
-class ShipmentAddressDesign extends StatelessWidget {
+
+class ShipmentAddressDesign extends StatefulWidget {
   final String? orderStatus;
   final String? orderId;
   final String? sellerId;
   final String? orderByUser;
+  ShipmentAddressDesign(
+      {this.orderStatus,
+      required this.orderId,
+      this.sellerId,
+      this.orderByUser});
 
-  const ShipmentAddressDesign(
-      {super.key, this.orderStatus, this.orderId, this.sellerId, this.orderByUser});
+  @override
+  State<ShipmentAddressDesign> createState() => _ShipmentAddressDesignState();
+}
 
+class _ShipmentAddressDesignState extends State<ShipmentAddressDesign> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,10 +38,12 @@ class ShipmentAddressDesign extends StatelessWidget {
           child: Center(
             child: InkWell(
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SplashScreen()));
+                setState(() {
+                  FirebaseFirestore.instance
+                      .collection("orders")
+                      .doc(widget.orderId)
+                      .update({'status': 'ended'});
+                });
               },
               child: Container(
                 color: kColorGreen,
@@ -41,7 +51,9 @@ class ShipmentAddressDesign extends StatelessWidget {
                 height: 50,
                 child: Center(
                   child: Text(
-                    orderStatus == "ended" ? "Go Back" : "Order Packing - Done",
+                    widget.orderStatus == "ended"
+                        ? "Order Delivered"
+                        : "Order Packing - Done",
                     style: const TextStyle(color: Colors.white, fontSize: 15.0),
                   ),
                 ),

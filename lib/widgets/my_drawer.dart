@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:selller_amigo_app/authScreen/auth_screen.dart';
 import 'package:selller_amigo_app/constants.dart';
+import 'package:selller_amigo_app/mainScreens/earnings_screen.dart';
+import 'package:selller_amigo_app/mainScreens/history_screen.dart';
 import 'package:selller_amigo_app/mainScreens/home_screen.dart';
 import 'package:selller_amigo_app/mainScreens/new_orders_screen.dart';
 
@@ -81,7 +83,9 @@ class MyDrawer extends StatelessWidget {
                   "My Earnings",
                   style: TextStyle(color: Colors.black),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>EarningsScreen()));
+                },
               ),
               const Divider(
                 height: 10,
@@ -104,22 +108,24 @@ class MyDrawer extends StatelessWidget {
                           builder: (context) => NewOrdersScreen()));
                 },
               ),
-              // const Divider(
-              //   height: 10,
-              //   color: Colors.grey,
-              //   thickness: 2,
-              // ),
-              // ListTile(
-              //   leading: const Icon(
-              //     Icons.local_shipping,
-              //     color: Colors.black,
-              //   ),
-              //   title: const Text(
-              //     "History of orders",
-              //     style: TextStyle(color: Colors.black),
-              //   ),
-              //   onTap: () {},
-              // ),
+              const Divider(
+                height: 10,
+                color: Colors.grey,
+                thickness: 2,
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.local_shipping,
+                  color: Colors.black,
+                ),
+                title: const Text(
+                  "History of orders",
+                  style: TextStyle(color: Colors.black),
+                ),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>HistoryScreen()));
+                },
+              ),
               const Divider(
                 height: 10,
                 color: Colors.grey,
