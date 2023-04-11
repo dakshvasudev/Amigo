@@ -1,8 +1,11 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:web_panel_amigo/authentication/login_screen.dart';
 import 'package:web_panel_amigo/constants.dart';
+import 'package:web_panel_amigo/users/all_verified_users_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -107,7 +110,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: const EdgeInsets.all(40),
                         backgroundColor: kColorGreen,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AllVerifiedUsersScreen()));
+                      },
                     ),
                   ),
 
@@ -216,7 +221,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(40),
                   backgroundColor: Colors.black,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                  Navigator.push(context,MaterialPageRoute(builder: (context)=>LoginScreen()));
+                },
               ),
             ],
           ),
