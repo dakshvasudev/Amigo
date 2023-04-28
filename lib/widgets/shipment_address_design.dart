@@ -3,7 +3,8 @@ import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/splashScreen.dart';
 
 class ShipmentAddressDesign extends StatelessWidget {
-  const ShipmentAddressDesign({super.key});
+  final String orderStatus;
+   ShipmentAddressDesign({super.key,required this.orderStatus});
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +37,7 @@ class ShipmentAddressDesign extends StatelessWidget {
                 height: 50,
                 child: Center(
                   child: Text(
-                    // orderStatus == "ended" ? "Go Back" : "Order Packing - Done",
-                    "GO BACK",
+                    orderStatus == "ended" ? "Go Back" : "Order Packing - Done",
                     style: TextStyle(color: Colors.white, fontSize: 15.0),
                   ),
                 ),

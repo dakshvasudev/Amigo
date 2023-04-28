@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:user_amigo_app/authScreen/auth_screen.dart';
 import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/mainScreens/home_screen.dart';
 import 'package:user_amigo_app/widgets/error_dialog.dart';
@@ -91,7 +92,8 @@ class _PhoneNumberState extends State<PhoneNumber> {
         firebaseAuth.signOut();
         Navigator.pop(context);
         Navigator.push(
-            context, MaterialPageRoute(builder: (c) => HomeScreen()));
+            context, MaterialPageRoute(builder: (c) => AuthScreen())
+        );
 
         showDialog(
             context: context,

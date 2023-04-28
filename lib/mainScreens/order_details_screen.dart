@@ -17,7 +17,6 @@ class OrderDetailsScreen extends StatefulWidget {
 
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   String orderStatus = "";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +90,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             .get(),
                         builder: (c, snapshot) {
                           return snapshot.hasData
-                              ? const ShipmentAddressDesign()
+                              ?  ShipmentAddressDesign(orderStatus: orderStatus,)
                               : Center(
                                   child: circularProgress(),
                                 );

@@ -8,7 +8,7 @@ class CartItemDesign extends StatefulWidget {
   BuildContext? context;
   final int? quanNumber;
 
-  CartItemDesign({
+  CartItemDesign({super.key,
     this.model,
     this.context,
     this.quanNumber,
