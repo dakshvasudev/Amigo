@@ -12,9 +12,6 @@ class EarningsScreen extends StatefulWidget
   _EarningsScreenState createState() => _EarningsScreenState();
 }
 
-
-
-
 class _EarningsScreenState extends State<EarningsScreen>
 {
   double sellerTotalEarnings = 0;
