@@ -1,100 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:user_amigo_app/authScreen/auth_screen.dart';
+import 'package:user_amigo_app/constants.dart';
 
-class GetStartedScreen extends StatefulWidget {
+class GetStartedScreen extends StatelessWidget {
   const GetStartedScreen({Key? key}) : super(key: key);
 
   @override
-  State<GetStartedScreen> createState() => _GetStartedScreenState();
-}
-
-class _GetStartedScreenState extends State<GetStartedScreen> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: [
-        Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/getStarted.jpg"),
-              fit: BoxFit.cover,
-              opacity: 80,
-            ),
-          ),
-        ),
-        Positioned(
-          left: 45,
-          right: 21,
-          bottom: 118,
-          child: Text(
-            'Flavours of your choice...',
-            style: GoogleFonts.lobster(fontSize: 30, color: Colors.white),
-          ),
-        ),
-        Positioned(
-          left: 63,
-          bottom: 54,
-          right: 63,
-          child: ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                    side: BorderSide(color: Colors.black)),
-              ),
-            ),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AuthScreen()));
-            },
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(14, 9, 14, 9),
-              child: Container(
-                height: 36,
-                child: Center(
-                  child: Text(
-                    'Get Started',
-                    style: GoogleFonts.ibmPlexSans(
-                      fontSize: 20,
+      backgroundColor: kColorRed,
+      body: SafeArea(
+        child: Column(
+          children: [
+            const SizedBox(height: 40),
+            Image.asset('assets/images/Logoamigo.jpeg',
+                width: double.infinity, fit: BoxFit.fitWidth),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              child: Column(
+                children: [
+                  Text(
+                    "Order from campus food stalls, skip the queue, pick up when it's ready.",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.85), fontSize: 15),
+                  ),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const AuthScreen()));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: kColorYellow,
+                        foregroundColor: kColorRedDark,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14)),
+                      ),
+                      child: const Text('Get started',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w700)),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
-          ),
+          ],
         ),
-      ],
-    ));
+      ),
+    );
   }
 }
-
-// Container(
-// height: MediaQuery.of(context).size.height,
-// width: MediaQuery.of(context).size.width,
-// decoration: const BoxDecoration(
-// image: DecorationImage(
-// image: AssetImage("assets/images/getStarted.jpg"),
-// fit: BoxFit.cover,
-// opacity: 80,
-// ),
-// ),
-// child: Column(
-// children: [
-// Positioned(
-// bottom: 20,
-// child: ElevatedButton(
-// onPressed: () {
-// Navigator.push(context,
-// MaterialPageRoute(builder: (context) => AuthScreen()));
-// },
-// child: Text('Get Started'),
-// ),
-// )
-// ],
-// ),
-// )

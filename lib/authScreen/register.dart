@@ -161,7 +161,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   },
                   child: CircleAvatar(
                     radius: MediaQuery.of(context).size.width * 0.12,
-                    backgroundColor: kColorGreen,
+                    backgroundColor: kColorRed,
                     backgroundImage: imageXFile == null
                         ? null
                         : FileImage(
@@ -186,7 +186,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextField(
                         leadingIcon: Icon(
                           Icons.drive_file_rename_outline_sharp,
-                          color: kColorGreen,
+                          color: kColorRed,
                           size: 22,
                         ),
                         controller: nameController,
@@ -198,7 +198,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextField(
                         leadingIcon: Icon(
                           Icons.email,
-                          color: kColorGreen,
+                          color: kColorRed,
                           size: 22,
                         ),
                         controller: emailController,
@@ -211,7 +211,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextField(
                         leadingIcon: Icon(
                           Icons.password_rounded,
-                          color: kColorGreen,
+                          color: kColorRed,
                           size: 22,
                         ),
                         controller: passwordController,
@@ -225,7 +225,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextField(
                         leadingIcon: Icon(
                           Icons.password_rounded,
-                          color: kColorGreen,
+                          color: kColorRed,
                           size: 22,
                         ),
                         controller: confirmPasswordController,

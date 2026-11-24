@@ -147,7 +147,7 @@ class _PhoneNumberState extends State<PhoneNumber> {
                                 leadingIcon: Icon(
                                   Icons.email,
                                   size: 22,
-                                  color: kColorGreen,
+                                  color: kColorRed,
                                 ),
                                 controller: emailController,
                                 hintText: 'johnalexander@yahoo.com',
@@ -171,7 +171,7 @@ class _PhoneNumberState extends State<PhoneNumber> {
                                 leadingIcon: Icon(
                                   Icons.password_rounded,
                                   size: 22,
-                                  color: kColorGreen,
+                                  color: kColorRed,
                                 ),
                                 controller: passwordController,
                                 hintText: '*************',
