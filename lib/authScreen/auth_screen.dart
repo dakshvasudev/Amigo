@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:user_amigo_app/authScreen/login.dart';
 import 'package:user_amigo_app/authScreen/register.dart';
 import 'package:user_amigo_app/constants.dart';
@@ -17,46 +16,25 @@ class _AuthScreenState extends State<AuthScreen> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: const Color(0xffd9d9d9),
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          toolbarHeight: MediaQuery.of(context).size.height * 0.2,
+          toolbarHeight: 120,
           automaticallyImplyLeading: false,
-          backgroundColor: Colors.white,
-          scrolledUnderElevation: 15,
-          // shadowColor: Colors.black,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(45),
-            ),
-          ),
-          title: const Center(
-            child: Text(
-              '',
-            ),
+          backgroundColor: kColorRed,
+          elevation: 0,
+          title: Center(
+            child: Image.asset('assets/images/Logoamigo.jpeg', height: 110),
           ),
           bottom: TabBar(
-            labelColor: Colors.black,
-            labelStyle: GoogleFonts.ibmPlexSans(),
-            tabs: [
-              Tab(
-                icon: Icon(
-                  Icons.lock,
-                  color: kColorGreen,
-                  size: 35,
-                ),
-                text: 'Login',
-              ),
-              Tab(
-                icon: Icon(
-                  Icons.person,
-                  color: kColorGreen,
-                  size: 35,
-                ),
-                text: 'Register',
-              ),
+            labelColor: Colors.white,
+            unselectedLabelColor: Colors.white70,
+            labelStyle: const TextStyle(fontWeight: FontWeight.w600),
+            tabs: const [
+              Tab(icon: Icon(Icons.lock_outline), text: 'Login'),
+              Tab(icon: Icon(Icons.person_outline), text: 'Register'),
             ],
-            indicatorColor: kColorGreen,
-            indicatorWeight: 7,
+            indicatorColor: kColorYellow,
+            indicatorWeight: 4,
             indicatorSize: TabBarIndicatorSize.label,
           ),
         ),

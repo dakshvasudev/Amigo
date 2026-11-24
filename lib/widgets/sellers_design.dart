@@ -1,126 +1,76 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:user_amigo_app/constants.dart';
 import 'package:user_amigo_app/mainScreens/menus_screen.dart';
 import 'package:user_amigo_app/models/sellers.dart';
 
-class SellerDesignWidget extends StatefulWidget {
-  Sellers? model;
-  BuildContext? context;
+/// One stall in the "On campus now" list.
+class SellerDesignWidget extends StatelessWidget {
+  final Sellers? model;
+  final BuildContext? context;
 
-  SellerDesignWidget({this.model, this.context});
+  const SellerDesignWidget({Key? key, this.model, this.context}) : super(key: key);
 
-  @override
-  _SellerDesignWidgetState createState() => _SellerDesignWidgetState();
-}
-
-class _SellerDesignWidgetState extends State<SellerDesignWidget> {
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-        splashColor: kColorGreen,
-        onTap: () {
-          print('tapped it');
-          Navigator.push(
+    final seller = model!;
+    final avatar = seller.sellerAvatarUrl;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Material(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(14),
+          side: const BorderSide(color: kColorBorder),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: () {
+            Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) => MenusScreen(
-                        model: widget.model,
-                      )));
-        },
-        child: Container(
-          height: 230,
-          width: 100,
-          margin:
-              const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
-          decoration: BoxDecoration(
-            color: const Color(0xffd9d9d9),
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                offset: const Offset(0, 4),
-                blurRadius: 20,
-                color: const Color(0xffd9d9d9).withOpacity(0.32),
-              ),
-            ],
-          ),
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => MenusScreen(
-                          model: widget.model,
-                        )));
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    CircleAvatar(
-                      radius: 60,
-                      backgroundImage: NetworkImage(
-                        widget.model!.sellerAvatarUrl!,
-                      ),
-                    ),
-                    const Spacer(),
-                    Text(
-                      widget.model!.sellerName!,
-                      style: GoogleFonts.ibmPlexSans(
-                          color: kColorGreen,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 21),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+              MaterialPageRoute(builder: (c) => MenusScreen(model: seller)),
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                    width: 52,
+                    height: 52,
+                    color: kColorRed.withOpacity(0.1),
+                    child: avatar == null || avatar.isEmpty
+                        ? const Icon(Icons.storefront, color: kColorRed)
+                        : Image.network(avatar, fit: BoxFit.cover,
+                            errorBuilder: (c, e, s) =>
+                                const Icon(Icons.storefront, color: kColorRed)),
+                  ),
                 ),
-              ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        seller.sellerName ?? 'Stall',
+                        style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: kColorInk),
+                      ),
+                      const SizedBox(height: 2),
+                      const Text('Tap to see the menu',
+                          style: TextStyle(fontSize: 12, color: kColorMuted)),
+                    ],
+                  ),
+                ),
+                const Icon(Icons.chevron_right, color: Color(0xffa1a1aa)),
+              ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
-// Padding(
-// padding: const EdgeInsets.all(5.0),
-// child: SizedBox(
-// height: 280,
-// width: MediaQuery.of(context).size.width,
-// child: Column(
-// children: [
-// Divider(
-// height: 4,
-// thickness: 3,
-// color: Colors.grey[300],
-// ),
-// Image.network(
-// widget.model!.sellerAvatarUrl!,
-// height: 220.0,
-// fit: BoxFit.cover,
-// ),
-// const SizedBox(height: 1.0,),
-// Text(
-// widget.model!.sellerName!,
-// style: const TextStyle(
-// color: Colors.cyan,
-// fontSize: 20,
-// ),
-// ),
-// Text(
-// widget.model!.sellerEmail!,
-// style: const TextStyle(
-// color: Colors.grey,
-// fontSize: 12,
-// ),
-// ),
-// Divider(
-// height: 4,
-// thickness: 3,
-// color: Colors.grey[300],
-// ),
-// ],
-// ),
-// ),
-// ),

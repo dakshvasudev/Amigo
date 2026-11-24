@@ -1,160 +1,125 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:number_inc_dec/number_inc_dec.dart';
+import 'package:user_amigo_app/assistantMethods/cart_service.dart';
 import 'package:user_amigo_app/constants.dart';
+import 'package:user_amigo_app/mainScreens/menus_screen.dart';
 import 'package:user_amigo_app/model/items.dart';
-import 'package:user_amigo_app/widgets/FloatingShoppingCart.dart';
-import 'package:user_amigo_app/widgets/app_bar.dart';
-import 'package:user_amigo_app/assistantMethods/assistant_methods.dart';
+import 'package:user_amigo_app/widgets/amigo_ui.dart';
 
 class ItemDetailsScreen extends StatefulWidget {
   final Items? model;
-  ItemDetailsScreen({this.model});
+  const ItemDetailsScreen({Key? key, this.model}) : super(key: key);
 
   @override
-  _ItemDetailsScreenState createState() => _ItemDetailsScreenState();
+  State<ItemDetailsScreen> createState() => _ItemDetailsScreenState();
 }
 
 class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
-  TextEditingController counterTextEditingController = TextEditingController();
+  late int _qty;
+  bool _saving = false;
+
+  Items get item => widget.model!;
+
+  @override
+  void initState() {
+    super.initState();
+    final inCart =
+        cartSellerUID() == item.sellerUID ? cartQuantityOf(item.itemID) : 0;
+    _qty = inCart > 0 ? inCart : 1;
+  }
+
+  Future<void> _save() async {
+    setState(() => _saving = true);
+    await setCartQuantity(context,
+        itemID: item.itemID!, sellerUID: item.sellerUID!, quantity: _qty);
+    if (!mounted) return;
+    Fluttertoast.showToast(msg: 'Added to cart.');
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
+    final soldOut = isSoldOut(item);
+    final thumb = item.thumbnailUrl;
     return Scaffold(
-      appBar: MyAppBar(),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                widget.model!.title.toString(),
-                // 'Description',
-                style: GoogleFonts.kaiseiOpti(
-                    fontWeight: FontWeight.bold, fontSize: 30),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Center(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: const Color(0xffd9d9d9),
-                    border: Border.all(color: const Color(0xffd9d9d9)),
-                    borderRadius: BorderRadius.circular(15),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(
-                        widget.model!.thumbnailUrl!,
-                      ),
-                    ),
+      body: Column(
+        children: [
+          AmigoHeader(title: item.title ?? '', onBack: () => Navigator.pop(context)),
+          Expanded(
+            child: ListView(
+              padding: const EdgeInsets.all(16),
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(14),
+                  child: AspectRatio(
+                    aspectRatio: 16 / 10,
+                    child: thumb == null || thumb.isEmpty
+                        ? Container(color: kColorSurface)
+                        : Image.network(thumb, fit: BoxFit.cover,
+                            errorBuilder: (c, e, s) =>
+                                Container(color: kColorSurface)),
                   ),
-                  height: 135,
-                  width: 238,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: NumberInputPrefabbed.roundedButtons(
-                  controller: counterTextEditingController,
-                  incDecBgColor: kColorGreen,
-                  incIcon: Icons.add_circle,
-                  incIconColor: Colors.black,
-                  decIcon: Icons.remove_circle,
-                  decIconColor: Colors.black,
-                  min: 1,
-                  max: 15,
-                  initialValue: 1,
-                  buttonArrangement: ButtonArrangement.incRightDecLeft,
+                const SizedBox(height: 16),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(item.title ?? '',
+                          style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              color: kColorInk)),
+                    ),
+                    Text(rupees(item.price ?? 0),
+                        style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            color: kColorInk)),
+                  ],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  // widget.model!.title.toString(),
-                  'Description',
-                  style: GoogleFonts.kaiseiOpti(
-                      fontWeight: FontWeight.bold, fontSize: 30),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: const Color(0xffd9d9d9),
-                    border: Border.all(color: const Color(0xffd9d9d9)),
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0xffd9d9d9),
-                        spreadRadius: 2,
-                        // blurRadius: 1,
-                        offset: Offset(1, 0), // changes position of shadow
+                if ((item.shortInfo ?? '').isNotEmpty) ...[
+                  const SizedBox(height: 4),
+                  Text(item.shortInfo!,
+                      style: const TextStyle(fontSize: 13, color: kColorMuted)),
+                ],
+                if ((item.longDescription ?? '').isNotEmpty) ...[
+                  const SizedBox(height: 16),
+                  const SectionLabel('About this item'),
+                  const SizedBox(height: 6),
+                  Text(item.longDescription!,
+                      style: const TextStyle(
+                          fontSize: 14, height: 1.5, color: kColorInk)),
+                ],
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(
+                16, 12, 16, 12 + MediaQuery.of(context).padding.bottom),
+            decoration: const BoxDecoration(
+              border: Border(top: BorderSide(color: kColorBorder)),
+            ),
+            child: soldOut
+                ? const PrimaryButton(label: 'Sold out')
+                : Row(
+                    children: [
+                      QtyStepper(
+                        qty: _qty,
+                        onAdd: () => setState(() => _qty = _qty < 15 ? _qty + 1 : 15),
+                        onRemove: () => setState(() => _qty = _qty > 1 ? _qty - 1 : 1),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: PrimaryButton(
+                          label: 'Add · ${rupees((item.price ?? 0) * _qty)}',
+                          loading: _saving,
+                          onPressed: _save,
+                        ),
                       ),
                     ],
                   ),
-                  padding: const EdgeInsets.all(8),
-                  child: Text(
-                    widget.model!.longDescription.toString(),
-                    textAlign: TextAlign.justify,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.normal, fontSize: 14),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Price: ₹ ' + widget.model!.price.toString(),
-                  style: GoogleFonts.kaiseiOpti(
-                      fontWeight: FontWeight.bold, fontSize: 22),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Center(
-                child: InkWell(
-                  onTap: () {
-                    int itemCounter =
-                        int.parse(counterTextEditingController.text);
-                    List<String> separateItemIDsList = separateItemIDs();
-
-                    //1.check if item exist already in cart
-                    separateItemIDsList.contains(widget.model!.itemID)
-                        ? Fluttertoast.showToast(
-                            msg: "Item is already in Cart.")
-                        :
-                        //2.add to cart
-                        addItemToCart(
-                            widget.model!.itemID, context, itemCounter);
-                  },
-                  child: Container(
-                    color: kColorGreen,
-                    width: MediaQuery.of(context).size.width - 13,
-                    height: 50,
-                    child: Center(
-                      child: Text(
-                        "Add to Cart",
-                        style: GoogleFonts.ibmPlexSans(
-                          fontSize: 18,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
           ),
-        ),
-      ),
-      floatingActionButton: FloatingShoppingCart(
-        sellerUID: widget.model!.sellerUID,
+        ],
       ),
     );
   }

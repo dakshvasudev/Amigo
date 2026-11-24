@@ -49,11 +49,24 @@ No install needed. The [interactive demo](https://dakshvasudev.vercel.app/projec
 
 ## Features in this repo (student app)
 
+The app's UI matches the interactive demo: red and yellow Amigo branding, a bottom bar with Home, Orders and Cart, and a live order tracker.
+
 - **Accounts:** email sign-up and login with Firebase Auth, profile photo upload to Firebase Storage
-- **Live catalogue:** stalls → menus → items, streamed from Cloud Firestore with `snapshots()`, so a menu change shows up without a refresh
-- **Cart:** add items with quantities, cart count and totals via Provider, cart kept on the device (SharedPreferences) and synced to the user's Firestore document so it survives a reinstall
-- **Checkout:** saved pickup addresses, order placement
-- **Orders:** order history and order details, each with a status banner
+- **Home:** searchable list of stalls, streamed from Cloud Firestore
+- **Menu:** every menu of a stall shown as a section with its items inline, with ADD and +/- steppers; items the vendor marks sold out are greyed out
+- **Cart:** one stall per order, quantities editable in place, cart kept on the device and synced to the user's Firestore document
+- **Orders:** placed with a single tap (pay at pickup), each with a pickup code and a live tracker (placed, being prepared, ready for pickup, collected) that updates as the vendor app changes the order's `status`
+- **Ratings:** 1 to 5 stars once an order is collected, saved on the order so the university portal can report feedback per stall
+
+### Order status values
+
+| `status` | Shown as | Set by |
+|---|---|---|
+| `normal` | Order placed | Student app |
+| `preparing` | Being prepared | Vendor app |
+| `ready` | Ready for pickup | Vendor app |
+| `ended` | Collected | Vendor app |
+| `rejected` | Rejected | Vendor app |
 
 ## Architecture
 
@@ -87,8 +100,8 @@ Each order is written twice, to the student's history and to the shared `orders`
 
 | Area | Choice |
 |---|---|
-| UI | Flutter, Material, Google Fonts, carousel_slider, flutter_staggered_grid_view, flutter_zoom_drawer |
-| State | Provider (cart count, totals) |
+| UI | Flutter, Material, Google Fonts (Inter) |
+| State | Provider (cart count) |
 | Backend | Firebase Auth, Cloud Firestore, Firebase Storage |
 | Local storage | SharedPreferences |
 
@@ -115,10 +128,10 @@ flutter run
 ```
 lib/
 ├── authScreen/        # auth tabs, login, register
-├── mainScreens/       # home, menus, items, item detail, cart, orders, order details
-├── widgets/           # cards, app bars, cart item, status banner, dialogs
-├── assistantMethods/  # cart helpers, cart counter, total amount (Provider)
-├── model/, models/    # Items, Menus, Sellers
+├── mainScreens/       # home shell + tabs, menu, item detail, cart, orders, order details
+├── widgets/           # shared UI (header, buttons, stepper), stall row, order card and tracker
+├── assistantMethods/  # cart service, order service, cart counter (Provider)
+├── model/, models/    # Items, Menus, Sellers, order status
 └── main.dart
 ```
 
@@ -130,6 +143,7 @@ Built in 2023 at Bennett University by a team of five. I led the team and worked
 
 - Online payment instead of pay-at-pickup
 - Push notification when an order is ready
+- Firestore security rules so students can only rate their own collected orders
 - Migrate to Dart 3 and current Firebase packages
 
 ---
