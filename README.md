@@ -6,7 +6,7 @@
 
 **Campus food ordering without the queue.** A student app, a vendor app and a university admin portal, built in Flutter on Firebase.
 
-[**▶ Try the interactive demo**](https://dakshvasudev.vercel.app/project/amigo) · [Demo video 1](https://youtu.be/Uuqe5fmb2hY) · [Demo video 2](https://youtu.be/DzI9j2IBcgs)
+[**▶ Try the interactive demo**](https://dakshvasudev.vercel.app/project/amigo)
 
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?logo=flutter&logoColor=white)
 ![Dart](https://img.shields.io/badge/Dart-0175C2?logo=dart&logoColor=white)
